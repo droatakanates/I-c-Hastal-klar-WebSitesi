@@ -1,0 +1,107 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  updatedDate?: Date;
+  category: string;
+  tags: string[];
+  section: 'tip' | 'siyaset';
+  evidenceLevel?: string;
+  icerikTipi?: string;
+  references: string[];
+}
+
+const {
+  title,
+  description,
+  publishDate,
+  updatedDate,
+  category,
+  tags,
+  section,
+  evidenceLevel,
+  icerikTipi,
+  references,
+} = Astro.props;
+
+const dateFmt = new Intl.DateTimeFormat('tr-TR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const sectionLabel = section === 'tip' ? 'Tıp' : 'Siyaset';
+const sectionBase = section === 'tip' ? '/tip' : '/siyaset';
+const evidenceClass = evidenceLevel ? `evidence-${evidenceLevel.replace(' ', '')}` : '';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogType="article"
+  publishedTime={publishDate}
+>
+  <article class="container prose">
+    <header class="post-header">
+      <div class="post-header__meta">
+        <a href={sectionBase} class={`badge badge--${section}`}>{sectionLabel}</a>
+        <a href={`${sectionBase}/kategori/${encodeURIComponent(category)}`} class="badge badge--category">
+          {category}
+        </a>
+        {icerikTipi && <span class="badge badge--category">{icerikTipi}</span>}
+        {evidenceLevel && (
+          <span class={`evidence-badge ${evidenceClass}`}>
+            Kanıt Seviyesi {evidenceLevel}
+          </span>
+        )}
+      </div>
+      <h1 class="post-header__title">{title}</h1>
+      <p class="post-header__description">{description}</p>
+      <div class="post-header__meta" style="margin-top: 1rem;">
+        <time datetime={publishDate.toISOString()}>
+          Yayın: {dateFmt.format(publishDate)}
+        </time>
+        {updatedDate && (
+          <time datetime={updatedDate.toISOString()}>
+            Güncelleme: {dateFmt.format(updatedDate)}
+          </time>
+        )}
+      </div>
+    </header>
+
+    <div class="post-content">
+      <slot />
+    </div>
+
+    {references.length > 0 && (
+      <section class="references" aria-labelledby="references-heading">
+        <h2 id="references-heading">Kaynaklar</h2>
+        <ol>
+          {references.map((ref) => (
+            <li>{ref}</li>
+          ))}
+        </ol>
+      </section>
+    )}
+
+    {tags.length > 0 && (
+      <div class="category-pills" style="margin-top: 2rem;">
+        {tags.map((tag) => (
+          <span class="category-pill">#{tag}</span>
+        ))}
+      </div>
+    )}
+
+    {section === 'tip' && (
+      <div style="margin-top: 2rem; padding: 1rem; background: var(--color-bg-soft); border-left: 3px solid var(--color-tip); border-radius: var(--radius-sm); font-size: 0.92rem; color: var(--color-text-soft);">
+        <strong style="color: var(--color-text);">Tıbbi sorumluluk reddi:</strong>
+        Bu yazı genel bilgilendirme amaçlıdır ve hekim danışmanlığının yerine geçmez.
+        Klinik kararlar için yetkili sağlık profesyoneline başvurunuz.
+        <a href="/sorumluluk-reddi">Detaylı bilgi</a>.
+      </div>
+    )}
+  </article>
+</BaseLayout>

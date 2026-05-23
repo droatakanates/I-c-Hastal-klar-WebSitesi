@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { TIP_KATEGORILERI } from '../../content.config';
+
+const posts = (await getCollection('tip', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Tıp"
+  description="Kanıta dayalı iç hastalıkları içeriği — olgu sunumları, kılavuz özetleri, literatür taramaları ve klinik pratik notları."
+>
+  <section class="container">
+    <div class="hero" style="text-align: left; padding-bottom: 1rem;">
+      <span class="badge badge--tip">Bölüm</span>
+      <h1 class="hero__title" style="font-size: 2.25rem; margin-top: 0.5rem;">Tıp</h1>
+      <p class="hero__lead" style="margin: 0;">
+        İç hastalıkları ve yan dalları üzerine kanıta dayalı içerik. Kılavuz özetleri,
+        olgu sunumları, literatür taramaları.
+      </p>
+    </div>
+
+    <nav class="category-pills" aria-label="Kategoriler">
+      {TIP_KATEGORILERI.map((cat) => (
+        <a href={`/tip/kategori/${encodeURIComponent(cat)}`} class="category-pill">
+          {cat}
+        </a>
+      ))}
+    </nav>
+
+    <div style="margin-top: 2rem;">
+      {posts.length === 0 ? (
+        <p style="color: var(--color-text-muted); font-style: italic; padding: 2rem 0;">
+          Bu bölümde henüz yazı yok.
+        </p>
+      ) : (
+        posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/tip/${post.id}`}
+            publishDate={post.data.publishDate}
+            category={post.data.category}
+            section="tip"
+            evidenceLevel={post.data.evidenceLevel}
+          />
+        ))
+      )}
+    </div>
+  </section>
+</BaseLayout>

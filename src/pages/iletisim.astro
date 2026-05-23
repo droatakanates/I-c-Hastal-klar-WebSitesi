@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="İletişim"
+  description="Geri bildirim, düzeltme ve önerileriniz için iletişim bilgileri."
+>
+  <article class="container prose">
+    <header class="post-header">
+      <h1 class="post-header__title">İletişim</h1>
+      <p class="post-header__description">
+        Geri bildirim, düzeltme önerisi veya işbirliği talepleri için.
+      </p>
+    </header>
+
+    <h2>E-posta</h2>
+    <p>
+      <a href="mailto:iletisim@omuratakanates.com">iletisim@omuratakanates.com</a>
+    </p>
+    <p style="color: var(--color-text-muted); font-size: 0.92rem;">
+      Not: Bu e-posta adresi yayına alınmadan önce mail hizmet sağlayıcınızda
+      kurulmalıdır.
+    </p>
+
+    <h2>Düzeltme talepleri</h2>
+    <p>
+      Yazılarda hata veya eksiklik fark ederseniz, lütfen e-posta ile bildirin:
+    </p>
+    <ul>
+      <li>Yazının başlığı ve URL'si</li>
+      <li>Düzeltilmesini önerdiğiniz cümle/paragraf</li>
+      <li>Önerilen düzeltme ve kaynak (varsa)</li>
+    </ul>
+
+    <h2>Kişisel sağlık soruları</h2>
+    <p>
+      Bu site genel bilgilendirme amaçlıdır.
+      <strong>Kişisel sağlık durumunuzla ilgili sorulara cevap verilmez.</strong>
+      Klinik kararlar için yetkili sağlık profesyoneline başvurunuz. Detaylı bilgi:
+      <a href="/sorumluluk-reddi">tıbbi sorumluluk reddi</a>.
+    </p>
+  </article>
+</BaseLayout>

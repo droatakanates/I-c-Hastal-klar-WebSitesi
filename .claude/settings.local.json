@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(brew --version)",
+      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$PATH\")",
+      "Bash(node --version)",
+      "Bash(npm --version)",
+      "Bash(export PATH=\"/usr/local/bin:$PATH\")",
+      "Bash(npm create astro@latest . -- --template minimal --install --no-git --typescript strict --skip-houston --yes)",
+      "Bash(npx astro check)",
+      "Bash(echo \"EXIT=$?\")",
+      "Bash(npx astro build)",
+      "Bash(npx astro dev --host 127.0.0.1 --port 4321)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://127.0.0.1:4321/)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://127.0.0.1:4321/tip)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://127.0.0.1:4321/siyaset)",
+      "Bash(npm install @astrojs/rss @astrojs/sitemap)",
+      "Bash(git --version)",
+      "Bash(git init -b main)",
+      "Bash(git add -A)",
+      "Bash(git -c user.email=\"local@omuratakanates.com\" -c user.name=\"Ömür Atakan Ateş\" commit -m \"İlk yayın: Astro tabanlı kişisel blog \\(tıp + siyaset bölümleri\\)\")"
+    ]
+  }
+}
