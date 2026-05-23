@@ -1012,6 +1012,94 @@ a:hover {
   max-width: 60ch;
 }
 
+/* === Okuma ilerleme çubuğu === */
+.reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.reading-progress__bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-ic-hastaliklari), var(--color-saglik-rehberi), var(--color-siyaset));
+  transition: width 0.08s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* === Yazı paylaş butonları === */
+.share-post {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: var(--space-xl) 0;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-bg-soft);
+  border-radius: var(--radius-md);
+}
+
+.share-post__label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-text-soft);
+  margin-right: var(--space-xs);
+}
+
+.share-post__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.85rem;
+  background: var(--color-bg);
+  color: var(--color-text-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.share-post__btn:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
+  transform: translateY(-1px);
+}
+
+.share-post__copy--done {
+  background: #15803d !important;
+  color: #fff !important;
+  border-color: #15803d !important;
+}
+
+@media (max-width: 640px) {
+  .share-post__btn span:not(.share-post__copy-label) { display: none; }
+  .share-post { gap: 0.4rem; padding: var(--space-sm); }
+}
+
+/* === Giscus yorumlar === */
+.giscus-wrapper {
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 2px solid var(--color-border);
+}
+
+.giscus-heading {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  margin: 0 0 var(--space-lg);
+  color: var(--color-text);
+}
+
 /* === Pagefind arama UI override === */
 :root {
   --pagefind-ui-scale: 0.92;

@@ -2,6 +2,8 @@
 import BaseLayout from './BaseLayout.astro';
 import { SECTION_LABELS, type SectionKey } from '../components/PostCard.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
+import SharePost from '../components/SharePost.astro';
+import Giscus from '../components/Giscus.astro';
 
 interface Props {
   title: string;
@@ -51,6 +53,8 @@ const disclaimerColor =
   section === 'ic-hastaliklari'
     ? 'var(--color-ic-hastaliklari)'
     : 'var(--color-saglik-rehberi)';
+
+const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <BaseLayout
@@ -60,6 +64,11 @@ const disclaimerColor =
   publishedTime={publishDate}
   ogImage={coverImage}
 >
+  <!-- Okuma ilerleme çubuğu -->
+  <div class="reading-progress" aria-hidden="true">
+    <div class="reading-progress__bar" id="reading-progress-bar"></div>
+  </div>
+
   {coverImage && (
     <div class="post-cover">
       <img src={coverImage} alt={coverImageAlt ?? ''} />
@@ -95,7 +104,7 @@ const disclaimerColor =
       </div>
     </header>
 
-    <div class="post-content">
+    <div class="post-content" id="post-content">
       <slot />
     </div>
 
@@ -118,6 +127,8 @@ const disclaimerColor =
       </div>
     )}
 
+    <SharePost title={title} url={fullUrl} />
+
     {isMedical && (
       <div style={`margin-top: 2rem; padding: 1rem; background: var(--color-bg-soft); border-left: 3px solid ${disclaimerColor}; border-radius: var(--radius-sm); font-size: 0.92rem; color: var(--color-text-soft);`}>
         <strong style="color: var(--color-text);">Tıbbi sorumluluk reddi:</strong>
@@ -128,5 +139,28 @@ const disclaimerColor =
     )}
 
     <RelatedPosts section={section} currentSlug={slug} currentCategory={category} />
+
+    <Giscus />
   </article>
+
+  <script is:inline>
+    (function () {
+      const bar = document.getElementById('reading-progress-bar');
+      const content = document.getElementById('post-content');
+      if (!bar || !content) return;
+
+      function update() {
+        const top = content.offsetTop;
+        const height = content.offsetHeight;
+        const scrolled = Math.max(0, window.scrollY - top + window.innerHeight * 0.2);
+        const visible = Math.min(scrolled, height);
+        const pct = Math.max(0, Math.min(100, (visible / height) * 100));
+        bar.style.width = pct + '%';
+      }
+
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
 </BaseLayout>

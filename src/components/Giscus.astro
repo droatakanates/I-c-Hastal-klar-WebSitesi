@@ -1,0 +1,49 @@
+---
+/**
+ * Giscus yorum sistemi (GitHub Discussions tabanlı).
+ *
+ * KURULUM (tek seferlik, kullanıcı tarafından):
+ * 1. https://github.com/droatakanates/omuratakanates/settings → "Features" → "Discussions" ekle
+ * 2. https://github.com/apps/giscus → "Install" → omuratakanates reposunu seç
+ * 3. https://giscus.app → şu bilgileri al:
+ *    - Repository: droatakanates/omuratakanates
+ *    - Page ↔ Discussions Mapping: "pathname"
+ *    - Discussion Category: "Comments" (önce GitHub'da Discussions sekmesinde bu adda kategori oluştur)
+ *    - "Enable Giscus" altındaki script'ten data-repo-id ve data-category-id değerlerini kopyala
+ * 4. Bu dosyada aşağıdaki YORUM YERİ_TUTUCULARI'nı gerçek değerlerle değiştir
+ * 5. Commit + push → yorumlar canlıda
+ *
+ * Şu an pasif durumda (placeholder ID'ler var). Aktive edilene kadar yorum kutusu gizli kalır.
+ */
+
+const DATA_REPO_ID = ''; // örn. R_kgDOXXXXXXX  — giscus.app'tan kopyala
+const DATA_CATEGORY_ID = ''; // örn. DIC_kwDOXXXXXXX  — giscus.app'tan kopyala
+
+const enabled = DATA_REPO_ID !== '' && DATA_CATEGORY_ID !== '';
+---
+
+{enabled ? (
+  <section class="giscus-wrapper" aria-label="Yorumlar">
+    <h2 class="giscus-heading">Yorumlar</h2>
+    <div class="giscus"></div>
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="droatakanates/omuratakanates"
+      data-repo-id={DATA_REPO_ID}
+      data-category="Comments"
+      data-category-id={DATA_CATEGORY_ID}
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="preferred_color_scheme"
+      data-lang="tr"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async
+    ></script>
+  </section>
+) : (
+  <!-- Giscus yorum sistemi pasif. Aktive etmek için src/components/Giscus.astro içindeki yönergelere bakın. -->
+)}
