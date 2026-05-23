@@ -1,0 +1,248 @@
+# omuratakanates.com — İçerik Paneli yapılandırması
+# Sveltia CMS / Decap CMS uyumlu
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Görseller (infografikler) buraya yüklenir
+media_folder: "public/gorseller"
+public_folder: "/gorseller"
+
+site_url: https://omuratakanates.com
+display_url: https://omuratakanates.com
+logo_url: https://omuratakanates.com/favicon.svg
+
+locale: 'tr'
+
+# Türkçe karakterleri ASCII'ye dönüştürerek slug üretir (URL dostu)
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+# Yayınlama modu: doğrudan (basit). Onay akışı isterseniz "editorial_workflow" yapın.
+publish_mode: simple
+
+collections:
+  # ───────────── İç Hastalıkları ─────────────
+  - name: "ic-hastaliklari"
+    label: "İç Hastalıkları"
+    label_singular: "Yazı"
+    description: "Sağlık profesyonelleri için kanıta dayalı akademik içerik."
+    folder: "src/content/ic-hastaliklari"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — {{publishDate | date('YYYY-MM-DD')}}"
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Açıklama (SEO özeti, max 200 karakter)", name: "description", widget: "text" }
+      - {
+          label: "Yayın Tarihi",
+          name: "publishDate",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+          date_format: "YYYY-MM-DD",
+        }
+      - {
+          label: "Güncelleme Tarihi (opsiyonel)",
+          name: "updatedDate",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+          date_format: "YYYY-MM-DD",
+          required: false,
+        }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - "Endokrinoloji ve Metabolizma"
+          - "Gastroenteroloji"
+          - "Hematoloji"
+          - "Kardiyoloji"
+          - "Nefroloji"
+          - "Romatoloji"
+          - "Göğüs Hastalıkları"
+          - "Onkoloji"
+          - "Enfeksiyon Hastalıkları"
+          - "Geriatri"
+      - {
+          label: "Etiketler",
+          name: "tags",
+          widget: "list",
+          required: false,
+          hint: "Her etikete enter basın",
+        }
+      - label: "Kanıt Seviyesi (GRADE)"
+        name: "evidenceLevel"
+        widget: "select"
+        required: false
+        options: ["A", "B", "C", "D", "Uzman Görüşü"]
+      - label: "İçerik Tipi"
+        name: "icerikTipi"
+        widget: "select"
+        required: false
+        options:
+          - "Olgu Sunumu"
+          - "Literatür Özeti"
+          - "Klinik Pratik"
+          - "Kılavuz Özeti"
+          - "TUS-YDUS"
+          - "Asistan Köşesi"
+      - {
+          label: "Kaynaklar (her satıra bir kaynak)",
+          name: "references",
+          widget: "list",
+          required: false,
+        }
+      - {
+          label: "Taslak (işaretliyse sitede yayınlanmaz)",
+          name: "draft",
+          widget: "boolean",
+          default: false,
+        }
+      - {
+          label: "İçerik",
+          name: "body",
+          widget: "markdown",
+          hint: "Başlıklar, listeler, tablolar, görseller, kod blokları kullanabilirsiniz",
+        }
+
+  # ───────────── Sağlık Rehberi ─────────────
+  - name: "saglik-rehberi"
+    label: "Sağlık Rehberi"
+    label_singular: "Yazı"
+    description: "Hasta ve aileleri için anlaşılır dilde bilgilendirme yazıları."
+    folder: "src/content/saglik-rehberi"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — {{publishDate | date('YYYY-MM-DD')}}"
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Açıklama (SEO özeti, max 200 karakter)", name: "description", widget: "text" }
+      - {
+          label: "Yayın Tarihi",
+          name: "publishDate",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+          date_format: "YYYY-MM-DD",
+        }
+      - {
+          label: "Güncelleme Tarihi (opsiyonel)",
+          name: "updatedDate",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+          date_format: "YYYY-MM-DD",
+          required: false,
+        }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - "Kronik Hastalıklar"
+          - "Beslenme ve Yaşam Tarzı"
+          - "Aşılar ve Korunma"
+          - "Tarama Testleri"
+          - "İlaç Kullanımı"
+          - "Sık Sorulan Sorular"
+          - "Bel ve Eklem Ağrıları"
+      - {
+          label: "Etiketler",
+          name: "tags",
+          widget: "list",
+          required: false,
+        }
+      - {
+          label: "Okuma Süresi",
+          name: "okumaSuresi",
+          widget: "string",
+          required: false,
+          hint: "Örn. \"4 dk\"",
+        }
+      - {
+          label: "Kaynaklar (her satıra bir kaynak)",
+          name: "references",
+          widget: "list",
+          required: false,
+        }
+      - {
+          label: "Taslak (işaretliyse sitede yayınlanmaz)",
+          name: "draft",
+          widget: "boolean",
+          default: false,
+        }
+      - {
+          label: "İçerik (sadece infografik için tek görsel de yeterlidir)",
+          name: "body",
+          widget: "markdown",
+        }
+
+  # ───────────── Siyaset Bilimi ve UI ─────────────
+  - name: "siyaset"
+    label: "Siyaset Bilimi ve UI"
+    label_singular: "Yazı"
+    description: "Siyaset bilimi ve uluslararası ilişkiler üzerine analizler."
+    folder: "src/content/siyaset"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — {{publishDate | date('YYYY-MM-DD')}}"
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Açıklama (SEO özeti, max 200 karakter)", name: "description", widget: "text" }
+      - {
+          label: "Yayın Tarihi",
+          name: "publishDate",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+          date_format: "YYYY-MM-DD",
+        }
+      - {
+          label: "Güncelleme Tarihi (opsiyonel)",
+          name: "updatedDate",
+          widget: "datetime",
+          format: "YYYY-MM-DD",
+          time_format: false,
+          date_format: "YYYY-MM-DD",
+          required: false,
+        }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - "Türk Siyaseti"
+          - "Karşılaştırmalı Siyaset"
+          - "Uluslararası İlişkiler"
+          - "Dış Politika"
+          - "Siyaset Teorisi"
+          - "Seçim ve Demokrasi"
+          - "Kitap İncelemesi"
+      - {
+          label: "Etiketler",
+          name: "tags",
+          widget: "list",
+          required: false,
+        }
+      - {
+          label: "Kaynaklar (her satıra bir kaynak)",
+          name: "references",
+          widget: "list",
+          required: false,
+        }
+      - {
+          label: "Taslak (işaretliyse sitede yayınlanmaz)",
+          name: "draft",
+          widget: "boolean",
+          default: false,
+        }
+      - { label: "İçerik", name: "body", widget: "markdown" }

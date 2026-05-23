@@ -367,6 +367,29 @@ a:hover {
   display: block;
 }
 
+/* İnfografikler için geniş — yazı genişliğini aşar, viewport'a sığar */
+.prose .infographic,
+.prose img.infographic,
+.prose figure.infographic img {
+  max-width: min(1024px, 95vw);
+  width: 100%;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: var(--radius-md);
+}
+
+.prose figure {
+  margin: var(--space-lg) 0;
+}
+
+.prose figcaption {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+  font-style: italic;
+}
+
 .prose hr {
   border: none;
   border-top: 1px solid var(--color-border);
