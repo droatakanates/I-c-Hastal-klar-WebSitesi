@@ -15,9 +15,21 @@ interface Props {
   category: string;
   section: SectionKey;
   evidenceLevel?: string;
+  coverImage?: string;
+  coverImageAlt?: string;
 }
 
-const { title, description, href, publishDate, category, section, evidenceLevel } = Astro.props;
+const {
+  title,
+  description,
+  href,
+  publishDate,
+  category,
+  section,
+  evidenceLevel,
+  coverImage,
+  coverImageAlt,
+} = Astro.props;
 
 const dateFmt = new Intl.DateTimeFormat('tr-TR', {
   year: 'numeric',
@@ -28,19 +40,26 @@ const dateFmt = new Intl.DateTimeFormat('tr-TR', {
 const evidenceClass = evidenceLevel ? `evidence-${evidenceLevel.replace(' ', '')}` : '';
 ---
 
-<article class="post-card">
-  <div class="post-card__meta">
-    <span class={`badge badge--${section}`}>{SECTION_LABELS[section]}</span>
-    <span class="badge badge--category">{category}</span>
-    {evidenceLevel && (
-      <span class={`evidence-badge ${evidenceClass}`} title="Kanıt seviyesi">
-        Kanıt {evidenceLevel}
-      </span>
-    )}
-    <time datetime={publishDate.toISOString()}>{dateFmt}</time>
+<article class={`post-card ${coverImage ? 'post-card--with-cover' : ''}`}>
+  {coverImage && (
+    <a href={href} class="post-card__cover" tabindex="-1" aria-hidden="true">
+      <img src={coverImage} alt={coverImageAlt ?? ''} loading="lazy" />
+    </a>
+  )}
+  <div class="post-card__body">
+    <div class="post-card__meta">
+      <span class={`badge badge--${section}`}>{SECTION_LABELS[section]}</span>
+      <span class="badge badge--category">{category}</span>
+      {evidenceLevel && (
+        <span class={`evidence-badge ${evidenceClass}`} title="Kanıt seviyesi">
+          Kanıt {evidenceLevel}
+        </span>
+      )}
+      <time datetime={publishDate.toISOString()}>{dateFmt}</time>
+    </div>
+    <h2 class="post-card__title">
+      <a href={href}>{title}</a>
+    </h2>
+    <p class="post-card__description">{description}</p>
   </div>
-  <h2 class="post-card__title">
-    <a href={href}>{title}</a>
-  </h2>
-  <p class="post-card__description">{description}</p>
 </article>

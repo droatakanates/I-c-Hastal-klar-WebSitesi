@@ -46,6 +46,8 @@ const { category, posts } = Astro.props;
             publishDate={post.data.publishDate}
             category={post.data.category}
             section="saglik-rehberi"
+            coverImage={post.data.coverImage}
+            coverImageAlt={post.data.coverImageAlt}
           />
         ))
       )}

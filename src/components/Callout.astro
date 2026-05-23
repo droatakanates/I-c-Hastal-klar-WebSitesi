@@ -1,0 +1,36 @@
+---
+type Tip = 'info' | 'tip' | 'warning' | 'danger' | 'success';
+
+interface Props {
+  type?: Tip;
+  title?: string;
+}
+
+const { type = 'info', title } = Astro.props;
+
+const baslik: Record<Tip, string> = {
+  info: 'Bilgi',
+  tip: 'İpucu',
+  warning: 'Dikkat',
+  danger: 'Önemli',
+  success: 'Tamamlandı',
+};
+
+const ikon: Record<Tip, string> = {
+  info: 'ⓘ',
+  tip: '💡',
+  warning: '⚠',
+  danger: '!',
+  success: '✓',
+};
+---
+
+<aside class={`callout callout--${type}`} role="note">
+  <div class="callout__icon" aria-hidden="true">{ikon[type]}</div>
+  <div class="callout__body">
+    <p class="callout__title">{title ?? baslik[type]}</p>
+    <div class="callout__content">
+      <slot />
+    </div>
+  </div>
+</aside>

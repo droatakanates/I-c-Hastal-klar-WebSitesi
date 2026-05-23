@@ -43,6 +43,16 @@ content:
         required: false
         options:
           format: yyyy-MM-dd
+      - name: coverImage
+        label: Kapak Görseli (opsiyonel)
+        type: image
+        required: false
+        description: "Yazı sayfasının üstünde ve kartlarda görünür. 21:9 oran ideal."
+      - name: coverImageAlt
+        label: Kapak Görseli Alt Metni
+        type: string
+        required: false
+        description: "Görme engelliler ve arama motorları için kısa açıklama."
       - name: category
         label: Kategori
         type: select
@@ -134,6 +144,16 @@ content:
         required: false
         options:
           format: yyyy-MM-dd
+      - name: coverImage
+        label: Kapak Görseli (opsiyonel)
+        type: image
+        required: false
+        description: "Yazı sayfasının üstünde ve kartlarda görünür. 21:9 oran ideal."
+      - name: coverImageAlt
+        label: Kapak Görseli Alt Metni
+        type: string
+        required: false
+        description: "Görme engelliler ve arama motorları için kısa açıklama."
       - name: category
         label: Kategori
         type: select
@@ -204,6 +224,16 @@ content:
         required: false
         options:
           format: yyyy-MM-dd
+      - name: coverImage
+        label: Kapak Görseli (opsiyonel)
+        type: image
+        required: false
+        description: "Yazı sayfasının üstünde ve kartlarda görünür. 21:9 oran ideal."
+      - name: coverImageAlt
+        label: Kapak Görseli Alt Metni
+        type: string
+        required: false
+        description: "Görme engelliler ve arama motorları için kısa açıklama."
       - name: category
         label: Kategori
         type: select

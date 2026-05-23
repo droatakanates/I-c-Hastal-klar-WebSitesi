@@ -44,6 +44,8 @@ const posts = (await getCollection('siyaset', ({ data }) => !data.draft)).sort(
             publishDate={post.data.publishDate}
             category={post.data.category}
             section="siyaset"
+            coverImage={post.data.coverImage}
+            coverImageAlt={post.data.coverImageAlt}
           />
         ))
       )}

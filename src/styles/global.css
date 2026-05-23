@@ -227,6 +227,40 @@ a:hover {
   border-bottom: 0;
 }
 
+/* Kapak görseli olan kart: yan yana layout */
+.post-card--with-cover {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.post-card__cover {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  aspect-ratio: 16 / 10;
+  background: var(--color-bg-soft);
+}
+
+.post-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.post-card--with-cover:hover .post-card__cover img {
+  transform: scale(1.03);
+}
+
+@media (max-width: 640px) {
+  .post-card--with-cover {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}
+
 .post-card__meta {
   display: flex;
   gap: var(--space-sm);
@@ -573,4 +607,222 @@ a:hover {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
+}
+
+/* === Ana sayfa hero (yenilenmiş) === */
+.home-hero {
+  padding: var(--space-2xl) 0 var(--space-xl);
+  background:
+    radial-gradient(ellipse at top left, rgba(30, 64, 175, 0.04), transparent 50%),
+    radial-gradient(ellipse at top right, rgba(180, 83, 9, 0.04), transparent 50%),
+    linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-soft) 100%);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.home-hero__eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 var(--space-sm);
+}
+
+.home-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-md);
+  max-width: 18ch;
+  color: var(--color-text);
+}
+
+.home-hero__title--accent {
+  color: var(--color-ic-hastaliklari);
+  font-style: italic;
+}
+
+.home-hero__lead {
+  font-size: 1.15rem;
+  line-height: 1.55;
+  color: var(--color-text-soft);
+  max-width: 60ch;
+  margin: 0 0 var(--space-2xl);
+}
+
+.home-hero__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.home-hero__card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border-top: 4px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-hero__card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.12);
+}
+
+.home-hero__card--ic-hastaliklari { border-top-color: var(--color-ic-hastaliklari); }
+.home-hero__card--saglik-rehberi { border-top-color: var(--color-saglik-rehberi); }
+.home-hero__card--siyaset { border-top-color: var(--color-siyaset); }
+
+.home-hero__card-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.home-hero__card h2 {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  margin: 0 0 var(--space-sm);
+  color: var(--color-text);
+}
+
+.home-hero__card p {
+  color: var(--color-text-soft);
+  font-size: 0.95rem;
+  margin: 0 0 var(--space-lg);
+  flex: 1;
+}
+
+.home-hero__card-cta {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-soft);
+  transition: color 0.15s ease;
+}
+
+.home-hero__card--ic-hastaliklari:hover .home-hero__card-cta { color: var(--color-ic-hastaliklari); }
+.home-hero__card--saglik-rehberi:hover .home-hero__card-cta { color: var(--color-saglik-rehberi); }
+.home-hero__card--siyaset:hover .home-hero__card-cta { color: var(--color-siyaset); }
+
+@media (max-width: 800px) {
+  .home-hero__cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Yazı kapak hero görseli === */
+.post-cover {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto var(--space-xl);
+  aspect-ratio: 21 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-soft);
+}
+
+.post-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 800px) {
+  .post-cover {
+    border-radius: 0;
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* === Callout / uyarı kutuları === */
+.callout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  margin: var(--space-lg) 0;
+  border-radius: var(--radius-md);
+  border-left: 4px solid;
+  background: var(--color-bg-soft);
+  align-items: flex-start;
+}
+
+.callout__icon {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.4;
+  width: 1.75rem;
+  height: 1.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.callout__body { min-width: 0; }
+
+.callout__title {
+  font-weight: 600;
+  margin: 0 0 var(--space-xs);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+.callout__content {
+  color: var(--color-text-soft);
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+
+.callout__content > :first-child { margin-top: 0; }
+.callout__content > :last-child { margin-bottom: 0; }
+
+/* Callout türleri */
+.callout--info { border-left-color: #1e40af; background: #eff6ff; }
+.callout--info .callout__icon { background: #1e40af; }
+
+.callout--tip { border-left-color: #15803d; background: #f0fdf4; }
+.callout--tip .callout__icon { background: #15803d; font-size: 1.1rem; }
+
+.callout--warning { border-left-color: #ca8a04; background: #fefce8; }
+.callout--warning .callout__icon { background: #ca8a04; }
+
+.callout--danger { border-left-color: #be123c; background: #fff1f2; }
+.callout--danger .callout__icon { background: #be123c; }
+
+.callout--success { border-left-color: #16a34a; background: #f0fdf4; }
+.callout--success .callout__icon { background: #16a34a; }
+
+/* === Mermaid diyagramlar === */
+.mermaid {
+  margin: var(--space-xl) auto;
+  display: flex;
+  justify-content: center;
+  background: var(--color-bg-soft);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
 }

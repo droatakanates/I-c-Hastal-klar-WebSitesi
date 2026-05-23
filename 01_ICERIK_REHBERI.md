@@ -198,6 +198,77 @@ GitHub'da dosyayı açın → sağ üstte çöp kovası ikonu → **Commit chang
 
 ---
 
+## 🖼️ Kapak görseli (cover image)
+
+Her yazı için opsiyonel bir kapak görseli ekleyebilirsiniz. Gözüktüğü yerler:
+- Yazı sayfasının üstünde (21:9 büyük banner)
+- Yazı kartlarında (anasayfada + bölüm sayfasında thumbnail olarak)
+- Sosyal medya paylaşımında (WhatsApp, Twitter/X) önizleme görseli
+
+**Pages CMS'te eklemek için:** "Kapak Görseli" alanına resim butonundan yükleyin. **Alt metin** alanını da doldurun (SEO + erişilebilirlik).
+
+**Markdown frontmatter'da elle eklemek için:**
+```yaml
+coverImage: /gorseller/diyabet-kapak.jpg
+coverImageAlt: Diyabette ayak bakımı temalı kapak görseli
+```
+
+İdeal boyut: 1600×900 px (16:9), 200-400 KB.
+
+---
+
+## 📣 Callout (uyarı/bilgi kutuları)
+
+Yazının içinde renkli, dikkat çekici kutular oluşturabilirsiniz. 5 tür:
+
+- **info** (mavi) — bilgilendirme
+- **tip** (yeşil) — pratik ipucu
+- **warning** (sarı) — dikkat edilecek nokta
+- **danger** (kırmızı) — kritik uyarı
+- **success** (yeşil) — başarı / sonuç
+
+**Pages CMS'te eklemek için** kaynak (markdown) moduna geçip yapıştırın:
+
+```html
+<aside class="callout callout--warning">
+  <div class="callout__icon">⚠</div>
+  <div class="callout__body">
+    <p class="callout__title">Dikkat</p>
+    <div class="callout__content">
+      Bu ilaç böbrek yetmezliği olan hastalarda doz ayarı gerektirir.
+    </div>
+  </div>
+</aside>
+```
+
+Türü değiştirmek için `callout--warning` yerine `callout--info`, `callout--tip`, `callout--danger` veya `callout--success` yazın. İkon (⚠) ve başlık (Dikkat) içeriği serbest.
+
+---
+
+## 📊 Mermaid diyagramları (akış şeması / algoritma)
+
+Tıbbi karar algoritmaları, akış şemaları için ideal. Markdown içinde kod bloğu olarak yazarsınız, tarayıcıda otomatik diyagrama dönüşür.
+
+**Pages CMS kaynak modunda yazın:**
+
+````markdown
+```mermaid
+flowchart TD
+    A[Hasta başvurusu] --> B{Göğüs ağrısı?}
+    B -->|Evet| C[EKG çek]
+    B -->|Hayır| D[Anamnez detaylandır]
+    C --> E{ST elevasyonu?}
+    E -->|Var| F[Acil reperfüzyon]
+    E -->|Yok| G[Troponin ölç]
+```
+````
+
+Şema türleri: `flowchart`, `sequenceDiagram`, `classDiagram`, `gantt`, `pie`, `mindmap`, vb. Detaylı söz dizimi: https://mermaid.js.org/intro/
+
+Mermaid scripti **sadece sayfada mermaid bloğu varsa** yüklenir, bu yüzden diğer sayfalar yavaşlamaz.
+
+---
+
 ## 🎯 Hızlı başvuru — sık yapılan işler
 
 | Yapmak istediğim | Adım |

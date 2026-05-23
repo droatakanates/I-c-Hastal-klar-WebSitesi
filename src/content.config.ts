@@ -37,16 +37,25 @@ export const SAGLIK_REHBERI_KATEGORILERI = [
   'Bel ve Eklem Ağrıları',
 ] as const;
 
+// Ortak alanlar — tüm bölümlerde kullanılan frontmatter alanları
+const ortakAlanlar = {
+  title: z.string(),
+  description: z.string().max(200),
+  publishDate: z.coerce.date(),
+  updatedDate: z.coerce.date().optional(),
+  coverImage: z.string().optional(),
+  coverImageAlt: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+  references: z.array(z.string()).default([]),
+  draft: z.boolean().default(false),
+};
+
 // İç Hastalıkları yazıları — akademik, kanıt seviyesi ve referans önemli
 const icHastaliklari = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/ic-hastaliklari' }),
   schema: z.object({
-    title: z.string(),
-    description: z.string().max(200),
-    publishDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
+    ...ortakAlanlar,
     category: z.enum(IC_HASTALIKLARI_KATEGORILERI),
-    tags: z.array(z.string()).default([]),
     evidenceLevel: z.enum(['A', 'B', 'C', 'D', 'Uzman Görüşü']).optional(),
     icerikTipi: z
       .enum([
@@ -58,8 +67,6 @@ const icHastaliklari = defineCollection({
         'Asistan Köşesi',
       ])
       .optional(),
-    references: z.array(z.string()).default([]),
-    draft: z.boolean().default(false),
   }),
 });
 
@@ -67,14 +74,8 @@ const icHastaliklari = defineCollection({
 const siyaset = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/siyaset' }),
   schema: z.object({
-    title: z.string(),
-    description: z.string().max(200),
-    publishDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
+    ...ortakAlanlar,
     category: z.enum(SIYASET_KATEGORILERI),
-    tags: z.array(z.string()).default([]),
-    references: z.array(z.string()).default([]),
-    draft: z.boolean().default(false),
   }),
 });
 
@@ -82,15 +83,9 @@ const siyaset = defineCollection({
 const saglikRehberi = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/saglik-rehberi' }),
   schema: z.object({
-    title: z.string(),
-    description: z.string().max(200),
-    publishDate: z.coerce.date(),
-    updatedDate: z.coerce.date().optional(),
+    ...ortakAlanlar,
     category: z.enum(SAGLIK_REHBERI_KATEGORILERI),
-    tags: z.array(z.string()).default([]),
     okumaSuresi: z.string().optional(),
-    references: z.array(z.string()).default([]),
-    draft: z.boolean().default(false),
   }),
 });
 

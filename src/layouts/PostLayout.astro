@@ -13,6 +13,8 @@ interface Props {
   evidenceLevel?: string;
   icerikTipi?: string;
   okumaSuresi?: string;
+  coverImage?: string;
+  coverImageAlt?: string;
   references: string[];
 }
 
@@ -27,6 +29,8 @@ const {
   evidenceLevel,
   icerikTipi,
   okumaSuresi,
+  coverImage,
+  coverImageAlt,
   references,
 } = Astro.props;
 
@@ -51,7 +55,14 @@ const disclaimerColor =
   description={description}
   ogType="article"
   publishedTime={publishDate}
+  ogImage={coverImage}
 >
+  {coverImage && (
+    <div class="post-cover">
+      <img src={coverImage} alt={coverImageAlt ?? ''} />
+    </div>
+  )}
+
   <article class="container prose">
     <header class="post-header">
       <div class="post-header__meta">

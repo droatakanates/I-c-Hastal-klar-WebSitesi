@@ -21,13 +21,40 @@ const saglikRehberiPosts = (
 ---
 
 <BaseLayout title="Ana Sayfa">
-  <section class="container hero">
-    <h1 class="hero__title">Ömür Atakan Ateş</h1>
-    <p class="hero__lead">
-      Kanıta dayalı iç hastalıkları yazıları, hasta odaklı sağlık rehberi içerikleri
-      ve siyaset bilimi & uluslararası ilişkiler üzerine notlar. Üç ayrı düzlem,
-      tek bir yazar.
-    </p>
+  <section class="home-hero">
+    <div class="container-wide">
+      <p class="home-hero__eyebrow">Üç düzlemde içerik</p>
+      <h1 class="home-hero__title">
+        Tıp, sağlık ve siyaset bilimi üzerine
+        <span class="home-hero__title--accent">notlar.</span>
+      </h1>
+      <p class="home-hero__lead">
+        Sağlık profesyonelleri için kanıta dayalı iç hastalıkları içeriği,
+        hastalar için anlaşılır sağlık rehberi ve akademik bir merakla yazılmış
+        siyaset bilimi yazıları.
+      </p>
+
+      <div class="home-hero__cards">
+        <a href="/ic-hastaliklari" class="home-hero__card home-hero__card--ic-hastaliklari">
+          <span class="home-hero__card-tag">Akademik</span>
+          <h2>İç Hastalıkları</h2>
+          <p>Kılavuz özetleri, olgu sunumları, literatür taramaları.</p>
+          <span class="home-hero__card-cta">Bölüme git →</span>
+        </a>
+        <a href="/saglik-rehberi" class="home-hero__card home-hero__card--saglik-rehberi">
+          <span class="home-hero__card-tag">Hasta dostu</span>
+          <h2>Sağlık Rehberi</h2>
+          <p>Kronik hastalıklar, ilaç kullanımı, beslenme, tarama testleri.</p>
+          <span class="home-hero__card-cta">Bölüme git →</span>
+        </a>
+        <a href="/siyaset" class="home-hero__card home-hero__card--siyaset">
+          <span class="home-hero__card-tag">Analiz</span>
+          <h2>Siyaset Bilimi</h2>
+          <p>Türk siyaseti, karşılaştırmalı siyaset, uluslararası ilişkiler.</p>
+          <span class="home-hero__card-cta">Bölüme git →</span>
+        </a>
+      </div>
+    </div>
   </section>
 
   <section class="container section-strip" aria-labelledby="ic-hastaliklari-heading">
@@ -54,6 +81,8 @@ const saglikRehberiPosts = (
           category={post.data.category}
           section="ic-hastaliklari"
           evidenceLevel={post.data.evidenceLevel}
+          coverImage={post.data.coverImage}
+          coverImageAlt={post.data.coverImageAlt}
         />
       ))
     )}
@@ -82,6 +111,8 @@ const saglikRehberiPosts = (
           publishDate={post.data.publishDate}
           category={post.data.category}
           section="saglik-rehberi"
+          coverImage={post.data.coverImage}
+          coverImageAlt={post.data.coverImageAlt}
         />
       ))
     )}
@@ -110,6 +141,8 @@ const saglikRehberiPosts = (
           publishDate={post.data.publishDate}
           category={post.data.category}
           section="siyaset"
+          coverImage={post.data.coverImage}
+          coverImageAlt={post.data.coverImageAlt}
         />
       ))
     )}
