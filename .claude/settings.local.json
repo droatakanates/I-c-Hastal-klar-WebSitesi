@@ -27,7 +27,8 @@
       "Bash(git mv src/pages/tip src/pages/ic-hastaliklari)",
       "Bash(git mv src/content/ic-hastaliklari/tip-2-diyabet-hba1c-hedef-bireyselle-tirme.md src/content/ic-hastaliklari/tip-2-diyabet-hba1c-hedef-bireysellestirme.md)",
       "Bash(git rm -r public/admin)",
-      "Bash(npm install -D pagefind)"
+      "Bash(npm install -D pagefind)",
+      "Bash(npm run build)"
     ]
   }
 }
