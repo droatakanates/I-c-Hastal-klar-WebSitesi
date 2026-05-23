@@ -1,0 +1,236 @@
+# Pages CMS yapılandırması — omuratakanates.com
+# https://pagescms.org
+# app.pagescms.org → GitHub ile giriş → repo'yu bağla → bu config kullanılır
+
+media:
+  - name: gorseller
+    label: Görseller / İnfografikler
+    input: public/gorseller
+    output: /gorseller
+
+content:
+  # ───────────── İç Hastalıkları ─────────────
+  - name: ic-hastaliklari
+    label: İç Hastalıkları
+    type: collection
+    path: src/content/ic-hastaliklari
+    filename: "{primary}.md"
+    view:
+      fields: [title, category, publishDate, evidenceLevel, draft]
+      primary: title
+      sort: [publishDate, title]
+      default:
+        sort: publishDate
+        order: desc
+    fields:
+      - name: title
+        label: Başlık
+        type: string
+        required: true
+      - name: description
+        label: Açıklama (SEO özeti, max 200 karakter)
+        type: text
+        required: true
+      - name: publishDate
+        label: Yayın Tarihi
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: updatedDate
+        label: Güncelleme Tarihi (opsiyonel)
+        type: date
+        required: false
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: Kategori
+        type: select
+        required: true
+        options:
+          values:
+            - Endokrinoloji ve Metabolizma
+            - Gastroenteroloji
+            - Hematoloji
+            - Kardiyoloji
+            - Nefroloji
+            - Romatoloji
+            - Göğüs Hastalıkları
+            - Onkoloji
+            - Enfeksiyon Hastalıkları
+            - Geriatri
+      - name: tags
+        label: Etiketler
+        type: string
+        list: true
+        required: false
+      - name: evidenceLevel
+        label: Kanıt Seviyesi (GRADE)
+        type: select
+        required: false
+        options:
+          values:
+            - A
+            - B
+            - C
+            - D
+            - Uzman Görüşü
+      - name: icerikTipi
+        label: İçerik Tipi
+        type: select
+        required: false
+        options:
+          values:
+            - Olgu Sunumu
+            - Literatür Özeti
+            - Klinik Pratik
+            - Kılavuz Özeti
+            - TUS-YDUS
+            - Asistan Köşesi
+      - name: references
+        label: Kaynaklar (her satıra bir kaynak)
+        type: string
+        list: true
+        required: false
+      - name: draft
+        label: Taslak (işaretliyse sitede yayınlanmaz)
+        type: boolean
+        default: false
+      - name: body
+        label: İçerik
+        type: rich-text
+
+  # ───────────── Sağlık Rehberi ─────────────
+  - name: saglik-rehberi
+    label: Sağlık Rehberi
+    type: collection
+    path: src/content/saglik-rehberi
+    filename: "{primary}.md"
+    view:
+      fields: [title, category, publishDate, draft]
+      primary: title
+      sort: [publishDate, title]
+      default:
+        sort: publishDate
+        order: desc
+    fields:
+      - name: title
+        label: Başlık
+        type: string
+        required: true
+      - name: description
+        label: Açıklama (SEO özeti, max 200 karakter)
+        type: text
+        required: true
+      - name: publishDate
+        label: Yayın Tarihi
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: updatedDate
+        label: Güncelleme Tarihi (opsiyonel)
+        type: date
+        required: false
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: Kategori
+        type: select
+        required: true
+        options:
+          values:
+            - Kronik Hastalıklar
+            - Beslenme ve Yaşam Tarzı
+            - Aşılar ve Korunma
+            - Tarama Testleri
+            - İlaç Kullanımı
+            - Sık Sorulan Sorular
+            - Bel ve Eklem Ağrıları
+      - name: tags
+        label: Etiketler
+        type: string
+        list: true
+        required: false
+      - name: okumaSuresi
+        label: Okuma Süresi
+        type: string
+        required: false
+        description: 'Örn. "4 dk"'
+      - name: references
+        label: Kaynaklar
+        type: string
+        list: true
+        required: false
+      - name: draft
+        label: Taslak (işaretliyse sitede yayınlanmaz)
+        type: boolean
+        default: false
+      - name: body
+        label: İçerik (sadece infografik için tek görsel de yeterlidir)
+        type: rich-text
+
+  # ───────────── Siyaset Bilimi ve UI ─────────────
+  - name: siyaset
+    label: Siyaset Bilimi ve UI
+    type: collection
+    path: src/content/siyaset
+    filename: "{primary}.md"
+    view:
+      fields: [title, category, publishDate, draft]
+      primary: title
+      sort: [publishDate, title]
+      default:
+        sort: publishDate
+        order: desc
+    fields:
+      - name: title
+        label: Başlık
+        type: string
+        required: true
+      - name: description
+        label: Açıklama (SEO özeti, max 200 karakter)
+        type: text
+        required: true
+      - name: publishDate
+        label: Yayın Tarihi
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: updatedDate
+        label: Güncelleme Tarihi (opsiyonel)
+        type: date
+        required: false
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: Kategori
+        type: select
+        required: true
+        options:
+          values:
+            - Türk Siyaseti
+            - Karşılaştırmalı Siyaset
+            - Uluslararası İlişkiler
+            - Dış Politika
+            - Siyaset Teorisi
+            - Seçim ve Demokrasi
+            - Kitap İncelemesi
+      - name: tags
+        label: Etiketler
+        type: string
+        list: true
+        required: false
+      - name: references
+        label: Kaynaklar
+        type: string
+        list: true
+        required: false
+      - name: draft
+        label: Taslak (işaretliyse sitede yayınlanmaz)
+        type: boolean
+        default: false
+      - name: body
+        label: İçerik
+        type: rich-text
