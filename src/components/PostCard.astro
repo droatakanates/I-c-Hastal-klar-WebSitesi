@@ -1,11 +1,19 @@
 ---
+export type SectionKey = 'ic-hastaliklari' | 'siyaset' | 'saglik-rehberi';
+
+export const SECTION_LABELS: Record<SectionKey, string> = {
+  'ic-hastaliklari': 'İç Hastalıkları',
+  siyaset: 'Siyaset Bilimi',
+  'saglik-rehberi': 'Sağlık Rehberi',
+};
+
 interface Props {
   title: string;
   description: string;
   href: string;
   publishDate: Date;
   category: string;
-  section: 'tip' | 'siyaset';
+  section: SectionKey;
   evidenceLevel?: string;
 }
 
@@ -17,13 +25,12 @@ const dateFmt = new Intl.DateTimeFormat('tr-TR', {
   day: 'numeric',
 }).format(publishDate);
 
-const sectionLabel = section === 'tip' ? 'Tıp' : 'Siyaset';
 const evidenceClass = evidenceLevel ? `evidence-${evidenceLevel.replace(' ', '')}` : '';
 ---
 
 <article class="post-card">
   <div class="post-card__meta">
-    <span class={`badge badge--${section}`}>{sectionLabel}</span>
+    <span class={`badge badge--${section}`}>{SECTION_LABELS[section]}</span>
     <span class="badge badge--category">{category}</span>
     {evidenceLevel && (
       <span class={`evidence-badge ${evidenceClass}`} title="Kanıt seviyesi">

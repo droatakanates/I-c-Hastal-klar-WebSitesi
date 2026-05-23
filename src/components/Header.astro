@@ -11,8 +11,15 @@ const isActive = (path: string) => {
     <a href="/" class="site-brand">Ömür Atakan Ateş</a>
     <nav class="site-nav" aria-label="Ana menü">
       <a href="/" class={isActive('/') ? 'active' : ''}>Ana Sayfa</a>
-      <a href="/tip" class={isActive('/tip') ? 'active' : ''}>Tıp</a>
-      <a href="/siyaset" class={isActive('/siyaset') ? 'active' : ''}>Siyaset</a>
+      <a href="/ic-hastaliklari" class={isActive('/ic-hastaliklari') ? 'active' : ''}>
+        İç Hastalıkları
+      </a>
+      <a href="/siyaset" class={isActive('/siyaset') ? 'active' : ''}>
+        Siyaset Bilimi
+      </a>
+      <a href="/saglik-rehberi" class={isActive('/saglik-rehberi') ? 'active' : ''}>
+        Sağlık Rehberi
+      </a>
       <a href="/hakkimda" class={isActive('/hakkimda') ? 'active' : ''}>Hakkımda</a>
       <a href="/iletisim" class={isActive('/iletisim') ? 'active' : ''}>İletişim</a>
     </nav>

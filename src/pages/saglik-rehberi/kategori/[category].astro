@@ -2,11 +2,11 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostCard from '../../../components/PostCard.astro';
-import { TIP_KATEGORILERI } from '../../../content.config';
+import { SAGLIK_REHBERI_KATEGORILERI } from '../../../content.config';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('tip', ({ data }) => !data.draft);
-  return TIP_KATEGORILERI.map((category) => ({
+  const posts = await getCollection('saglik-rehberi', ({ data }) => !data.draft);
+  return SAGLIK_REHBERI_KATEGORILERI.map((category) => ({
     params: { category },
     props: {
       category,
@@ -21,30 +21,31 @@ const { category, posts } = Astro.props;
 ---
 
 <BaseLayout
-  title={`${category} — Tıp`}
-  description={`İç hastalıkları ${category} kategorisindeki kanıta dayalı yazılar.`}
+  title={`${category} — Sağlık Rehberi`}
+  description={`Sağlık Rehberi ${category} kategorisindeki hasta bilgilendirme yazıları.`}
 >
   <section class="container">
     <div class="hero" style="text-align: left; padding-bottom: 1rem;">
-      <a href="/tip" class="badge badge--tip" style="text-decoration: none;">Tıp</a>
+      <a href="/saglik-rehberi" class="badge badge--saglik-rehberi" style="text-decoration: none;">
+        Sağlık Rehberi
+      </a>
       <h1 class="hero__title" style="font-size: 2rem; margin-top: 0.5rem;">{category}</h1>
-      <p class="hero__lead" style="margin: 0;">
-        {posts.length} yazı bulundu.
-      </p>
+      <p class="hero__lead" style="margin: 0;">{posts.length} yazı bulundu.</p>
     </div>
     <div style="margin-top: 2rem;">
       {posts.length === 0 ? (
-        <p style="color: var(--color-text-muted); font-style: italic;">Bu kategoride henüz yazı yok.</p>
+        <p style="color: var(--color-text-muted); font-style: italic;">
+          Bu kategoride henüz yazı yok.
+        </p>
       ) : (
         posts.map((post) => (
           <PostCard
             title={post.data.title}
             description={post.data.description}
-            href={`/tip/${post.id}`}
+            href={`/saglik-rehberi/${post.id}`}
             publishDate={post.data.publishDate}
             category={post.data.category}
-            section="tip"
-            evidenceLevel={post.data.evidenceLevel}
+            section="saglik-rehberi"
           />
         ))
       )}

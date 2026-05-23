@@ -4,50 +4,77 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Hakkımda"
-  description="Ömür Atakan Ateş — kanıta dayalı tıp ve siyaset bilimi yazıları."
+  description="Ömür Atakan Ateş — özgeçmiş, ilgi alanları ve site amacı."
 >
   <article class="container prose">
     <header class="post-header">
       <h1 class="post-header__title">Hakkımda</h1>
       <p class="post-header__description">
-        İki disiplin, tek bir yazar. Klinik düşünme ile siyaset bilimi metodolojisinin kesiştiği yer.
+        Ömür Atakan Ateş — hekim, yazar. İç hastalıkları, hastaya yönelik sağlık
+        bilgilendirmesi ve siyaset bilimi alanlarında düşünür ve yazarım.
       </p>
     </header>
 
-    <h2>Kim?</h2>
+    <h2>Site amacı</h2>
     <p>
-      Ben Ömür Atakan Ateş. Bu sitede iki farklı ama bana göre tamamlayıcı alanda
-      yazıyorum: <strong>iç hastalıkları</strong> ve <strong>siyaset bilimi</strong>.
+      Bu sitenin amacı üç düzlemde içerik üretmek:
     </p>
-
-    <h2>Neden iki alan?</h2>
-    <p>
-      Tıp ve siyaset bilimi yüzeyde uzak görünür; ancak ikisi de aynı entelektüel
-      iskeletten beslenir: <em>belirsizlik altında karar verme, kanıt değerlendirme,
-      nedensellik akıl yürütmesi.</em> Bir klinisyenin yatak başında sorduğu sorularla
-      bir siyaset bilimcinin kurumsal sonuçları açıklarken sorduğu sorular
-      birbirine şaşırtıcı şekilde benzer.
-    </p>
-
-    <h2>Bu sitede ne bulacaksınız?</h2>
     <ul>
       <li>
-        <strong>Tıp bölümünde:</strong> kanıta dayalı iç hastalıkları içeriği —
-        kılavuz özetleri, olgu sunumları, literatür taramaları ve klinik pratik notları.
-        Her yazı kaynak gösterilir; mümkünse kanıt seviyesi (GRADE) belirtilir.
+        <strong>İç Hastalıkları:</strong> sağlık profesyonelleri ve asistanlar için
+        kanıta dayalı, kılavuz odaklı yazılar.
       </li>
       <li>
-        <strong>Siyaset bölümünde:</strong> Türk siyaseti, karşılaştırmalı siyaset,
-        uluslararası ilişkiler ve siyaset teorisi üzerine analizler; akademik makale
-        ve kitap incelemeleri.
+        <strong>Sağlık Rehberi:</strong> hastalar ve aileleri için anlaşılır,
+        güvenilir, gündelik dilde sağlık bilgilendirmesi.
+      </li>
+      <li>
+        <strong>Siyaset Bilimi ve Uluslararası İlişkiler:</strong> akademik
+        düzlemde analiz, kitap-makale incelemesi ve karşılaştırmalı çalışmalar.
       </li>
     </ul>
+    <p>
+      Tıp ve siyaset bilimi yüzeyde farklı görünür; ancak ikisi de aynı entelektüel
+      iskeletten beslenir: <em>belirsizlik altında karar verme, kanıt değerlendirme,
+      nedensellik akıl yürütmesi.</em>
+    </p>
+
+    <h2>Özgeçmiş</h2>
+
+    <h3>Eğitim</h3>
+    <ul>
+      <li><em>(Tıp Fakültesi — Üniversite adı, mezuniyet yılı)</em></li>
+      <li><em>(Uzmanlık — Anabilim dalı / Kurum, yıl aralığı)</em></li>
+      <li><em>(Varsa yan dal / yüksek lisans / doktora — yıl)</em></li>
+    </ul>
+
+    <h3>Mevcut görev</h3>
+    <p><em>(Çalıştığınız kurum ve göreviniz)</em></p>
+
+    <h3>Akademik ilgi alanları</h3>
+    <ul>
+      <li><em>(İç hastalıklarında ilgi duyduğunuz konular — örn. diyabet, geriatri)</em></li>
+      <li><em>(Siyaset biliminde ilgi alanlarınız — örn. seçim sistemleri, Türk siyaseti)</em></li>
+    </ul>
+
+    <h3>Akademik profiller</h3>
+    <ul>
+      <li><em>ORCID: (henüz eklenmedi)</em></li>
+      <li><em>Google Scholar: (henüz eklenmedi)</em></li>
+      <li><em>Sosyal medya: (varsa)</em></li>
+    </ul>
+
+    <div style="margin-top: 2rem; padding: 1rem; background: var(--color-bg-soft); border-left: 3px solid var(--color-primary); border-radius: var(--radius-sm); font-size: 0.92rem; color: var(--color-text-soft);">
+      <strong style="color: var(--color-text);">Yazara not:</strong>
+      Yukarıdaki köşeli yazılı bölümleri kendi bilgilerinizle değiştirin.
+      Dosya yolu: <code>src/pages/hakkimda.astro</code>.
+    </div>
 
     <h2>Editoryal ilkeler</h2>
     <ul>
       <li>Tıp içerikleri en güncel kılavuzlara dayanır ve atıfla belirtilir.</li>
       <li>Olgu sunumlarında hasta kimliği tamamen anonimize edilir (KVKK ve Helsinki Bildirgesi uyumlu).</li>
-      <li>Siyaset yazıları görüş içerebilir; bu durum açıkça belirtilir ve kaynaklara dayandırılır.</li>
+      <li>Siyaset yazıları görüş içerebilir; bu açıkça belirtilir ve kaynaklara dayandırılır.</li>
       <li>Yanlış bilgi tespit edildiğinde yazı güncellenir ve güncelleme tarihi gösterilir.</li>
       <li>Ücretli içerik, reklam veya gizli sponsorluk yoktur.</li>
     </ul>

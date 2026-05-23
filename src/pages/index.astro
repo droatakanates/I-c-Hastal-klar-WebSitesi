@@ -3,11 +3,19 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostCard from '../components/PostCard.astro';
 
-const tipPosts = (await getCollection('tip', ({ data }) => !data.draft))
+const icHastaliklariPosts = (
+  await getCollection('ic-hastaliklari', ({ data }) => !data.draft)
+)
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
 
 const siyasetPosts = (await getCollection('siyaset', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+  .slice(0, 3);
+
+const saglikRehberiPosts = (
+  await getCollection('saglik-rehberi', ({ data }) => !data.draft)
+)
   .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
   .slice(0, 3);
 ---
@@ -16,31 +24,64 @@ const siyasetPosts = (await getCollection('siyaset', ({ data }) => !data.draft))
   <section class="container hero">
     <h1 class="hero__title">Ömür Atakan Ateş</h1>
     <p class="hero__lead">
-      Kanıta dayalı iç hastalıkları içeriği ve siyaset bilimi üzerine yazılar.
-      İki ayrı disiplin, tek bir yazar.
+      Kanıta dayalı iç hastalıkları yazıları, hasta odaklı sağlık rehberi içerikleri
+      ve siyaset bilimi & uluslararası ilişkiler üzerine notlar. Üç ayrı düzlem,
+      tek bir yazar.
     </p>
   </section>
 
-  <section class="container section-strip" aria-labelledby="tip-heading">
+  <section class="container section-strip" aria-labelledby="ic-hastaliklari-heading">
     <div class="section-strip__header">
-      <h2 id="tip-heading" class="section-strip__title">
-        <span class="badge badge--tip" style="vertical-align: middle; margin-right: 0.5rem;">Tıp</span>
+      <h2 id="ic-hastaliklari-heading" class="section-strip__title">
+        <span class="badge badge--ic-hastaliklari" style="vertical-align: middle; margin-right: 0.5rem;">
+          İç Hastalıkları
+        </span>
         Son yazılar
       </h2>
-      <a href="/tip" class="section-strip__link">Tüm tıp yazıları →</a>
+      <a href="/ic-hastaliklari" class="section-strip__link">Tüm yazılar →</a>
     </div>
-    {tipPosts.length === 0 ? (
-      <p style="color: var(--color-text-muted); font-style: italic;">Henüz tıp yazısı eklenmedi.</p>
+    {icHastaliklariPosts.length === 0 ? (
+      <p style="color: var(--color-text-muted); font-style: italic;">
+        Henüz iç hastalıkları yazısı eklenmedi.
+      </p>
     ) : (
-      tipPosts.map((post) => (
+      icHastaliklariPosts.map((post) => (
         <PostCard
           title={post.data.title}
           description={post.data.description}
-          href={`/tip/${post.id}`}
+          href={`/ic-hastaliklari/${post.id}`}
           publishDate={post.data.publishDate}
           category={post.data.category}
-          section="tip"
+          section="ic-hastaliklari"
           evidenceLevel={post.data.evidenceLevel}
+        />
+      ))
+    )}
+  </section>
+
+  <section class="container section-strip" aria-labelledby="saglik-rehberi-heading">
+    <div class="section-strip__header">
+      <h2 id="saglik-rehberi-heading" class="section-strip__title">
+        <span class="badge badge--saglik-rehberi" style="vertical-align: middle; margin-right: 0.5rem;">
+          Sağlık Rehberi
+        </span>
+        Son yazılar
+      </h2>
+      <a href="/saglik-rehberi" class="section-strip__link">Tüm yazılar →</a>
+    </div>
+    {saglikRehberiPosts.length === 0 ? (
+      <p style="color: var(--color-text-muted); font-style: italic;">
+        Henüz sağlık rehberi yazısı eklenmedi.
+      </p>
+    ) : (
+      saglikRehberiPosts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          href={`/saglik-rehberi/${post.id}`}
+          publishDate={post.data.publishDate}
+          category={post.data.category}
+          section="saglik-rehberi"
         />
       ))
     )}
@@ -49,13 +90,17 @@ const siyasetPosts = (await getCollection('siyaset', ({ data }) => !data.draft))
   <section class="container section-strip" aria-labelledby="siyaset-heading">
     <div class="section-strip__header">
       <h2 id="siyaset-heading" class="section-strip__title">
-        <span class="badge badge--siyaset" style="vertical-align: middle; margin-right: 0.5rem;">Siyaset</span>
+        <span class="badge badge--siyaset" style="vertical-align: middle; margin-right: 0.5rem;">
+          Siyaset Bilimi
+        </span>
         Son yazılar
       </h2>
-      <a href="/siyaset" class="section-strip__link">Tüm siyaset yazıları →</a>
+      <a href="/siyaset" class="section-strip__link">Tüm yazılar →</a>
     </div>
     {siyasetPosts.length === 0 ? (
-      <p style="color: var(--color-text-muted); font-style: italic;">Henüz siyaset yazısı eklenmedi.</p>
+      <p style="color: var(--color-text-muted); font-style: italic;">
+        Henüz siyaset yazısı eklenmedi.
+      </p>
     ) : (
       siyasetPosts.map((post) => (
         <PostCard

@@ -22,7 +22,10 @@
       "Bash(git config user.email \"droatakanates@gmail.com\")",
       "Bash(git config user.name \"Ömür Atakan Ateş\")",
       "Bash(git -c rebase.autoStash=true commit --amend --reset-author --no-edit)",
-      "Bash(gh --version)"
+      "Bash(gh --version)",
+      "Bash(git mv src/content/tip src/content/ic-hastaliklari)",
+      "Bash(git mv src/pages/tip src/pages/ic-hastaliklari)",
+      "Bash(git mv src/content/ic-hastaliklari/tip-2-diyabet-hba1c-hedef-bireyselle-tirme.md src/content/ic-hastaliklari/tip-2-diyabet-hba1c-hedef-bireysellestirme.md)"
     ]
   }
 }

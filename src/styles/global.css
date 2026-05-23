@@ -14,10 +14,12 @@
   --color-primary-hover: #15294a;
 
   /* Bölüm aksanları */
-  --color-tip: #0f766e; /* Teal — tıp */
-  --color-tip-soft: #e6f4f1;
-  --color-siyaset: #b45309; /* Amber — siyaset */
+  --color-ic-hastaliklari: #0f766e; /* Teal — akademik tıp */
+  --color-ic-hastaliklari-soft: #e6f4f1;
+  --color-siyaset: #b45309; /* Amber — siyaset bilimi & UI */
   --color-siyaset-soft: #fef3e2;
+  --color-saglik-rehberi: #be123c; /* Rose — hasta bilgilendirme */
+  --color-saglik-rehberi-soft: #fce7ef;
 
   /* Kanıt seviyesi renkleri */
   --color-evidence-a: #15803d;
@@ -245,14 +247,19 @@ a:hover {
   text-decoration: none;
 }
 
-.badge--tip {
-  background: var(--color-tip-soft);
-  color: var(--color-tip);
+.badge--ic-hastaliklari {
+  background: var(--color-ic-hastaliklari-soft);
+  color: var(--color-ic-hastaliklari);
 }
 
 .badge--siyaset {
   background: var(--color-siyaset-soft);
   color: var(--color-siyaset);
+}
+
+.badge--saglik-rehberi {
+  background: var(--color-saglik-rehberi-soft);
+  color: var(--color-saglik-rehberi);
 }
 
 .badge--category {

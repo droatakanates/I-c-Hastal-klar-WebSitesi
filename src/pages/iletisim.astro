@@ -1,10 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const email = 'droatakanates@gmail.com';
+// Cep telefonu — kullanıcı tarafından sağlandı (23 Mayıs 2026).
+// Değiştirmek/silmek için bu dosyayı düzenleyin: src/pages/iletisim.astro
+const telefon = '+90 538 206 37 90';
+const telefonHref = 'tel:+905382063790';
 ---
 
 <BaseLayout
   title="İletişim"
-  description="Geri bildirim, düzeltme ve önerileriniz için iletişim bilgileri."
+  description="Geri bildirim, düzeltme önerisi ve iletişim bilgileri."
 >
   <article class="container prose">
     <header class="post-header">
@@ -16,16 +22,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <h2>E-posta</h2>
     <p>
-      <a href="mailto:iletisim@omuratakanates.com">iletisim@omuratakanates.com</a>
+      <a href={`mailto:${email}`}>{email}</a>
+    </p>
+
+    <h2>Telefon</h2>
+    <p>
+      <a href={telefonHref}>{telefon}</a>
     </p>
     <p style="color: var(--color-text-muted); font-size: 0.92rem;">
-      Not: Bu e-posta adresi yayına alınmadan önce mail hizmet sağlayıcınızda
-      kurulmalıdır.
+      Aramaların yoğun olduğu mesai saatlerinde yanıtsız kalabilir; lütfen
+      önce mesaj veya e-posta gönderiniz.
     </p>
 
     <h2>Düzeltme talepleri</h2>
     <p>
-      Yazılarda hata veya eksiklik fark ederseniz, lütfen e-posta ile bildirin:
+      Yazılarda hata veya eksiklik fark ederseniz lütfen e-posta ile bildirin:
     </p>
     <ul>
       <li>Yazının başlığı ve URL'si</li>
@@ -40,5 +51,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       Klinik kararlar için yetkili sağlık profesyoneline başvurunuz. Detaylı bilgi:
       <a href="/sorumluluk-reddi">tıbbi sorumluluk reddi</a>.
     </p>
+
+    <div style="margin-top: 2rem; padding: 1rem; background: var(--color-bg-soft); border-left: 3px solid var(--color-saglik-rehberi); border-radius: var(--radius-sm); font-size: 0.92rem; color: var(--color-text-soft);">
+      <strong style="color: var(--color-text);">Önemli — gizlilik notu:</strong>
+      Cep telefonunuzu yukarıdaki gibi <em>açık</em> yayımlamak spam çağrı/SMS
+      riski yaratır. Daha güvenli alternatifler:
+      <ul style="margin: 0.5rem 0 0;">
+        <li>Sadece e-posta bırakmak</li>
+        <li>WhatsApp Business veya ayrı bir iş numarası kullanmak</li>
+        <li>İletişim formu (Netlify Forms) ile e-postanızı dahi gizlemek</li>
+      </ul>
+    </div>
   </article>
 </BaseLayout>

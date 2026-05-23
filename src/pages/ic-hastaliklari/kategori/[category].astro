@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostCard from '../../../components/PostCard.astro';
+import { IC_HASTALIKLARI_KATEGORILERI } from '../../../content.config';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('ic-hastaliklari', ({ data }) => !data.draft);
+  return IC_HASTALIKLARI_KATEGORILERI.map((category) => ({
+    params: { category },
+    props: {
+      category,
+      posts: posts
+        .filter((p) => p.data.category === category)
+        .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()),
+    },
+  }));
+}
+
+const { category, posts } = Astro.props;
+---
+
+<BaseLayout
+  title={`${category} — İç Hastalıkları`}
+  description={`İç hastalıkları ${category} kategorisindeki kanıta dayalı yazılar.`}
+>
+  <section class="container">
+    <div class="hero" style="text-align: left; padding-bottom: 1rem;">
+      <a href="/ic-hastaliklari" class="badge badge--ic-hastaliklari" style="text-decoration: none;">
+        İç Hastalıkları
+      </a>
+      <h1 class="hero__title" style="font-size: 2rem; margin-top: 0.5rem;">{category}</h1>
+      <p class="hero__lead" style="margin: 0;">{posts.length} yazı bulundu.</p>
+    </div>
+    <div style="margin-top: 2rem;">
+      {posts.length === 0 ? (
+        <p style="color: var(--color-text-muted); font-style: italic;">
+          Bu kategoride henüz yazı yok.
+        </p>
+      ) : (
+        posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/ic-hastaliklari/${post.id}`}
+            publishDate={post.data.publishDate}
+            category={post.data.category}
+            section="ic-hastaliklari"
+            evidenceLevel={post.data.evidenceLevel}
+          />
+        ))
+      )}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { SAGLIK_REHBERI_KATEGORILERI } from '../../content.config';
+
+const posts = (
+  await getCollection('saglik-rehberi', ({ data }) => !data.draft)
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout
+  title="Sağlık Rehberi"
+  description="Hastalar ve aileleri için anlaşılır dilde sağlık bilgileri — kronik hastalıklar, ilaç kullanımı, beslenme, tarama testleri ve sık sorulan sorular."
+>
+  <section class="container">
+    <div class="hero" style="text-align: left; padding-bottom: 1rem;">
+      <span class="badge badge--saglik-rehberi">Bölüm</span>
+      <h1 class="hero__title" style="font-size: 2.25rem; margin-top: 0.5rem;">
+        Sağlık Rehberi
+      </h1>
+      <p class="hero__lead" style="margin: 0;">
+        Hasta ve yakınları için anlaşılır dilde bilgilendirme yazıları. Kronik
+        hastalıkları yönetmek, ilaçları doğru kullanmak, sağlıklı bir yaşam
+        sürdürmek üzerine pratik bilgiler.
+      </p>
+    </div>
+
+    <nav class="category-pills" aria-label="Kategoriler">
+      {SAGLIK_REHBERI_KATEGORILERI.map((cat) => (
+        <a
+          href={`/saglik-rehberi/kategori/${encodeURIComponent(cat)}`}
+          class="category-pill"
+        >
+          {cat}
+        </a>
+      ))}
+    </nav>
+
+    <div style="margin-top: 2rem;">
+      {posts.length === 0 ? (
+        <p style="color: var(--color-text-muted); font-style: italic; padding: 2rem 0;">
+          Bu bölümde henüz yazı yok.
+        </p>
+      ) : (
+        posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/saglik-rehberi/${post.id}`}
+            publishDate={post.data.publishDate}
+            category={post.data.category}
+            section="saglik-rehberi"
+          />
+        ))
+      )}
+    </div>
+  </section>
+</BaseLayout>
