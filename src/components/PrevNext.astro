@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import { type SectionKey } from './PostCard.astro';
+
+interface Props {
+  section: SectionKey;
+  currentSlug: string;
+}
+const { section, currentSlug } = Astro.props;
+
+const all = (await getCollection(section, ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf(),
+);
+const idx = all.findIndex((p) => p.id === currentSlug);
+const newer = idx > 0 ? all[idx - 1] : null;
+const older = idx < all.length - 1 && idx !== -1 ? all[idx + 1] : null;
+const sectionBase = `/${section}`;
+---
+
+{(newer || older) && (
+  <nav class="prev-next" aria-label="Yazılar arası gezinme">
+    {older ? (
+      <a href={`${sectionBase}/${older.id}`} class="prev-next__item prev-next__item--prev">
+        <span class="prev-next__label">← Önceki yazı</span>
+        <span class="prev-next__title">{older.data.title}</span>
+      </a>
+    ) : (
+      <span class="prev-next__placeholder"></span>
+    )}
+    {newer ? (
+      <a href={`${sectionBase}/${newer.id}`} class="prev-next__item prev-next__item--next">
+        <span class="prev-next__label">Sonraki yazı →</span>
+        <span class="prev-next__title">{newer.data.title}</span>
+      </a>
+    ) : (
+      <span class="prev-next__placeholder"></span>
+    )}
+  </nav>
+)}

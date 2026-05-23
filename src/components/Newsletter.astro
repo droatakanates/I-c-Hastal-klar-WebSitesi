@@ -1,0 +1,58 @@
+---
+/**
+ * Newsletter abonelik formu (Buttondown).
+ *
+ * KURULUM (tek seferlik):
+ * 1. https://buttondown.com adresine kayıt ol (ücretsiz tier 100 abone)
+ * 2. Kullanıcı adınızı (örn. "omuratakanates") aşağıdaki BUTTONDOWN_USER sabitine yazın
+ * 3. Buttondown dashboard → Settings → Newsletter detayları → açıklama, tema vb. ayarla
+ *
+ * Pasifken (boş kullanıcı adı) bu form gösterilmez.
+ *
+ * Alternatifler: EmailOctopus, Substack, MailerLite (her birinin kendi form action URL'i olur).
+ */
+
+const BUTTONDOWN_USER = ''; // örn. 'omuratakanates'  ← Buttondown kullanıcı adınız
+
+interface Props {
+  compact?: boolean; // footer içinde küçük versiyon
+}
+const { compact = false } = Astro.props;
+
+const enabled = BUTTONDOWN_USER !== '';
+const action = `https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USER}`;
+---
+
+{enabled && (
+  <section class={`newsletter ${compact ? 'newsletter--compact' : ''}`}>
+    {!compact && (
+      <>
+        <h2 class="newsletter__title">Yeni yazılardan haberdar olun</h2>
+        <p class="newsletter__lead">
+          Ayda 1-2 e-posta, en yeni tıp ve siyaset yazılarının özetleri.
+          İstediğiniz zaman tek tıkla ayrılabilirsiniz.
+        </p>
+      </>
+    )}
+    {compact && <p class="newsletter__compact-title">📬 Newsletter</p>}
+    <form
+      action={action}
+      method="post"
+      target="popupwindow"
+      onsubmit="window.open('https://buttondown.com/' + this.dataset.user, 'popupwindow')"
+      data-user={BUTTONDOWN_USER}
+      class="newsletter__form"
+    >
+      <input
+        type="email"
+        name="email"
+        placeholder="e-posta adresiniz"
+        aria-label="E-posta"
+        required
+        class="newsletter__input"
+      />
+      <button type="submit" class="newsletter__submit">Abone ol</button>
+    </form>
+    <p class="newsletter__note">Spam yok. Reklam yok. Üçüncü taraf paylaşımı yok.</p>
+  </section>
+)}

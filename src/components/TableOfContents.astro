@@ -1,0 +1,58 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+
+// H2 ve H3'leri al (H1 = yazı başlığı, daha derini fazla)
+const filtered = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{filtered.length >= 2 && (
+  <nav class="toc" aria-label="İçindekiler">
+    <p class="toc__title">İçindekiler</p>
+    <ol class="toc__list">
+      {filtered.map((h) => (
+        <li class={`toc__item toc__item--h${h.depth}`}>
+          <a href={`#${h.slug}`} class="toc__link" data-toc-slug={h.slug}>
+            {h.text}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+)}
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('.toc__link');
+    if (links.length === 0) return;
+    const map = new Map();
+    links.forEach((link) => {
+      const slug = link.getAttribute('data-toc-slug');
+      const heading = document.getElementById(slug);
+      if (heading) map.set(heading, link);
+    });
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const link = map.get(entry.target);
+          if (!link) return;
+          if (entry.isIntersecting) {
+            links.forEach((l) => l.classList.remove('toc__link--active'));
+            link.classList.add('toc__link--active');
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -70% 0px' },
+    );
+    map.forEach((_link, heading) => obs.observe(heading));
+  });
+</script>

@@ -77,6 +77,30 @@ const ogImageUrl = ogImage
     </main>
     <Footer />
 
+    <!-- Chart.js: sadece sayfada canvas.chart varsa yüklenir (lazy) -->
+    <script is:inline>
+      (async () => {
+        const canvases = document.querySelectorAll('canvas.chart[data-chart]');
+        if (canvases.length === 0) return;
+        const { Chart, registerables } = await import(
+          'https://cdn.jsdelivr.net/npm/chart.js@4.4.7/+esm'
+        );
+        Chart.register(...registerables);
+        const isDark = document.documentElement.dataset.theme === 'dark';
+        Chart.defaults.color = isDark ? '#cbd5e1' : '#4a5060';
+        Chart.defaults.borderColor = isDark ? '#334155' : '#e5e7eb';
+        Chart.defaults.font.family = 'Geist, Inter, system-ui, sans-serif';
+        canvases.forEach((canvas) => {
+          try {
+            const config = JSON.parse(canvas.dataset.chart ?? '{}');
+            new Chart(canvas, config);
+          } catch (err) {
+            console.error('[chart] hata:', err);
+          }
+        });
+      })();
+    </script>
+
     <!-- Mermaid: sadece sayfada mermaid bloğu varsa yüklenir (lazy) -->
     <script is:inline>
       (async () => {
