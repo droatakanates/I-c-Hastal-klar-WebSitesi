@@ -657,19 +657,45 @@ a:hover {
 }
 
 .category-pill {
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: var(--color-bg-soft);
-  color: var(--color-text-soft);
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--color-bg);
+  color: var(--color-text);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--color-border);
   transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.category-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+  transition: background 0.15s ease;
 }
 
 .category-pill:hover {
   background: var(--color-primary);
   color: #fff;
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.15);
 }
+
+.category-pill:hover::before {
+  background: #fff;
+}
+
+/* Bölüm sayfalarında pill'lerin nokta rengi bölüm rengini alır */
+.section-banner--ic-hastaliklari ~ * .category-pill::before { background: var(--color-ic-hastaliklari); }
+.section-banner--siyaset ~ * .category-pill::before { background: var(--color-siyaset); }
+.section-banner--saglik-rehberi ~ * .category-pill::before { background: var(--color-saglik-rehberi); }
 
 /* === Responsive === */
 @media (max-width: 640px) {
@@ -700,12 +726,24 @@ a:hover {
 
 /* === Ana sayfa hero (yenilenmiş) === */
 .home-hero {
-  padding: var(--space-2xl) 0 var(--space-xl);
+  padding: var(--space-2xl) 0 var(--space-2xl);
   background:
-    radial-gradient(ellipse at top left, rgba(30, 64, 175, 0.04), transparent 50%),
-    radial-gradient(ellipse at top right, rgba(180, 83, 9, 0.04), transparent 50%),
-    linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-soft) 100%);
-  border-bottom: 1px solid var(--color-border-soft);
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(30, 64, 175, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 30%, rgba(190, 18, 60, 0.14), transparent 60%),
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(180, 83, 9, 0.12), transparent 60%),
+    linear-gradient(180deg, #f0f4fa 0%, #f8f7f4 100%);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark mode için daha derin tonlar */
+:root[data-theme="dark"] .home-hero {
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(96, 165, 250, 0.25), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 30%, rgba(251, 113, 133, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(251, 191, 36, 0.15), transparent 60%),
+    linear-gradient(180deg, #1a2238 0%, #0f172a 100%);
 }
 
 .home-hero__eyebrow {
@@ -760,11 +798,12 @@ a:hover {
   border-top: 4px solid;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.06);
 }
 
 .home-hero__card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.18);
 }
 
 .home-hero__card--ic-hastaliklari { border-top-color: var(--color-ic-hastaliklari); }
