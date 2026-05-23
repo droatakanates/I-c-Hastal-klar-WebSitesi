@@ -269,6 +269,60 @@ Mermaid scripti **sadece sayfada mermaid bloğu varsa** yüklenir, bu yüzden di
 
 ---
 
+## 📈 Chart.js grafikleri (etkileşimli)
+
+Çubuk, çizgi, pasta, alan grafikleri ekleyebilirsiniz. Markdown'da HTML olarak yazılır.
+
+### En basit kullanım
+
+Pages CMS kaynak modunda yapıştırın:
+
+```html
+<canvas class="chart" data-chart='{
+  "type": "bar",
+  "data": {
+    "labels": ["2018", "2020", "2022", "2024"],
+    "datasets": [{
+      "label": "Diyabet prevalansı (%)",
+      "data": [13.7, 14.5, 15.2, 16.1],
+      "backgroundColor": "#1e40af"
+    }]
+  },
+  "options": {
+    "responsive": true,
+    "plugins": { "legend": { "position": "top" } }
+  }
+}'></canvas>
+```
+
+### Grafik türleri
+
+- `"type": "bar"` — çubuk grafik (en yaygın)
+- `"type": "line"` — çizgi grafik (zaman içinde trend)
+- `"type": "pie"` — pasta (kategori dağılımı)
+- `"type": "doughnut"` — halka grafik
+- `"type": "radar"` — örümcek ağı (çok değişkenli karşılaştırma)
+- `"type": "scatter"` — dağılım grafiği
+
+### Birden fazla seri
+
+```html
+<canvas class="chart" data-chart='{
+  "type": "line",
+  "data": {
+    "labels": ["1", "2", "3", "4", "5"],
+    "datasets": [
+      {"label": "Sistolik", "data": [140, 138, 132, 128, 125], "borderColor": "#be123c"},
+      {"label": "Diyastolik", "data": [90, 88, 85, 82, 80], "borderColor": "#1e40af"}
+    ]
+  }
+}'></canvas>
+```
+
+Chart.js scripti **sadece sayfada canvas.chart varsa** yüklenir (performans). Detaylı dokümantasyon: https://www.chartjs.org/docs/latest/
+
+---
+
 ## 🎯 Hızlı başvuru — sık yapılan işler
 
 | Yapmak istediğim | Adım |

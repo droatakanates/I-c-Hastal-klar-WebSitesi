@@ -1,15 +1,25 @@
 ---
+import Newsletter from './Newsletter.astro';
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="container-wide">
+    <Newsletter compact={true} />
     <div class="site-footer__grid">
       <div>
         <strong style="color: var(--color-text); font-family: var(--font-serif);">omuratakanates.com</strong>
         <p style="margin-top: 0.5rem;">
           Kanıta dayalı iç hastalıkları içeriği ve siyaset bilimi yazıları.
         </p>
+      </div>
+      <div>
+        <strong style="color: var(--color-text);">Keşfet</strong>
+        <ul style="list-style: none; padding: 0; margin: 0.5rem 0 0;">
+          <li><a href="/arama">Arama</a></li>
+          <li><a href="/arsiv">Arşiv</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
       </div>
       <div>
         <strong style="color: var(--color-text);">Yasal</strong>

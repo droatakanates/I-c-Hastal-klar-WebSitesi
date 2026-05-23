@@ -4,6 +4,14 @@ import { SECTION_LABELS, type SectionKey } from '../components/PostCard.astro';
 import RelatedPosts from '../components/RelatedPosts.astro';
 import SharePost from '../components/SharePost.astro';
 import Giscus from '../components/Giscus.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import PrevNext from '../components/PrevNext.astro';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
 
 interface Props {
   title: string;
@@ -20,6 +28,7 @@ interface Props {
   coverImage?: string;
   coverImageAlt?: string;
   references: string[];
+  headings?: Heading[];
 }
 
 const {
@@ -37,6 +46,7 @@ const {
   coverImage,
   coverImageAlt,
   references,
+  headings = [],
 } = Astro.props;
 
 const dateFmt = new Intl.DateTimeFormat('tr-TR', {
@@ -75,73 +85,81 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
     </div>
   )}
 
-  <article class="container prose">
-    <header class="post-header">
-      <div class="post-header__meta">
-        <a href={sectionBase} class={`badge badge--${section}`}>{SECTION_LABELS[section]}</a>
-        <a href={`${sectionBase}/kategori/${encodeURIComponent(category)}`} class="badge badge--category">
-          {category}
-        </a>
-        {icerikTipi && <span class="badge badge--category">{icerikTipi}</span>}
-        {evidenceLevel && (
-          <span class={`evidence-badge ${evidenceClass}`}>
-            Kanıt Seviyesi {evidenceLevel}
-          </span>
-        )}
-      </div>
-      <h1 class="post-header__title">{title}</h1>
-      <p class="post-header__description">{description}</p>
-      <div class="post-header__meta" style="margin-top: 1rem;">
-        <time datetime={publishDate.toISOString()}>
-          Yayın: {dateFmt.format(publishDate)}
-        </time>
-        {updatedDate && (
-          <time datetime={updatedDate.toISOString()}>
-            Güncelleme: {dateFmt.format(updatedDate)}
+  <div class="post-wrapper">
+    <aside class="post-sidebar" aria-hidden="false">
+      <TableOfContents headings={headings} />
+    </aside>
+
+    <article class="post-main prose">
+      <header class="post-header">
+        <div class="post-header__meta">
+          <a href={sectionBase} class={`badge badge--${section}`}>{SECTION_LABELS[section]}</a>
+          <a href={`${sectionBase}/kategori/${encodeURIComponent(category)}`} class="badge badge--category">
+            {category}
+          </a>
+          {icerikTipi && <span class="badge badge--category">{icerikTipi}</span>}
+          {evidenceLevel && (
+            <span class={`evidence-badge ${evidenceClass}`}>
+              Kanıt Seviyesi {evidenceLevel}
+            </span>
+          )}
+        </div>
+        <h1 class="post-header__title">{title}</h1>
+        <p class="post-header__description">{description}</p>
+        <div class="post-header__meta" style="margin-top: 1rem;">
+          <time datetime={publishDate.toISOString()}>
+            Yayın: {dateFmt.format(publishDate)}
           </time>
-        )}
-        {okumaSuresi && <span>Okuma: {okumaSuresi}</span>}
+          {updatedDate && (
+            <time datetime={updatedDate.toISOString()}>
+              Güncelleme: {dateFmt.format(updatedDate)}
+            </time>
+          )}
+          {okumaSuresi && <span>Okuma: {okumaSuresi}</span>}
+        </div>
+      </header>
+
+      <div class="post-content" id="post-content">
+        <slot />
       </div>
-    </header>
 
-    <div class="post-content" id="post-content">
-      <slot />
-    </div>
+      {references.length > 0 && (
+        <section class="references" aria-labelledby="references-heading">
+          <h2 id="references-heading">Kaynaklar</h2>
+          <ol>
+            {references.map((ref) => (
+              <li>{ref}</li>
+            ))}
+          </ol>
+        </section>
+      )}
 
-    {references.length > 0 && (
-      <section class="references" aria-labelledby="references-heading">
-        <h2 id="references-heading">Kaynaklar</h2>
-        <ol>
-          {references.map((ref) => (
-            <li>{ref}</li>
+      {tags.length > 0 && (
+        <div class="category-pills" style="margin-top: 2rem;">
+          {tags.map((tag) => (
+            <span class="category-pill">#{tag}</span>
           ))}
-        </ol>
-      </section>
-    )}
+        </div>
+      )}
 
-    {tags.length > 0 && (
-      <div class="category-pills" style="margin-top: 2rem;">
-        {tags.map((tag) => (
-          <span class="category-pill">#{tag}</span>
-        ))}
-      </div>
-    )}
+      <SharePost title={title} url={fullUrl} />
 
-    <SharePost title={title} url={fullUrl} />
+      {isMedical && (
+        <div style={`margin-top: 2rem; padding: 1rem; background: var(--color-bg-soft); border-left: 3px solid ${disclaimerColor}; border-radius: var(--radius-sm); font-size: 0.92rem; color: var(--color-text-soft);`}>
+          <strong style="color: var(--color-text);">Tıbbi sorumluluk reddi:</strong>
+          Bu yazı genel bilgilendirme amaçlıdır ve hekim danışmanlığının yerine geçmez.
+          Klinik kararlar için yetkili sağlık profesyoneline başvurunuz.
+          <a href="/sorumluluk-reddi">Detaylı bilgi</a>.
+        </div>
+      )}
 
-    {isMedical && (
-      <div style={`margin-top: 2rem; padding: 1rem; background: var(--color-bg-soft); border-left: 3px solid ${disclaimerColor}; border-radius: var(--radius-sm); font-size: 0.92rem; color: var(--color-text-soft);`}>
-        <strong style="color: var(--color-text);">Tıbbi sorumluluk reddi:</strong>
-        Bu yazı genel bilgilendirme amaçlıdır ve hekim danışmanlığının yerine geçmez.
-        Klinik kararlar için yetkili sağlık profesyoneline başvurunuz.
-        <a href="/sorumluluk-reddi">Detaylı bilgi</a>.
-      </div>
-    )}
+      <PrevNext section={section} currentSlug={slug} />
 
-    <RelatedPosts section={section} currentSlug={slug} currentCategory={category} />
+      <RelatedPosts section={section} currentSlug={slug} currentCategory={category} />
 
-    <Giscus />
-  </article>
+      <Giscus />
+    </article>
+  </div>
 
   <script is:inline>
     (function () {

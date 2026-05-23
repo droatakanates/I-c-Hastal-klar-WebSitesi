@@ -1,0 +1,10 @@
+# Bu klasör özel font dosyalarınız içindir.
+#
+# Marka adı (Ömür Atakan Ateş) için özel bir font kullanmak isterseniz:
+# 1. Font dosyanızı buraya kopyalayın (örn. marka.woff2)
+# 2. src/styles/global.css içindeki @font-face yorumunu açın
+# 3. Dosya adını ve --font-brand değişkenini güncelleyin
+#
+# Önerilen format: .woff2 (en küçük dosya, modern tarayıcılar)
+# Telif: lisansını ücretsiz/web kullanıma açık olan fontları seçin
+# (Google Fonts, Fontshare, Bunny Fonts kategorileri).

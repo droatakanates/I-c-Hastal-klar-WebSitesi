@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SECTION_LABELS, type SectionKey } from '../components/PostCard.astro';
+
+interface ArchiveEntry {
+  id: string;
+  title: string;
+  publishDate: Date;
+  category: string;
+  section: SectionKey;
+  href: string;
+}
+
+const ic = (await getCollection('ic-hastaliklari', ({ data }) => !data.draft)).map(
+  (p): ArchiveEntry => ({
+    id: p.id,
+    title: p.data.title,
+    publishDate: p.data.publishDate,
+    category: p.data.category,
+    section: 'ic-hastaliklari',
+    href: `/ic-hastaliklari/${p.id}`,
+  }),
+);
+const sr = (await getCollection('saglik-rehberi', ({ data }) => !data.draft)).map(
+  (p): ArchiveEntry => ({
+    id: p.id,
+    title: p.data.title,
+    publishDate: p.data.publishDate,
+    category: p.data.category,
+    section: 'saglik-rehberi',
+    href: `/saglik-rehberi/${p.id}`,
+  }),
+);
+const sy = (await getCollection('siyaset', ({ data }) => !data.draft)).map(
+  (p): ArchiveEntry => ({
+    id: p.id,
+    title: p.data.title,
+    publishDate: p.data.publishDate,
+    category: p.data.category,
+    section: 'siyaset',
+    href: `/siyaset/${p.id}`,
+  }),
+);
+
+const all = [...ic, ...sr, ...sy].sort(
+  (a, b) => b.publishDate.valueOf() - a.publishDate.valueOf(),
+);
+
+// Yıla ve aya göre grupla
+const grouped = all.reduce<Record<number, Record<string, ArchiveEntry[]>>>(
+  (acc, post) => {
+    const yil = post.publishDate.getFullYear();
+    const ay = post.publishDate.toLocaleString('tr-TR', { month: 'long' });
+    acc[yil] ??= {};
+    acc[yil][ay] ??= [];
+    acc[yil][ay].push(post);
+    return acc;
+  },
+  {},
+);
+
+const yillar = Object.keys(grouped)
+  .map(Number)
+  .sort((a, b) => b - a);
+
+const dateFmt = new Intl.DateTimeFormat('tr-TR', {
+  day: 'numeric',
+  month: 'long',
+});
+---
+
+<BaseLayout
+  title="Arşiv"
+  description="Tüm yazıların tarihe göre kronolojik listesi."
+>
+  <div class="section-banner">
+    <div class="container">
+      <span class="badge badge--category section-banner__eyebrow">Arşiv</span>
+      <h1 class="section-banner__title">Tüm yazılar</h1>
+      <p class="section-banner__lead">
+        Tarih sırasına göre tüm bölümlerdeki yazılar. Toplam {all.length} yazı.
+      </p>
+    </div>
+  </div>
+
+  <section class="container">
+    {yillar.map((yil) => (
+      <section class="archive-year">
+        <h2 class="archive-year__title">{yil}</h2>
+        {Object.entries(grouped[yil]).map(([ay, posts]) => (
+          <div class="archive-month">
+            <h3 class="archive-month__title">{ay}</h3>
+            <ul class="archive-list">
+              {posts.map((p) => (
+                <li class="archive-item">
+                  <time class="archive-item__date" datetime={p.publishDate.toISOString()}>
+                    {dateFmt.format(p.publishDate)}
+                  </time>
+                  <span class={`badge badge--${p.section} archive-item__badge`}>
+                    {SECTION_LABELS[p.section]}
+                  </span>
+                  <a href={p.href} class="archive-item__title">{p.title}</a>
+                  <span class="archive-item__category">— {p.category}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </section>
+    ))}
+
+    {all.length === 0 && (
+      <p style="color: var(--color-text-muted); font-style: italic; padding: 2rem 0;">
+        Henüz yazı yok.
+      </p>
+    )}
+  </section>
+</BaseLayout>
