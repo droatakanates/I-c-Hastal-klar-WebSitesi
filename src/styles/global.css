@@ -14,8 +14,8 @@
   --color-primary-hover: #15294a;
 
   /* Bölüm aksanları */
-  --color-ic-hastaliklari: #0f766e; /* Teal — akademik tıp */
-  --color-ic-hastaliklari-soft: #e6f4f1;
+  --color-ic-hastaliklari: #1e40af; /* Nötr koyu mavi — akademik tıp */
+  --color-ic-hastaliklari-soft: #dbeafe;
   --color-siyaset: #b45309; /* Amber — siyaset bilimi & UI */
   --color-siyaset-soft: #fef3e2;
   --color-saglik-rehberi: #be123c; /* Rose — hasta bilgilendirme */
@@ -34,9 +34,9 @@
     'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace;
 
-  /* Üst sekme (koyu turkuaz) */
-  --color-header-bg: #134e4a;
-  --color-header-text: #d1fae5;
+  /* Üst sekme (koyu lacivert / donanma) */
+  --color-header-bg: #1e293b;
+  --color-header-text: #cbd5e1;
   --color-header-text-hover: #ffffff;
   --color-header-brand: #ffffff;
   --color-header-border: rgba(255, 255, 255, 0.08);
