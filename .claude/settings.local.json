@@ -18,7 +18,11 @@
       "Bash(git --version)",
       "Bash(git init -b main)",
       "Bash(git add -A)",
-      "Bash(git -c user.email=\"local@omuratakanates.com\" -c user.name=\"Ömür Atakan Ateş\" commit -m \"İlk yayın: Astro tabanlı kişisel blog \\(tıp + siyaset bölümleri\\)\")"
+      "Bash(git -c user.email=\"local@omuratakanates.com\" -c user.name=\"Ömür Atakan Ateş\" commit -m \"İlk yayın: Astro tabanlı kişisel blog \\(tıp + siyaset bölümleri\\)\")",
+      "Bash(git config user.email \"droatakanates@gmail.com\")",
+      "Bash(git config user.name \"Ömür Atakan Ateş\")",
+      "Bash(git -c rebase.autoStash=true commit --amend --reset-author --no-edit)",
+      "Bash(gh --version)"
     ]
   }
 }
