@@ -28,11 +28,18 @@
   --color-evidence-d: #b45309;
   --color-evidence-expert: #6b7280;
 
-  /* Yazı tipleri */
+  /* Yazı tipleri — Claude UI'sine yakın: temiz geometrik sans + akademik serif */
   --font-serif: 'Source Serif 4', 'Source Serif Pro', Georgia, 'Times New Roman', serif;
   --font-sans:
-    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace;
+    'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace;
+
+  /* Üst sekme (koyu turkuaz) */
+  --color-header-bg: #134e4a;
+  --color-header-text: #d1fae5;
+  --color-header-text-hover: #ffffff;
+  --color-header-brand: #ffffff;
+  --color-header-border: rgba(255, 255, 255, 0.08);
 
   /* Ölçüler */
   --content-width: 720px;
@@ -115,16 +122,14 @@ a:hover {
   padding: 0 var(--space-lg);
 }
 
-/* === Header === */
+/* === Header (koyu turkuaz) === */
 .site-header {
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-header-border);
   padding: var(--space-md) 0;
-  background: var(--color-bg);
+  background: var(--color-header-bg);
   position: sticky;
   top: 0;
   z-index: 10;
-  backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, 0.92);
 }
 
 .site-header__inner {
@@ -139,9 +144,13 @@ a:hover {
   font-family: var(--font-serif);
   font-size: 1.15rem;
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-header-brand);
   text-decoration: none;
   letter-spacing: -0.01em;
+}
+
+.site-brand:hover {
+  color: var(--color-header-text-hover);
 }
 
 .site-nav {
@@ -152,15 +161,31 @@ a:hover {
 }
 
 .site-nav a {
-  color: var(--color-text-soft);
+  color: var(--color-header-text);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 500;
+  transition: color 0.15s ease;
 }
 
 .site-nav a:hover,
 .site-nav a.active {
-  color: var(--color-primary);
+  color: var(--color-header-text-hover);
+}
+
+.site-nav a.active {
+  position: relative;
+}
+
+.site-nav a.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.65rem;
+  height: 2px;
+  background: var(--color-header-text-hover);
+  border-radius: 1px;
 }
 
 /* === Footer === */
