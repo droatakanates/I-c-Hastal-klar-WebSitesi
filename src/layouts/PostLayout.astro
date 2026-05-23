@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import { SECTION_LABELS, type SectionKey } from '../components/PostCard.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
 
 interface Props {
   title: string;
@@ -10,6 +11,7 @@ interface Props {
   category: string;
   tags: string[];
   section: SectionKey;
+  slug: string;
   evidenceLevel?: string;
   icerikTipi?: string;
   okumaSuresi?: string;
@@ -26,6 +28,7 @@ const {
   category,
   tags,
   section,
+  slug,
   evidenceLevel,
   icerikTipi,
   okumaSuresi,
@@ -123,5 +126,7 @@ const disclaimerColor =
         <a href="/sorumluluk-reddi">Detaylı bilgi</a>.
       </div>
     )}
+
+    <RelatedPosts section={section} currentSlug={slug} currentCategory={category} />
   </article>
 </BaseLayout>

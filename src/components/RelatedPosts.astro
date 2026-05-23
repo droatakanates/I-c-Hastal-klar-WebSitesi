@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import { SECTION_LABELS, type SectionKey } from './PostCard.astro';
+
+interface Props {
+  section: SectionKey;
+  currentSlug: string;
+  currentCategory: string;
+  max?: number;
+}
+
+const { section, currentSlug, currentCategory, max = 3 } = Astro.props;
+
+const all = await getCollection(section, ({ data }) => !data.draft);
+
+// Önce aynı kategoriden, yoksa aynı bölümden son yazılardan tamamla
+const sameCategory = all
+  .filter((p) => p.id !== currentSlug && p.data.category === currentCategory)
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const others = all
+  .filter(
+    (p) =>
+      p.id !== currentSlug &&
+      p.data.category !== currentCategory &&
+      !sameCategory.includes(p),
+  )
+  .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+
+const related = [...sameCategory, ...others].slice(0, max);
+
+const dateFmt = new Intl.DateTimeFormat('tr-TR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const sectionBase = `/${section}`;
+---
+
+{related.length > 0 && (
+  <aside class="related-posts" aria-labelledby="related-heading">
+    <h2 id="related-heading" class="related-posts__title">
+      İlgili yazılar
+      <span class="related-posts__section">— {SECTION_LABELS[section]}</span>
+    </h2>
+    <ul class="related-posts__list">
+      {related.map((p) => (
+        <li class="related-posts__item">
+          {p.data.coverImage && (
+            <a href={`${sectionBase}/${p.id}`} class="related-posts__cover" aria-hidden="true" tabindex="-1">
+              <img src={p.data.coverImage} alt={p.data.coverImageAlt ?? ''} loading="lazy" />
+            </a>
+          )}
+          <div class="related-posts__body">
+            <span class="badge badge--category">{p.data.category}</span>
+            <h3 class="related-posts__item-title">
+              <a href={`${sectionBase}/${p.id}`}>{p.data.title}</a>
+            </h3>
+            <time datetime={p.data.publishDate.toISOString()} class="related-posts__date">
+              {dateFmt.format(p.data.publishDate)}
+            </time>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </aside>
+)}

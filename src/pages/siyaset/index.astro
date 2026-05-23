@@ -13,15 +13,18 @@ const posts = (await getCollection('siyaset', ({ data }) => !data.draft)).sort(
   title="Siyaset"
   description="Siyaset bilimi yazıları — Türk siyaseti, karşılaştırmalı siyaset, uluslararası ilişkiler ve siyaset teorisi üzerine notlar."
 >
-  <section class="container">
-    <div class="hero" style="text-align: left; padding-bottom: 1rem;">
-      <span class="badge badge--siyaset">Bölüm</span>
-      <h1 class="hero__title" style="font-size: 2.25rem; margin-top: 0.5rem;">Siyaset</h1>
-      <p class="hero__lead" style="margin: 0;">
-        Siyaset bilimi alanında analiz, makale incelemesi ve karşılaştırmalı çalışmalar.
+  <div class="section-banner section-banner--siyaset">
+    <div class="container">
+      <span class="badge badge--siyaset section-banner__eyebrow">Bölüm</span>
+      <h1 class="section-banner__title">Siyaset Bilimi ve Uluslararası İlişkiler</h1>
+      <p class="section-banner__lead">
+        Siyaset bilimi alanında analiz, makale incelemesi, karşılaştırmalı
+        çalışmalar ve uluslararası ilişkiler üzerine notlar.
       </p>
     </div>
+  </div>
 
+  <section class="container">
     <nav class="category-pills" aria-label="Kategoriler">
       {SIYASET_KATEGORILERI.map((cat) => (
         <a href={`/siyaset/kategori/${encodeURIComponent(cat)}`} class="category-pill">

@@ -13,18 +13,18 @@ const posts = (
   title="İç Hastalıkları"
   description="Kanıta dayalı iç hastalıkları içeriği — olgu sunumları, kılavuz özetleri, literatür taramaları ve klinik pratik notları."
 >
-  <section class="container">
-    <div class="hero" style="text-align: left; padding-bottom: 1rem;">
-      <span class="badge badge--ic-hastaliklari">Bölüm</span>
-      <h1 class="hero__title" style="font-size: 2.25rem; margin-top: 0.5rem;">
-        İç Hastalıkları
-      </h1>
-      <p class="hero__lead" style="margin: 0;">
-        Akademik içerik: iç hastalıkları ve yan dalları üzerine kanıta dayalı yazılar.
-        Kılavuz özetleri, olgu sunumları, literatür taramaları.
+  <div class="section-banner section-banner--ic-hastaliklari">
+    <div class="container">
+      <span class="badge badge--ic-hastaliklari section-banner__eyebrow">Bölüm</span>
+      <h1 class="section-banner__title">İç Hastalıkları</h1>
+      <p class="section-banner__lead">
+        Akademik içerik: iç hastalıkları ve yan dalları üzerine kanıta dayalı
+        yazılar. Kılavuz özetleri, olgu sunumları, literatür taramaları.
       </p>
     </div>
+  </div>
 
+  <section class="container">
     <nav class="category-pills" aria-label="Kategoriler">
       {IC_HASTALIKLARI_KATEGORILERI.map((cat) => (
         <a

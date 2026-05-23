@@ -13,19 +13,19 @@ const posts = (
   title="Sağlık Rehberi"
   description="Hastalar ve aileleri için anlaşılır dilde sağlık bilgileri — kronik hastalıklar, ilaç kullanımı, beslenme, tarama testleri ve sık sorulan sorular."
 >
-  <section class="container">
-    <div class="hero" style="text-align: left; padding-bottom: 1rem;">
-      <span class="badge badge--saglik-rehberi">Bölüm</span>
-      <h1 class="hero__title" style="font-size: 2.25rem; margin-top: 0.5rem;">
-        Sağlık Rehberi
-      </h1>
-      <p class="hero__lead" style="margin: 0;">
+  <div class="section-banner section-banner--saglik-rehberi">
+    <div class="container">
+      <span class="badge badge--saglik-rehberi section-banner__eyebrow">Bölüm</span>
+      <h1 class="section-banner__title">Sağlık Rehberi</h1>
+      <p class="section-banner__lead">
         Hasta ve yakınları için anlaşılır dilde bilgilendirme yazıları. Kronik
         hastalıkları yönetmek, ilaçları doğru kullanmak, sağlıklı bir yaşam
         sürdürmek üzerine pratik bilgiler.
       </p>
     </div>
+  </div>
 
+  <section class="container">
     <nav class="category-pills" aria-label="Kategoriler">
       {SAGLIK_REHBERI_KATEGORILERI.map((cat) => (
         <a

@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Arama"
+  description="Site içinde arama yapın — iç hastalıkları, sağlık rehberi ve siyaset bilimi yazılarında."
+>
+  <section class="container" style="padding-top: 2rem;">
+    <div class="hero" style="text-align: left; padding-bottom: 1.5rem;">
+      <h1 class="hero__title" style="font-size: 2.25rem; margin-top: 0;">Arama</h1>
+      <p class="hero__lead" style="margin: 0;">
+        Tüm bölümlerde anahtar kelimeyle arayın. Sonuçlar yazı başlığı, açıklama
+        ve içerik metnini tarar.
+      </p>
+    </div>
+
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <div id="search" style="margin-top: 1rem;"></div>
+
+    <p style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">
+      İpucu: <code>tip:diyabet</code> gibi tek kelime ile başlayın; çoklu kelimeler
+      AND mantığı ile birleşir. Tırnak içinde tam ifade aratabilirsiniz: <code>"kanıt seviyesi"</code>.
+    </p>
+
+    <script is:inline src="/pagefind/pagefind-ui.js"></script>
+    <script is:inline>
+      window.addEventListener('DOMContentLoaded', () => {
+        if (typeof PagefindUI === 'undefined') {
+          document.getElementById('search').innerHTML =
+            '<p style="color: var(--color-text-muted); padding: 1rem; background: var(--color-bg-soft); border-radius: 8px;">Arama indeksi henüz hazır değil (ilk yayın sonrası birkaç dakika içinde çalışır).</p>';
+          return;
+        }
+        new PagefindUI({
+          element: '#search',
+          showSubResults: true,
+          showImages: true,
+          resetStyles: false,
+          translations: {
+            placeholder: 'Aramak istediğiniz kelimeyi yazın…',
+            clear_search: 'Temizle',
+            load_more: 'Daha fazla sonuç',
+            search_label: 'Site içinde ara',
+            filters_label: 'Filtreler',
+            zero_results: '[SEARCH_TERM] için sonuç bulunamadı',
+            many_results: '[SEARCH_TERM] için [COUNT] sonuç',
+            one_result: '[SEARCH_TERM] için 1 sonuç',
+            alt_search:
+              '[SEARCH_TERM] için sonuç bulunamadı. Bunun yerine [DIFFERENT_TERM] arandı',
+            search_suggestion:
+              '[SEARCH_TERM] için sonuç bulunamadı. Şunları deneyebilirsiniz:',
+            searching: '[SEARCH_TERM] aranıyor…',
+          },
+        });
+      });
+    </script>
+  </section>
+</BaseLayout>
