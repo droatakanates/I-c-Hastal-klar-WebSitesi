@@ -10,5 +10,5 @@ references:
     - 2026. Türkiye Endokrinoloji ve Metabolizma Derneği
 draft: false
 ---
-![tip2-diyabet-insulin-infografik.jpg](/gorseller/tip2-diyabet-insulin-infografik.jpg)
+![ChatGPT Image 24 May 2026 16_10_50 (1).png](blob:https:/app.pagescms.org/084bbb12-5d50-41a8-a876-b5e1b234d324)
 
