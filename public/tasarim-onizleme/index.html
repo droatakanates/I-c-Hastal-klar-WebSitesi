@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tasarım önizleme · 4 varyant</title>
+<link rel="stylesheet" href="/tasarim-onizleme/_shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { background: #fafaf7; color: #1a1d23; font: 16px/1.6 'Inter', sans-serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 28px; }
+  h1 { font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 30px; margin: 0 0 6px; letter-spacing: -.01em; }
+  .lead { color: #555; max-width: 70ch; margin: 0 0 28px; font-size: 16px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .v { background: #fff; border: 1px solid #e6e4dc; border-radius: 12px; overflow: hidden; text-decoration: none; color: inherit; transition: transform .15s, box-shadow .15s; display: flex; flex-direction: column; }
+  .v:hover { transform: translateY(-2px); box-shadow: 0 8px 24px -10px rgba(0,0,0,.12); }
+  .v .thumb { aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-family: 'Source Serif 4', Georgia, serif; font-weight: 600; font-size: 26px; color: #fff; padding: 22px; text-align: center; line-height: 1.2; }
+  .va .thumb { background: linear-gradient(135deg,#0f766e,#134e4a); }
+  .vb .thumb { background: linear-gradient(135deg,#1e3a5f,#ad5b2a); }
+  .vc .thumb { background: linear-gradient(135deg,#0d1117,#1c2330); color: #5eead4; }
+  .vd .thumb { background: linear-gradient(135deg,#fdfcf9,#e8e6df); color: #1d1d1f; border-bottom: 1px solid #e6e4dc; }
+  .v .body { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .v .kicker { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #999; }
+  .v h2 { font-family: 'Source Serif 4', Georgia, serif; font-size: 20px; margin: 0; font-weight: 600; }
+  .v p { color: #555; margin: 4px 0 12px; font-size: 14.5px; }
+  .v .traits { margin-top: auto; font-size: 13px; color: #777; display: flex; gap: 10px; flex-wrap: wrap; }
+  .v .traits span { padding: 2px 8px; background: #f3f1e9; border-radius: 999px; }
+  .note { margin: 32px 0 0; padding: 18px 22px; border-left: 3px solid #1e3a5f; background: #f3f4ff; border-radius: 0 8px 8px 0; font-size: 14.5px; color: #333; }
+</style>
+</head>
+<body>
+<div class="preview-bar">
+  <strong>Tasarım önizleme</strong>
+  <a href="/tasarim-onizleme/index.html" class="active">← Karşılaştır</a>
+  <span class="spacer"></span>
+  <a href="/tasarim-onizleme/a.html">A · Klinik</a>
+  <a href="/tasarim-onizleme/b.html">B · Premium</a>
+  <a href="/tasarim-onizleme/c.html">C · Karanlık</a>
+  <a href="/tasarim-onizleme/d.html">D · Minimal</a>
+</div>
+
+<div class="wrap">
+  <h1>4 tasarım yönü</h1>
+  <p class="lead">Hepsi tam çalışan, gezilebilir önizlemeler. Aynı içerik (HbA1c yazısı, kategori listesi) farklı estetiklerle. Üstteki barı kullanıp her birini açabilir, beğendiğinizi seçebilirsiniz.</p>
+
+  <div class="grid">
+    <a class="v va" href="/tasarim-onizleme/a.html">
+      <div class="thumb">A · Klinik / UpToDate</div>
+      <div class="body">
+        <div class="kicker">Yoğun bilgi · iki sütun</div>
+        <h2>Sol sidebar kategori ağacı, dense kart grid, hairline çizgiler</h2>
+        <p>UpToDate / Medscape benzeri klinik referans hissi. Arama üstte, kategoriler solda, evidence rozetleri her kartta.</p>
+        <div class="traits"><span>Beyaz</span><span>Inter · Source Serif 4</span><span>Teal accent</span></div>
+      </div>
+    </a>
+    <a class="v vb" href="/tasarim-onizleme/b.html">
+      <div class="thumb">B · Premium / Magazine</div>
+      <div class="body">
+        <div class="kicker">Geniş · ferah · sıcak</div>
+        <h2>Krem zemin, büyük Fraunces serif, kart grid, yumuşak gölge</h2>
+        <p>Substack / The Atlantic / NEJM hissi. Bültene davet, yazar şeridi, OG görsel placeholderları. En “marka” olan.</p>
+        <div class="traits"><span>Krem #faf7f1</span><span>Fraunces serif</span><span>Lacivert + amber</span></div>
+      </div>
+    </a>
+    <a class="v vc" href="/tasarim-onizleme/c.html">
+      <div class="thumb">C · Karanlık / Akademik</div>
+      <div class="body">
+        <div class="kicker">Dark mode · sofistike</div>
+        <h2>Koyu lacivert zemin, italik serif, teal/amber neon vurgu</h2>
+        <p>Linear / Vercel / akademik teknik blog estetiği. ⌘K arama, monospace tarih damgaları, kod bloğu güzel.</p>
+        <div class="traits"><span>Karanlık</span><span>Newsreader serif</span><span>Teal vurgu</span></div>
+      </div>
+    </a>
+    <a class="v vd" href="/tasarim-onizleme/d.html">
+      <div class="thumb">D · Minimal / Tipografik</div>
+      <div class="body">
+        <div class="kicker">Tek sütun · serif gövde</div>
+        <h2>Source Serif 4 hem başlık hem gövde, beyaz, drop cap, geniş hava</h2>
+        <p>Bear Blog / Craig Mod / Medium estetiği. Tek odak: okuma. Kategoriler sade liste, evidence rozeti küçük.</p>
+        <div class="traits"><span>Krem #fdfcf9</span><span>Serif gövde 18px</span><span>Kahve accent</span></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="note">
+    <b>Nasıl karar veririz:</b> herhangi birinin üstüne tıklayın, gerçek HbA1c yazısı + kategori listesi + yazar bölümüyle nasıl göründüğüne bakın. Beğendiğinizi söyleyin (ya da iki varyant arası karışım: “A’nın layout’u + B’nin renkleri” gibi) — onu mevcut Astro temasına entegre edip canlıya alalım.
+  </div>
+</div>
+</body>
+</html>
