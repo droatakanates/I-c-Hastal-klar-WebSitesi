@@ -2,7 +2,7 @@
 title: "İnfografik başlığı"
 description: "İnfografiğin neyi anlattığını 1-2 cümlede açıklayın (paylaşımlarda görünecek)."
 publishDate: 2026-05-25
-category: "Sağlık Rehberi"   # İç Hastalıkları / Sağlık Rehberi / Siyaset Bilimi / Genel
+category: "Hastalar İçin"   # Hastalar İçin  |  Hekimler İçin
 tags: ["infografik", "etiket2"]
 draft: false
 ---
@@ -54,7 +54,8 @@ Yukarıdaki HTML `<figure>` bloğunu kullanın ve altına metin koymayın. Yazı
 **Dosya yeri:** Tüm infografikler → `src/content/infografik/dosya-adi.md`
 (Pages CMS üzerinden "İnfografikler" koleksiyonundan eklenenler de buraya yazılır.)
 
-**Kategori alanı** infografiğin hangi konu alanından geldiğini belirtir:
-İç Hastalıkları / Sağlık Rehberi / Siyaset Bilimi / Genel.
+**Kategori alanı** infografiğin hedef kitlesini belirtir:
+- **Hastalar İçin** — hasta odaklı, anlaşılır dilde (belirti, korunma, ilaç kullanımı, yaşam tarzı)
+- **Hekimler İçin** — sağlık profesyonelleri için (tanı algoritmaları, kılavuz özetleri, doz şemaları)
 
 **Görsel yeri:** `public/gorseller/dosya-adi.png`

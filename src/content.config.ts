@@ -37,12 +37,10 @@ export const SAGLIK_REHBERI_KATEGORILERI = [
   'Bel ve Eklem Ağrıları',
 ] as const;
 
-// İnfografik kategorileri (kaynak konu alanına göre)
+// İnfografik kategorileri (hedef kitleye göre)
 export const INFOGRAFIK_KATEGORILERI = [
-  'İç Hastalıkları',
-  'Sağlık Rehberi',
-  'Siyaset Bilimi',
-  'Genel',
+  'Hastalar İçin',
+  'Hekimler İçin',
 ] as const;
 
 // İç Hastalıkları yazıları — akademik, kanıt seviyesi ve referans önemli

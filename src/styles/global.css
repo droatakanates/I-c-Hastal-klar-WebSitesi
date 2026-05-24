@@ -555,8 +555,99 @@ a:hover {
   color: #fff;
 }
 
+/* === Hedef kitle kartları (infografik ana sayfası) === */
+.audience-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin: var(--space-xl) 0 var(--space-lg);
+}
+
+.audience-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.audience-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--audience-soft) 0%, transparent 60%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.audience-card > * {
+  position: relative;
+}
+
+.audience-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -16px rgba(0, 0, 0, 0.18);
+  border-color: var(--audience-color);
+}
+
+.audience-card--patient {
+  --audience-color: var(--color-saglik-rehberi);
+  --audience-soft: var(--color-saglik-rehberi-soft);
+}
+
+.audience-card--clinician {
+  --audience-color: var(--color-ic-hastaliklari);
+  --audience-soft: var(--color-ic-hastaliklari-soft);
+}
+
+.audience-card__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--audience-soft);
+  color: var(--audience-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xs);
+}
+
+.audience-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--audience-color);
+  letter-spacing: -0.01em;
+}
+
+.audience-card__desc {
+  margin: 0;
+  color: var(--color-text-soft);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.audience-card__cta {
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--audience-color);
+}
+
 /* === Responsive === */
 @media (max-width: 640px) {
+  .audience-cards { grid-template-columns: 1fr; gap: var(--space-md); }
+  .audience-card { padding: var(--space-lg); }
+  .audience-card__title { font-size: 1.35rem; }
   html { font-size: 16px; }
   h1 { font-size: 1.85rem; }
   .hero__title { font-size: 2rem; }

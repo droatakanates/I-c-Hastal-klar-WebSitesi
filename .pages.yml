@@ -205,15 +205,14 @@ content:
         options:
           format: yyyy-MM-dd
       - name: category
-        label: Kategori
+        label: Hedef Kitle
         type: select
         required: true
+        description: "İnfografik kimin için: hasta odaklı sade anlatım mı, hekim odaklı klinik içerik mi?"
         options:
           values:
-            - İç Hastalıkları
-            - Sağlık Rehberi
-            - Siyaset Bilimi
-            - Genel
+            - Hastalar İçin
+            - Hekimler İçin
       - name: tags
         label: Etiketler
         type: string
