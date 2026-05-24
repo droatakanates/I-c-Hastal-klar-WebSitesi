@@ -190,6 +190,67 @@ content:
         label: İçerik (sadece infografik için tek görsel de yeterlidir)
         type: rich-text
 
+  # ───────────── İnfografikler ─────────────
+  - name: infografik
+    label: İnfografikler
+    type: collection
+    path: src/content/infografik
+    filename: "{primary}.md"
+    view:
+      fields: [title, category, publishDate, draft]
+      primary: title
+      sort: [publishDate, title]
+      default:
+        sort: publishDate
+        order: desc
+    fields:
+      - name: title
+        label: Başlık
+        type: string
+        required: true
+      - name: description
+        label: Açıklama (SEO özeti, max 200 karakter)
+        type: text
+        required: true
+      - name: publishDate
+        label: Yayın Tarihi
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: updatedDate
+        label: Güncelleme Tarihi (opsiyonel)
+        type: date
+        required: false
+        options:
+          format: yyyy-MM-dd
+      - name: category
+        label: Hedef Kitle
+        type: select
+        required: true
+        description: "İnfografik kimin için: hasta odaklı sade anlatım mı, hekim odaklı klinik içerik mi?"
+        options:
+          values:
+            - Hastalar İçin
+            - Hekimler İçin
+      - name: tags
+        label: Etiketler
+        type: string
+        list: true
+        required: false
+      - name: references
+        label: Kaynaklar
+        type: string
+        list: true
+        required: false
+      - name: draft
+        label: Taslak (işaretliyse sitede yayınlanmaz)
+        type: boolean
+        default: false
+      - name: body
+        label: İçerik (görsel + opsiyonel açıklama)
+        type: rich-text
+
   # ───────────── Siyaset Bilimi ve UI ─────────────
   - name: siyaset
     label: Siyaset Bilimi ve UI

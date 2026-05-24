@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Varyant A — Klinik / UpToDate · Önizleme</title>
+<link rel="stylesheet" href="/tasarim-onizleme/_shared.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f7f8fa;
+    --ink: #0b1220;
+    --ink-2: #344256;
+    --ink-3: #6b7280;
+    --line: #e5e7eb;
+    --line-soft: #eef0f3;
+    --primary: #134e4a;
+    --primary-2: #0d6e68;
+    --ic: #0f766e;     /* iç hastalıkları */
+    --rh: #be123c;     /* sağlık rehberi */
+    --sy: #b45309;     /* siyaset */
+    --evA: #15803d; --evB: #65a30d; --evC: #ca8a04; --evD: #b45309;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--sans); }
+
+  /* Üst bar */
+  .top {
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+  }
+  .top__inner { max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; gap: 24px; align-items: center; }
+  .brand { font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: -.01em; color: var(--ink); text-decoration: none; }
+  .brand span { color: var(--primary); }
+  .top nav { display: flex; gap: 22px; margin-left: 18px; }
+  .top nav a { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 14px; }
+  .top nav a:hover, .top nav a.active { color: var(--primary); }
+  .top__search { margin-left: auto; flex: 0 1 360px; position: relative; }
+  .top__search input {
+    width: 100%; padding: 9px 14px 9px 36px; border: 1px solid var(--line);
+    border-radius: 999px; font-size: 14px; background: var(--surface); color: var(--ink); outline: none;
+  }
+  .top__search input:focus { background: #fff; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(15,118,110,.12); }
+  .top__search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--ink-3); }
+
+  /* İki sütun: sol kategori ağacı + ana içerik */
+  .layout { max-width: 1240px; margin: 0 auto; padding: 24px; display: grid; grid-template-columns: 240px 1fr; gap: 32px; }
+  aside.cat {
+    position: sticky; top: 80px; align-self: start;
+    font-size: 13.5px;
+  }
+  aside.cat h3 {
+    font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-3); margin: 0 0 10px;
+  }
+  aside.cat ul { list-style: none; margin: 0 0 22px; padding: 0; }
+  aside.cat li a { display: flex; justify-content: space-between; padding: 6px 10px; border-radius: 6px; text-decoration: none; color: var(--ink-2); }
+  aside.cat li a:hover { background: var(--surface); color: var(--ink); }
+  aside.cat li a span { color: var(--ink-3); font-variant-numeric: tabular-nums; font-size: 12px; }
+  aside.cat li.active a { background: rgba(15,118,110,.08); color: var(--primary); font-weight: 600; }
+
+  /* Hero / başlık */
+  .hero {
+    padding: 8px 0 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  .hero__kicker { color: var(--primary); font-weight: 600; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; }
+  .hero__title { font-family: var(--serif); font-size: 30px; line-height: 1.2; margin: 6px 0 6px; letter-spacing: -.01em; }
+  .hero__lead { color: var(--ink-2); font-size: 15px; max-width: 720px; margin: 0; }
+
+  /* Bölüm bandı */
+  .strip { margin: 24px 0; }
+  .strip__head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+  .strip__title { font-family: var(--serif); font-size: 20px; margin: 0; font-weight: 600; }
+  .strip__title b { display: inline-block; width: 8px; height: 8px; border-radius: 999px; vertical-align: middle; margin-right: 8px; }
+  .strip--ic .strip__title b { background: var(--ic); }
+  .strip--rh .strip__title b { background: var(--rh); }
+  .strip--sy .strip__title b { background: var(--sy); }
+  .strip__more { color: var(--ink-3); font-size: 13px; text-decoration: none; }
+  .strip__more:hover { color: var(--primary); }
+
+  /* Konu kartları — sol border accent */
+  .topics { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 16px; }
+  .topic {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--ic);
+    border-radius: 4px;
+    padding: 12px 14px;
+    background: #fff;
+    text-decoration: none; color: inherit;
+    transition: border-color .15s, background .15s;
+  }
+  .topic:hover { background: var(--surface); border-left-color: var(--primary-2); }
+  .topic--rh { border-left-color: var(--rh); }
+  .topic--sy { border-left-color: var(--sy); }
+  .topic__meta { display: flex; gap: 8px; align-items: center; font-size: 11.5px; color: var(--ink-3); margin-bottom: 4px; }
+  .topic__meta time { font-variant-numeric: tabular-nums; }
+  .topic__title { font-family: var(--serif); font-size: 16px; line-height: 1.35; margin: 0 0 4px; font-weight: 600; }
+  .topic__desc { color: var(--ink-2); font-size: 13.5px; margin: 0; line-height: 1.45; }
+
+  .ev {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 1px 6px; border-radius: 3px; font-size: 11px; font-weight: 700; color: #fff;
+    letter-spacing: .03em;
+  }
+  .ev.A { background: var(--evA); }
+  .ev.B { background: var(--evB); }
+  .ev.C { background: var(--evC); }
+  .ev.D { background: var(--evD); }
+
+  /* Yazı önizleme paneli */
+  .preview {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: 6px; padding: 28px 32px; margin-top: 12px;
+  }
+  .preview .meta { display: flex; gap: 10px; align-items: center; color: var(--ink-3); font-size: 12.5px; }
+  .pill { display: inline-flex; gap: 6px; align-items: center; padding: 2px 8px; border-radius: 999px; background: rgba(15,118,110,.08); color: var(--ic); font-size: 11.5px; font-weight: 600; }
+  .preview h2 { font-family: var(--serif); font-size: 28px; line-height: 1.2; margin: 10px 0 6px; }
+  .preview .sum { color: var(--ink-2); font-size: 15.5px; max-width: 64ch; }
+
+  .clinical-box {
+    margin: 18px 0; padding: 14px 18px;
+    border-left: 4px solid var(--primary); background: #f0fdfa;
+    border-radius: 0 6px 6px 0; font-size: 14px;
+  }
+  .clinical-box b { color: var(--primary); }
+
+  .rec-grid { margin-top: 12px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .rec-row { display: grid; grid-template-columns: 96px 1fr; gap: 14px; padding: 12px 14px; border-bottom: 1px solid var(--line-soft); align-items: center; }
+  .rec-row:last-child { border-bottom: 0; }
+  .rec-row .label { color: var(--ink-3); font-size: 12.5px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; }
+
+  /* Footer */
+  footer.site { border-top: 1px solid var(--line); margin-top: 48px; padding: 28px 24px; color: var(--ink-3); font-size: 13px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="preview-bar">
+  <strong>Tasarım önizleme</strong>
+  <a href="/tasarim-onizleme/index.html">← Karşılaştır</a>
+  <span class="spacer"></span>
+  <a href="/tasarim-onizleme/a.html" class="active">A · Klinik</a>
+  <a href="/tasarim-onizleme/b.html">B · Premium</a>
+  <a href="/tasarim-onizleme/c.html">C · Karanlık</a>
+  <a href="/tasarim-onizleme/d.html">D · Minimal</a>
+</div>
+
+<header class="top">
+  <div class="top__inner">
+    <a class="brand" href="#">Omur Atakan Ateş <span>· klinik</span></a>
+    <nav>
+      <a href="#" class="active">İç Hastalıkları</a>
+      <a href="#">Sağlık Rehberi</a>
+      <a href="#">Siyaset</a>
+      <a href="#">Hakkımda</a>
+    </nav>
+    <div class="top__search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3-3"/></svg>
+      <input type="search" placeholder="Konularda ara — örn. HbA1c, hipertansiyon, eGFR…">
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="cat">
+    <h3>İç hastalıkları</h3>
+    <ul>
+      <li class="active"><a>Endokrinoloji <span>14</span></a></li>
+      <li><a>Kardiyoloji <span>9</span></a></li>
+      <li><a>Gastroenteroloji <span>7</span></a></li>
+      <li><a>Nefroloji <span>5</span></a></li>
+      <li><a>Hematoloji <span>4</span></a></li>
+      <li><a>Romatoloji <span>3</span></a></li>
+      <li><a>Enfeksiyon <span>6</span></a></li>
+      <li><a>Geriatri <span>2</span></a></li>
+    </ul>
+    <h3>İçerik tipi</h3>
+    <ul>
+      <li><a>Kılavuz özeti <span>11</span></a></li>
+      <li><a>Klinik pratik <span>8</span></a></li>
+      <li><a>Olgu sunumu <span>6</span></a></li>
+      <li><a>TUS · YDUS <span>5</span></a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <section class="hero">
+      <div class="hero__kicker">Endokrinoloji ve Metabolizma</div>
+      <h1 class="hero__title">Tip 2 Diyabette HbA1c hedefini bireyselleştirmek</h1>
+      <p class="hero__lead">Tek bir hedef değer yok. Yaş, eşlik eden hastalık, hipoglisemi riski ve hastanın tercihleri %6.5–8.0 aralığında bireysel bir karar verir. ADA 2025 ve EASD önerilerinin pratik özetini bu yazıda inceliyoruz.</p>
+    </section>
+
+    <section class="strip strip--ic">
+      <div class="strip__head">
+        <h2 class="strip__title"><b></b>Son güncellenen konular · Endokrinoloji</h2>
+        <a href="#" class="strip__more">Tümünü gör →</a>
+      </div>
+      <div class="topics">
+        <a class="topic" href="#">
+          <div class="topic__meta"><span class="ev A">A</span><time>23 May 2026</time><span>· 6 dk</span></div>
+          <h3 class="topic__title">Tip 2 diyabette HbA1c hedefini bireyselleştirmek</h3>
+          <p class="topic__desc">Yaşa, eşlik eden hastalığa ve hipoglisemi riskine göre hedef belirleme algoritması.</p>
+        </a>
+        <a class="topic" href="#">
+          <div class="topic__meta"><span class="ev B">B</span><time>19 May 2026</time><span>· 8 dk</span></div>
+          <h3 class="topic__title">SGLT2 inhibitörlerinin kalp yetmezliğinde yeri</h3>
+          <p class="topic__desc">EMPEROR ve DAPA-HF sonrası 2025 ESC önerileri özeti.</p>
+        </a>
+        <a class="topic" href="#">
+          <div class="topic__meta"><span class="ev A">A</span><time>14 May 2026</time><span>· 5 dk</span></div>
+          <h3 class="topic__title">Diyabetik nefropati: albüminüri tarama sıklığı</h3>
+          <p class="topic__desc">eGFR ve uACR ile risk sınıflaması, ACE/ARB başlama eşiği.</p>
+        </a>
+        <a class="topic topic--rh" href="#">
+          <div class="topic__meta"><span class="ev C">C</span><time>10 May 2026</time><span>· 4 dk</span></div>
+          <h3 class="topic__title">Hipertansiyonda evde tansiyon ölçümü</h3>
+          <p class="topic__desc">Doğru manşet, doğru pozisyon: hastaya anlatılabilecek pratik rehber.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="preview">
+      <div class="meta">
+        <span class="pill">İç Hastalıkları · Endokrinoloji</span>
+        <span class="ev A">Kanıt A</span>
+        <span>Yayın: 23 May 2026</span>
+        <span>Güncelleme: 23 May 2026</span>
+        <span>· 6 dk okuma</span>
+      </div>
+      <h2>Tip 2 Diyabette HbA1c hedefini bireyselleştirmek</h2>
+      <p class="sum">Glisemik kontrolün tek bir “ideal” değeri yok. Klinikte karar verirken yaş, eşlik eden hastalık yükü, hipoglisemi riski, beklenen yaşam süresi ve hastanın tercihleri birlikte değerlendirilmeli.</p>
+
+      <div class="clinical-box">
+        <b>Klinik özet.</b> Komorbiditesi olmayan, hipoglisemi riski düşük genç-orta yaş erişkinde hedef <b>HbA1c < %7.0</b>. Yaşlı, frail veya ileri komorbiditesi olanlarda <b>%7.5–8.0</b> kabul edilebilir. Gebelikte hedef ayrı.
+      </div>
+
+      <div class="rec-grid">
+        <div class="rec-row"><span class="label"><span class="ev A">A</span></span><span>Komorbiditesi olmayan, hipoglisemi riski düşük erişkin: HbA1c hedefi %7.0 altı (ADA 2025).</span></div>
+        <div class="rec-row"><span class="label"><span class="ev B">B</span></span><span>Kardiyovasküler hastalık + Tip 2 DM: SGLT2 inhibitörü veya GLP-1 RA tercih edilir.</span></div>
+        <div class="rec-row"><span class="label"><span class="ev C">C</span></span><span>Frail yaşlı (>75, sınırlı yaşam beklentisi): hipoglisemiden kaçınmak hedef değerden önceliklidir.</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="site">
+  © 2026 Omur Atakan Ateş · Bu site tıbbi danışmanlığın yerine geçmez · KVKK · Sorumluluk reddi
+</footer>
+</body>
+</html>

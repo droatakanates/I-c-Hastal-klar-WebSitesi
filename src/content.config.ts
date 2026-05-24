@@ -37,6 +37,12 @@ export const SAGLIK_REHBERI_KATEGORILERI = [
   'Bel ve Eklem Ağrıları',
 ] as const;
 
+// İnfografik kategorileri (hedef kitleye göre)
+export const INFOGRAFIK_KATEGORILERI = [
+  'Hastalar İçin',
+  'Hekimler İçin',
+] as const;
+
 // Ortak alanlar — tüm bölümlerde kullanılan frontmatter alanları
 const ortakAlanlar = {
   title: z.string(),
@@ -89,8 +95,18 @@ const saglikRehberi = defineCollection({
   }),
 });
 
+// İnfografikler — hedef kitleye göre (Hastalar İçin / Hekimler İçin)
+const infografik = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/infografik' }),
+  schema: z.object({
+    ...ortakAlanlar,
+    category: z.enum(INFOGRAFIK_KATEGORILERI),
+  }),
+});
+
 export const collections = {
   'ic-hastaliklari': icHastaliklari,
   siyaset,
   'saglik-rehberi': saglikRehberi,
+  infografik,
 };

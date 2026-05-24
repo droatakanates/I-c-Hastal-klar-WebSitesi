@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Varyant B — Premium / Magazine · Önizleme</title>
+<link rel="stylesheet" href="/tasarim-onizleme/_shared.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf7f1;        /* sıcak krem */
+    --bg-card: #ffffff;
+    --ink: #1a1612;
+    --ink-2: #4a4239;
+    --ink-3: #7d756b;
+    --line: #e7e1d3;
+    --accent: #1e3a5f;     /* lacivert */
+    --accent-2: #ad5b2a;   /* sıcak amber */
+    --serif: 'Fraunces', 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --shadow: 0 1px 2px rgba(20,15,10,.04), 0 12px 32px -16px rgba(20,15,10,.10);
+  }
+  body { background: var(--bg); color: var(--ink); font: 16px/1.65 var(--sans); }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 28px; }
+
+  /* Üst bar */
+  header.site { padding: 22px 0; }
+  header.site .row { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { font-family: var(--serif); font-weight: 600; font-size: 22px; letter-spacing: -.02em; text-decoration: none; color: var(--ink); }
+  .brand i { font-style: normal; color: var(--accent-2); }
+  nav.primary { display: flex; gap: 26px; }
+  nav.primary a { color: var(--ink-2); text-decoration: none; font-weight: 500; font-size: 15px; }
+  nav.primary a:hover { color: var(--accent); }
+  .cta { padding: 8px 14px; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .cta:hover { background: var(--ink); color: #fff; }
+
+  /* Hero */
+  .hero {
+    padding: 32px 0 56px;
+    text-align: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .hero__eyebrow {
+    display: inline-block; padding: 5px 12px; border-radius: 999px;
+    background: rgba(30,58,95,.08); color: var(--accent);
+    font-size: 12.5px; font-weight: 600; letter-spacing: .04em;
+  }
+  .hero__title {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 64px); line-height: 1.05; font-weight: 600;
+    margin: 18px 0 16px; letter-spacing: -.025em;
+    font-variation-settings: "opsz" 144;
+  }
+  .hero__lead { font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 720px; margin: 0 auto 24px; }
+  .hero__meta { color: var(--ink-3); font-size: 14px; }
+  .hero__meta a { color: var(--accent); text-decoration: none; }
+
+  /* Bölüm başlığı */
+  .section-head {
+    display: flex; align-items: end; justify-content: space-between;
+    margin: 56px 0 24px;
+  }
+  .section-head h2 {
+    font-family: var(--serif); font-size: 32px; font-weight: 600;
+    margin: 0; letter-spacing: -.01em;
+  }
+  .section-head .label {
+    font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--accent-2);
+    display: block; margin-bottom: 6px;
+  }
+  .section-head .more {
+    color: var(--ink-2); text-decoration: none; border-bottom: 1px solid currentColor;
+    font-weight: 500; font-size: 14px; padding-bottom: 2px;
+  }
+  .section-head .more:hover { color: var(--accent); }
+
+  /* Featured grid */
+  .feature-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 24px; }
+  .feature {
+    background: var(--bg-card); border-radius: 14px; overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .2s ease, box-shadow .2s ease;
+    text-decoration: none; color: inherit; display: flex; flex-direction: column;
+  }
+  .feature:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(20,15,10,.05), 0 24px 48px -20px rgba(20,15,10,.18); }
+  .feature__art {
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, #1e3a5f 0%, #0f766e 100%);
+    position: relative; display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,.92); font-family: var(--serif); font-size: 22px; padding: 24px; text-align: center;
+  }
+  .feature--rh .feature__art { background: linear-gradient(135deg, #b91c1c 0%, #be123c 100%); }
+  .feature--sy .feature__art { background: linear-gradient(135deg, #92400e 0%, #b45309 100%); }
+  .feature__body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .feature__tag {
+    font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .feature--rh .feature__tag { color: #be123c; }
+  .feature--sy .feature__tag { color: #b45309; }
+  .feature__title {
+    font-family: var(--serif); font-size: 22px; line-height: 1.25; font-weight: 600;
+    margin: 0 0 8px; letter-spacing: -.01em;
+  }
+  .feature__desc { color: var(--ink-2); font-size: 15px; margin: 0; line-height: 1.55; flex: 1; }
+  .feature__meta { color: var(--ink-3); font-size: 13px; margin-top: 14px; display: flex; gap: 10px; align-items: center; }
+  .ev { display: inline-flex; padding: 1px 7px; border-radius: 3px; font-size: 11px; font-weight: 700; color: #fff; letter-spacing: .03em; }
+  .evA { background: #15803d; } .evB { background: #65a30d; } .evC { background: #ca8a04; }
+
+  .feature.big .feature__title { font-size: 28px; }
+  .feature.big .feature__art { aspect-ratio: 16/10; font-size: 26px; }
+
+  /* Yazar şeridi */
+  .author-strip {
+    margin: 64px 0 0;
+    background: var(--ink); color: #f3ede2;
+    border-radius: 18px; padding: 36px 44px;
+    display: grid; grid-template-columns: 84px 1fr auto; gap: 24px; align-items: center;
+  }
+  .author-strip .avatar {
+    width: 84px; height: 84px; border-radius: 50%;
+    background: linear-gradient(135deg, #ad5b2a, #be7341); display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 32px; font-weight: 600; color: #fff;
+  }
+  .author-strip h3 { font-family: var(--serif); font-size: 22px; margin: 0 0 4px; font-weight: 600; }
+  .author-strip p { margin: 0; color: #d6cdbf; font-size: 14.5px; max-width: 560px; }
+  .author-strip .sub { padding: 10px 18px; background: var(--accent-2); color: #fff; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 14px; }
+
+  footer.site-foot { margin-top: 64px; padding: 32px 0; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 14px; }
+  footer.site-foot .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+<div class="preview-bar">
+  <strong>Tasarım önizleme</strong>
+  <a href="/tasarim-onizleme/index.html">← Karşılaştır</a>
+  <span class="spacer"></span>
+  <a href="/tasarim-onizleme/a.html">A · Klinik</a>
+  <a href="/tasarim-onizleme/b.html" class="active">B · Premium</a>
+  <a href="/tasarim-onizleme/c.html">C · Karanlık</a>
+  <a href="/tasarim-onizleme/d.html">D · Minimal</a>
+</div>
+
+<header class="site">
+  <div class="container row">
+    <a class="brand" href="#">Omur Atakan Ateş<i>.</i></a>
+    <nav class="primary">
+      <a href="#">İç Hastalıkları</a>
+      <a href="#">Sağlık Rehberi</a>
+      <a href="#">Siyaset</a>
+      <a href="#">Yazılar</a>
+      <a href="#">Hakkımda</a>
+    </nav>
+    <a class="cta" href="#">Bültene katıl</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="hero__eyebrow">Hekim ve siyaset bilimci · Akademik blog</span>
+    <h1 class="hero__title">Kanıta dayalı tıp ve<br>siyasete dair düşünceler.</h1>
+    <p class="hero__lead">İç hastalıkları kliniğinden gözlemler, hasta bilgilendirme rehberleri ve Türk siyasetinin teorik çerçevesi. Tek bir yer, iki ayrı düzlem.</p>
+    <p class="hero__meta">14 yeni yazı bu ay · <a href="#">RSS</a> · <a href="#">Bültene katıl</a></p>
+  </div>
+</section>
+
+<main class="container">
+  <div class="section-head">
+    <div>
+      <span class="label">Öne çıkan · Bu hafta</span>
+      <h2>Klinik pratikte fark yaratan üç konu</h2>
+    </div>
+    <a class="more" href="#">Tüm yazılar →</a>
+  </div>
+
+  <div class="feature-grid">
+    <a class="feature big" href="#">
+      <div class="feature__art">“Tek bir HbA1c hedefi yok.”</div>
+      <div class="feature__body">
+        <span class="feature__tag">İç Hastalıkları · Endokrinoloji</span>
+        <h3 class="feature__title">Tip 2 Diyabette HbA1c hedefini bireyselleştirmek</h3>
+        <p class="feature__desc">Yaşa, eşlik eden hastalığa, hipoglisemi riskine ve hastanın tercihlerine göre %6.5–8.0 aralığında bir karar. ADA 2025 önerilerinin pratik özeti.</p>
+        <div class="feature__meta"><span class="ev evA">Kanıt A</span><time>23 May 2026</time><span>· 6 dk okuma</span></div>
+      </div>
+    </a>
+
+    <a class="feature feature--rh" href="#">
+      <div class="feature__art">Evde tansiyon ölçümü</div>
+      <div class="feature__body">
+        <span class="feature__tag">Sağlık Rehberi</span>
+        <h3 class="feature__title">Hipertansiyonda evde doğru tansiyon ölçümü</h3>
+        <p class="feature__desc">Doğru manşet, doğru pozisyon, doğru zaman — hastaya tek sayfada anlatılabilen pratik kontrol listesi.</p>
+        <div class="feature__meta"><span class="ev evB">Kanıt B</span><time>10 May 2026</time><span>· 4 dk</span></div>
+      </div>
+    </a>
+
+    <a class="feature feature--sy" href="#">
+      <div class="feature__art">Çoğunlukçu vs orantılı</div>
+      <div class="feature__body">
+        <span class="feature__tag">Siyaset Bilimi · Seçim Sistemleri</span>
+        <h3 class="feature__title">Seçim sistemleri üzerine bir temel ayrım</h3>
+        <p class="feature__desc">Çoğunlukçu ve orantılı sistemlerin demokratik temsile etkisi: Duverger Kanunu ışığında bir okuma.</p>
+        <div class="feature__meta"><time>6 May 2026</time><span>· 9 dk okuma</span></div>
+      </div>
+    </a>
+  </div>
+
+  <div class="author-strip">
+    <div class="avatar">OA</div>
+    <div>
+      <h3>İki ayrı düzlemde yazıyorum.</h3>
+      <p>İç hastalıkları uzmanıyım; siyaset bilimine ilgim akademik bir yan disiplin. Bültenle iki ayrı listeye ayrı ayrı abone olabilirsin — karışmazlar.</p>
+    </div>
+    <a class="sub" href="#">Tıp bültenine katıl</a>
+  </div>
+</main>
+
+<footer class="site-foot">
+  <div class="container row">
+    <span>© 2026 Omur Atakan Ateş · Bu site tıbbi danışmanlığın yerine geçmez.</span>
+    <span><a href="#" style="color:inherit;">KVKK</a> · <a href="#" style="color:inherit;">Sorumluluk reddi</a> · <a href="#" style="color:inherit;">RSS</a></span>
+  </div>
+</footer>
+</body>
+</html>
