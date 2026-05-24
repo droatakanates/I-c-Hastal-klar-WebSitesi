@@ -20,6 +20,8 @@
   --color-siyaset-soft: #fef3e2;
   --color-saglik-rehberi: #be123c; /* Rose — hasta bilgilendirme */
   --color-saglik-rehberi-soft: #fce7ef;
+  --color-infografik: #4f46e5; /* Indigo — görsel içerikler */
+  --color-infografik-soft: #eef2ff;
 
   /* Kanıt seviyesi renkleri */
   --color-evidence-a: #15803d;
@@ -285,6 +287,11 @@ a:hover {
 .badge--saglik-rehberi {
   background: var(--color-saglik-rehberi-soft);
   color: var(--color-saglik-rehberi);
+}
+
+.badge--infografik {
+  background: var(--color-infografik-soft);
+  color: var(--color-infografik);
 }
 
 .badge--category {

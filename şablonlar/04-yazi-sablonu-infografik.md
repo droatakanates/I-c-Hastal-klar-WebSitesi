@@ -2,9 +2,8 @@
 title: "İnfografik başlığı"
 description: "İnfografiğin neyi anlattığını 1-2 cümlede açıklayın (paylaşımlarda görünecek)."
 publishDate: 2026-05-25
-category: "Kronik Hastalıklar"
+category: "Sağlık Rehberi"   # İç Hastalıkları / Sağlık Rehberi / Siyaset Bilimi / Genel
 tags: ["infografik", "etiket2"]
-okumaSuresi: "1 dk"
 draft: false
 ---
 
@@ -52,9 +51,10 @@ Yukarıdaki HTML `<figure>` bloğunu kullanın ve altına metin koymayın. Yazı
 
 ---
 
-**Dosya yeri:** İçeriğin gideceği bölüme göre seçin:
-- İç Hastalıkları infografiği → `src/content/ic-hastaliklari/dosya-adi.md`
-- Sağlık Rehberi infografiği → `src/content/saglik-rehberi/dosya-adi.md`
-- Siyaset infografiği → `src/content/siyaset/dosya-adi.md`
+**Dosya yeri:** Tüm infografikler → `src/content/infografik/dosya-adi.md`
+(Pages CMS üzerinden "İnfografikler" koleksiyonundan eklenenler de buraya yazılır.)
+
+**Kategori alanı** infografiğin hangi konu alanından geldiğini belirtir:
+İç Hastalıkları / Sağlık Rehberi / Siyaset Bilimi / Genel.
 
 **Görsel yeri:** `public/gorseller/dosya-adi.png`

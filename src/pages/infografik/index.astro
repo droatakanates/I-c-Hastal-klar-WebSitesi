@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { INFOGRAFIK_KATEGORILERI } from '../../content.config';
+
+const posts = (
+  await getCollection('infografik', ({ data }) => !data.draft)
+).sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+---
+
+<BaseLayout
+  title="İnfografikler"
+  description="Görsel ağırlıklı içerikler — iç hastalıkları, sağlık rehberi ve siyaset bilimi konularında özet infografikler."
+>
+  <section class="container">
+    <div class="hero" style="text-align: left; padding-bottom: 1rem;">
+      <span class="badge badge--infografik">Bölüm</span>
+      <h1 class="hero__title" style="font-size: 2.25rem; margin-top: 0.5rem;">
+        İnfografikler
+      </h1>
+      <p class="hero__lead" style="margin: 0;">
+        Konuları tek bakışta özetleyen görsel içerikler. Tıp, sağlık ve siyaset
+        alanlarından infografikler tek çatı altında.
+      </p>
+    </div>
+
+    <nav class="category-pills" aria-label="Kategoriler">
+      {INFOGRAFIK_KATEGORILERI.map((cat) => (
+        <a
+          href={`/infografik/kategori/${encodeURIComponent(cat)}`}
+          class="category-pill"
+        >
+          {cat}
+        </a>
+      ))}
+    </nav>
+
+    <div style="margin-top: 2rem;">
+      {posts.length === 0 ? (
+        <p style="color: var(--color-text-muted); font-style: italic; padding: 2rem 0;">
+          Bu bölümde henüz infografik yok.
+        </p>
+      ) : (
+        posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            description={post.data.description}
+            href={`/infografik/${post.id}`}
+            publishDate={post.data.publishDate}
+            category={post.data.category}
+            section="infografik"
+          />
+        ))
+      )}
+    </div>
+  </section>
+</BaseLayout>

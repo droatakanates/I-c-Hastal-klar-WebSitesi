@@ -37,6 +37,14 @@ export const SAGLIK_REHBERI_KATEGORILERI = [
   'Bel ve Eklem Ağrıları',
 ] as const;
 
+// İnfografik kategorileri (kaynak konu alanına göre)
+export const INFOGRAFIK_KATEGORILERI = [
+  'İç Hastalıkları',
+  'Sağlık Rehberi',
+  'Siyaset Bilimi',
+  'Genel',
+] as const;
+
 // İç Hastalıkları yazıları — akademik, kanıt seviyesi ve referans önemli
 const icHastaliklari = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/ic-hastaliklari' }),
@@ -94,8 +102,24 @@ const saglikRehberi = defineCollection({
   }),
 });
 
+// İnfografikler — yalnızca görsel ağırlıklı içerikler (her bölümün infografikleri burada)
+const infografik = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/infografik' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().max(200),
+    publishDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    category: z.enum(INFOGRAFIK_KATEGORILERI),
+    tags: z.array(z.string()).default([]),
+    references: z.array(z.string()).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
 export const collections = {
   'ic-hastaliklari': icHastaliklari,
   siyaset,
   'saglik-rehberi': saglikRehberi,
+  infografik,
 };
