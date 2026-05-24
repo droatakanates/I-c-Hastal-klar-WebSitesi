@@ -1,7 +1,7 @@
 # omuratakanates.com — Yol Haritası
 
 **Hedef:** Tek yazarlı kişisel blog. İki ana bölüm: (1) Kanıta dayalı iç hastalıkları içeriği, (2) Siyaset bilimi yazıları.
-**Teknoloji:** Astro (statik site jeneratörü) + Markdown içerik + ücretsiz hosting (Netlify/Vercel)
+**Teknoloji:** Astro (statik site jeneratörü) + Markdown içerik + ücretsiz hosting (Vercel)
 **Domain:** omuratakanates.com
 **Güncelleme:** 2026-05-23
 
@@ -14,7 +14,7 @@
 | Site yapısı | Tek site, iki ana bölüm (`/tip` ve `/siyaset`) | Kişisel marka bütünlüğü |
 | Yazar modeli | Tek yazarlı kişisel blog | Tutarlı ses, basit yönetim |
 | Teknoloji | Astro + Markdown | Hızlı, ücretsiz, güvenli, akademik içeriğe uygun |
-| Hosting | Netlify veya Vercel (ücretsiz tier) | Sıfır maliyet, otomatik SSL, CDN |
+| Hosting | Vercel (ücretsiz hobby tier) | Sıfır maliyet, otomatik SSL, CDN |
 | İçerik | Markdown dosyaları (Git ile sürüm kontrolü) | Vendor lock yok, taşınabilir |
 
 ---
@@ -59,9 +59,9 @@
 ### AŞAMA 7 — Yayına Alma
 - [ ] Domain alımı (omuratakanates.com)
 - [ ] GitHub deposu
-- [ ] Netlify/Vercel'e deploy
+- [ ] Vercel'e deploy
 - [ ] Domain DNS yönlendirmesi
-- [ ] SSL otomatik (Netlify/Vercel sağlar)
+- [ ] SSL otomatik (Vercel sağlar)
 - [ ] Google Search Console
 
 ---

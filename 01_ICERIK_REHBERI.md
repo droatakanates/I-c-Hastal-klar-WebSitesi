@@ -60,7 +60,7 @@ Sayfanın altında **"Commit changes"** butonu var, basın.
 - Yeşil **"Commit changes"** butonuna basın
 
 ### 7. Yayına bekleyin
-Netlify push'u görür ve **1-2 dakika içinde** yeni yazınız `https://omuratakanates.com/...` adresinde canlı olur.
+Vercel push'u görür ve **1-2 dakika içinde** yeni yazınız `https://omuratakanates.com/...` adresinde canlı olur.
 
 ---
 
@@ -178,10 +178,10 @@ GitHub'da dosyayı açın → sağ üstte çöp kovası ikonu → **Commit chang
 
 ## ❓ Sorun çıkarsa
 
-### "Build failed" e-postası gelirse Netlify'dan
+### "Build failed" bildirimi gelirse Vercel'den
 
 1. Genelde **frontmatter hatası**: kategori yazılışı yanlış, tarih biçimi hatalı, eksik bir alan
-2. Netlify'da Deploys sekmesine girin → kırmızı build'e tıklayın → **"Build log"**
+2. Vercel dashboard → projeniz → **Deployments** sekmesi → kırmızı deploy'a tıklayın → **"Build Logs"**
 3. Genelde son satırlarda hata net yazar (örn. `Invalid enum value: Endokrionoloji`)
 4. Hatayı düzeltip yeni commit yapın
 
