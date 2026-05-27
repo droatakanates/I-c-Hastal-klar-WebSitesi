@@ -10,5 +10,5 @@ references:
     - 2026. Türkiye Endokrinoloji ve Metabolizma Derneği
 draft: false
 ---
-![ChatGPT Image 24 May 2026 16_10_50 (1).png](blob:https:/app.pagescms.org/c0bd3752-d72b-4c6b-832c-50127196e1fb)
+![ChatGPT Image 24 May 2026 16_10_50 (1).png](</gorseller/ChatGPT Image 24 May 2026 16_10_50 (1)-3.png>)
 
