@@ -14,8 +14,6 @@ references:
     Tablo 2 ve Tablo 3."
 draft: false
 ---
-
-
 ![eb61cc60-b178-46fe-987d-c86365036154.png](/gorseller/eb61cc60-b178-46fe-987d-c86365036154.png)
 
 ![ChatGPT Image 27 May 2026 20_18_18 (1).png](</gorseller/ChatGPT Image 27 May 2026 20_18_18 (1).png>)
