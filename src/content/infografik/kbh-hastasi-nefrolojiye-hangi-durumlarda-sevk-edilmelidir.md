@@ -1,5 +1,6 @@
 ---
-title: KBH Hastası Nefrolojiye Hangi Durumlarda Sevk Edilmelidir?
+title: KDIGO 2024 Kılavuzuna Göre KBH Hastası Nefrolojiye Hangi Durumlarda Sevk
+  Edilmelidir?
 description: .
 publishDate: 2026-05-28
 updatedDate: 2026-05-28
