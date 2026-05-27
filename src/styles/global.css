@@ -904,7 +904,7 @@ a:hover {
 
 .home-hero__cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-md);
 }
 
@@ -929,6 +929,7 @@ a:hover {
   box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.18);
 }
 
+.home-hero__card--infografik { border-top-color: var(--color-infografik); }
 .home-hero__card--ic-hastaliklari { border-top-color: var(--color-ic-hastaliklari); }
 .home-hero__card--saglik-rehberi { border-top-color: var(--color-saglik-rehberi); }
 .home-hero__card--siyaset { border-top-color: var(--color-siyaset); }
@@ -964,6 +965,7 @@ a:hover {
   transition: color 0.15s ease;
 }
 
+.home-hero__card--infografik:hover .home-hero__card-cta { color: var(--color-infografik); }
 .home-hero__card--ic-hastaliklari:hover .home-hero__card-cta { color: var(--color-ic-hastaliklari); }
 .home-hero__card--saglik-rehberi:hover .home-hero__card-cta { color: var(--color-saglik-rehberi); }
 .home-hero__card--siyaset:hover .home-hero__card-cta { color: var(--color-siyaset); }
