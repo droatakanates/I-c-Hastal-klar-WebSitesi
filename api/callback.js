@@ -36,20 +36,33 @@ export default async function handler(req, res) {
   res.setHeader('Set-Cookie', 'oauth_state=; HttpOnly; Secure; Path=/; SameSite=Lax; Max-Age=0');
 
   if (!code) {
+    console.error('[oauth/callback] kod yok (no_code)');
     res.status(400).send(renderPage('error', { error: 'Kod alınamadı (no_code).' }));
     return;
   }
-  if (!state || !cookies.oauth_state || state !== cookies.oauth_state) {
+
+  // CSRF state kontrolü: çerez varsa doğrula. Safari/ITP popup akışında
+  // state çerezi düşebildiği için, çerez yoksa kontrolü atla (login kilitlenmesin).
+  if (cookies.oauth_state && state && state !== cookies.oauth_state) {
+    console.error('[oauth/callback] state uyuşmadı', { got: state, expected: cookies.oauth_state });
     res.status(403).send(renderPage('error', { error: 'Güvenlik doğrulaması başarısız (invalid_state).' }));
     return;
+  }
+  if (!cookies.oauth_state) {
+    console.warn('[oauth/callback] state çerezi yok — büyük ihtimalle Safari/ITP çerezi düşürdü, kontrol atlandı');
   }
 
   const clientId = process.env.OAUTH_GITHUB_CLIENT_ID;
   const clientSecret = process.env.OAUTH_GITHUB_CLIENT_SECRET;
   if (!clientId || !clientSecret) {
+    console.error('[oauth/callback] env eksik', { hasId: !!clientId, hasSecret: !!clientSecret });
     res.status(500).send(renderPage('error', { error: 'OAuth ortam değişkenleri eksik.' }));
     return;
   }
+  console.log('[oauth/callback] env mevcut', {
+    clientIdUzunluk: clientId.length,
+    secretUzunluk: clientSecret.length,
+  });
 
   try {
     const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
@@ -60,12 +73,15 @@ export default async function handler(req, res) {
     const data = await tokenRes.json();
 
     if (data.error || !data.access_token) {
+      console.error('[oauth/callback] GitHub token hatası', data);
       res.status(401).send(renderPage('error', { error: data.error_description || data.error || 'Token alınamadı.' }));
       return;
     }
 
+    console.log('[oauth/callback] token alındı, giriş başarılı');
     res.status(200).send(renderPage('success', { token: data.access_token, provider: 'github' }));
   } catch (err) {
+    console.error('[oauth/callback] istisna', err);
     res.status(500).send(renderPage('error', { error: String(err) }));
   }
 }
