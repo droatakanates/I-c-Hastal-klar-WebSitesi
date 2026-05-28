@@ -1,0 +1,172 @@
+backend:
+  name: github
+  repo: droatakanates/i-c-hastal-klar-websitesi
+  branch: main
+  base_url: https://omuratakanates.com
+  auth_endpoint: /api/auth
+
+site_url: https://omuratakanates.com
+display_url: https://omuratakanates.com
+locale: tr
+
+media_folder: "public/gorseller"
+public_folder: "/gorseller"
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  # ───────────── İç Hastalıkları ─────────────
+  - name: "ic-hastaliklari"
+    label: "İç Hastalıkları"
+    label_singular: "İç Hastalıkları yazısı"
+    folder: "src/content/ic-hastaliklari"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["publishDate", "title"]
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Açıklama (kısa özet, en fazla 200 karakter)", name: "description", widget: "text" }
+      - { label: "Yayın Tarihi", name: "publishDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Güncelleme Tarihi", name: "updatedDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - "Endokrinoloji ve Metabolizma"
+          - "Gastroenteroloji"
+          - "Hematoloji"
+          - "Kardiyoloji"
+          - "Nefroloji"
+          - "Romatoloji"
+          - "Göğüs Hastalıkları"
+          - "Onkoloji"
+          - "Enfeksiyon Hastalıkları"
+          - "Geriatri"
+      - label: "Kanıt Düzeyi"
+        name: "evidenceLevel"
+        widget: "select"
+        required: false
+        options: ["A", "B", "C", "D", "Uzman Görüşü"]
+      - label: "İçerik Tipi"
+        name: "icerikTipi"
+        widget: "select"
+        required: false
+        options:
+          - "Olgu Sunumu"
+          - "Literatür Özeti"
+          - "Klinik Pratik"
+          - "Kılavuz Özeti"
+          - "TUS-YDUS"
+          - "Asistan Köşesi"
+      - { label: "Kapak Görseli", name: "coverImage", widget: "image", required: false }
+      - { label: "Kapak Görseli Alt Metni", name: "coverImageAlt", widget: "string", required: false }
+      - { label: "Etiketler", name: "tags", widget: "list", required: false }
+      - { label: "Kaynaklar", name: "references", widget: "list", required: false }
+      - { label: "Taslak (yayınlanmasın)", name: "draft", widget: "boolean", default: false }
+      - { label: "İçerik", name: "body", widget: "markdown" }
+
+  # ───────────── Hasta Rehberi ─────────────
+  - name: "saglik-rehberi"
+    label: "Hasta Rehberi"
+    label_singular: "Hasta Rehberi yazısı"
+    folder: "src/content/saglik-rehberi"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["publishDate", "title"]
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Açıklama (kısa özet, en fazla 200 karakter)", name: "description", widget: "text" }
+      - { label: "Yayın Tarihi", name: "publishDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Güncelleme Tarihi", name: "updatedDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - "Kronik Hastalıklar"
+          - "Beslenme ve Yaşam Tarzı"
+          - "Aşılar ve Korunma"
+          - "Tarama Testleri"
+          - "İlaç Kullanımı"
+          - "Sık Sorulan Sorular"
+          - "Bel ve Eklem Ağrıları"
+      - { label: "Okuma Süresi (örn. 5 dk)", name: "okumaSuresi", widget: "string", required: false }
+      - { label: "Kapak Görseli", name: "coverImage", widget: "image", required: false }
+      - { label: "Kapak Görseli Alt Metni", name: "coverImageAlt", widget: "string", required: false }
+      - { label: "Etiketler", name: "tags", widget: "list", required: false }
+      - { label: "Kaynaklar", name: "references", widget: "list", required: false }
+      - { label: "Taslak (yayınlanmasın)", name: "draft", widget: "boolean", default: false }
+      - { label: "İçerik", name: "body", widget: "markdown" }
+
+  # ───────────── İnfografikler ─────────────
+  - name: "infografik"
+    label: "İnfografikler"
+    label_singular: "İnfografik"
+    folder: "src/content/infografik"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["publishDate", "title"]
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Açıklama (kısa özet, en fazla 200 karakter)", name: "description", widget: "text" }
+      - { label: "Yayın Tarihi", name: "publishDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Güncelleme Tarihi", name: "updatedDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false }
+      - label: "Hedef Kitle"
+        name: "category"
+        widget: "select"
+        options: ["Hastalar İçin", "Hekimler İçin"]
+      - { label: "Kapak Görseli", name: "coverImage", widget: "image", required: false }
+      - { label: "Kapak Görseli Alt Metni", name: "coverImageAlt", widget: "string", required: false }
+      - { label: "Etiketler", name: "tags", widget: "list", required: false }
+      - { label: "Kaynaklar", name: "references", widget: "list", required: false }
+      - { label: "Taslak (yayınlanmasın)", name: "draft", widget: "boolean", default: false }
+      - { label: "İçerik (infografik görselini buraya ekleyin)", name: "body", widget: "markdown" }
+
+  # ───────────── Siyaset Bilimi ve Uluslararası İlişkiler ─────────────
+  - name: "siyaset"
+    label: "Siyaset Bilimi ve Uluslararası İlişkiler Güncesi"
+    label_singular: "Siyaset yazısı"
+    folder: "src/content/siyaset"
+    create: true
+    delete: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: ["publishDate", "title"]
+    fields:
+      - { label: "Başlık", name: "title", widget: "string" }
+      - { label: "Açıklama (kısa özet, en fazla 200 karakter)", name: "description", widget: "text" }
+      - { label: "Yayın Tarihi", name: "publishDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Güncelleme Tarihi", name: "updatedDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD", required: false }
+      - label: "Kategori"
+        name: "category"
+        widget: "select"
+        options:
+          - "Türk Siyaseti"
+          - "Karşılaştırmalı Siyaset"
+          - "Uluslararası İlişkiler"
+          - "Dış Politika"
+          - "Siyaset Teorisi"
+          - "Seçim ve Demokrasi"
+          - "Kitap İncelemesi"
+      - { label: "Kapak Görseli", name: "coverImage", widget: "image", required: false }
+      - { label: "Kapak Görseli Alt Metni", name: "coverImageAlt", widget: "string", required: false }
+      - { label: "Etiketler", name: "tags", widget: "list", required: false }
+      - { label: "Kaynaklar", name: "references", widget: "list", required: false }
+      - { label: "Taslak (yayınlanmasın)", name: "draft", widget: "boolean", default: false }
+      - { label: "İçerik", name: "body", widget: "markdown" }
