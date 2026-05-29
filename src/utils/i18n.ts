@@ -8,8 +8,9 @@ export type Locale = (typeof LOCALES)[number];
 export const DEFAULT_LOCALE: Locale = 'tr';
 
 // KKTC bayrağı için inline SVG — Unicode'da ayrı emoji yok (ISO 3166-1'de tanınmıyor).
-// Beyaz zemin, iki kırmızı yatay şerit, kırmızı hilal ve beş köşeli yıldız.
-const KKTC_FLAG_SVG = `<svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KKTC bayrağı"><rect width="60" height="40" fill="#fff"/><rect y="8" width="60" height="4" fill="#E30A17"/><rect y="28" width="60" height="4" fill="#E30A17"/><circle cx="26" cy="20" r="7" fill="#E30A17"/><circle cx="28" cy="20" r="5.5" fill="#fff"/><polygon points="36,20 37.4,23.4 41,23.7 38.2,26 39.1,29.5 36,27.6 32.9,29.5 33.8,26 31,23.7 34.6,23.4" fill="#E30A17"/></svg>`;
+// Beyaz zemin (2:3 oran), iki ince kırmızı şerit kenara yakın, kırmızı hilal ve
+// 5 köşeli yıldız bayrağın dikey ortasında (y=20) eşit hizada.
+const KKTC_FLAG_SVG = `<svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KKTC bayrağı"><rect width="60" height="40" fill="#fff"/><rect y="6" width="60" height="2" fill="#E30A17"/><rect y="32" width="60" height="2" fill="#E30A17"/><circle cx="24" cy="20" r="7" fill="#E30A17"/><circle cx="25.6" cy="20" r="5.7" fill="#fff"/><polygon points="34,16.8 34.8,19 37,19 35.2,20.4 35.9,22.6 34,21.3 32.1,22.6 32.8,20.4 31,19 33.2,19" fill="#E30A17"/></svg>`;
 
 export const LOCALE_META: Record<
   Locale,
