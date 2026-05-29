@@ -1,26 +1,33 @@
 ---
 /**
- * Newsletter abonelik formu (Buttondown).
+ * Newsletter abonelik formu (MailerLite).
  *
  * KURULUM (tek seferlik):
- * 1. https://buttondown.com adresine kayıt ol (ücretsiz tier 100 abone)
- * 2. Kullanıcı adınızı (örn. "omuratakanates") aşağıdaki BUTTONDOWN_USER sabitine yazın
- * 3. Buttondown dashboard → Settings → Newsletter detayları → açıklama, tema vb. ayarla
+ * 1. https://www.mailerlite.com adresine kayıt ol
+ *    (ücretsiz tier: 1.000 abone, 12.000 e-posta/ay, RSS-to-email otomasyonu dahil)
+ * 2. Sol menüden Forms → Create new form → "Embedded form"
+ * 3. Formu adlandır (örn. "Site footer"), Continue → bir Group seç (yoksa oluştur)
+ * 4. Form tasarımını atla, "Embed your form" adımına gel
+ * 5. "Plain HTML form" sekmesini aç
+ * 6. <form action="..."> içindeki URL'i kopyala, aşağıdaki MAILERLITE_ACTION'a yapıştır
  *
- * Pasifken (boş kullanıcı adı) bu form gösterilmez.
+ * RSS-TO-EMAIL OTOMASYONU (yeni yazı çıkınca otomatik mail):
+ *   Dashboard → Automation → Create new automation → "RSS feed update" tetikleyici
+ *   Feed URL: https://omuratakanates.com/rss.xml
+ *   Action: Send email (RSS şablonu otomatik gelir, kişiselleştirip Save edin)
+ *   Status: Enable → her saatte bir feed'i tarar, yeni yazı varsa abonelere yollar
  *
- * Alternatifler: EmailOctopus, Substack, MailerLite (her birinin kendi form action URL'i olur).
+ * Pasifken (boş action) bu form gösterilmez.
  */
 
-const BUTTONDOWN_USER = ''; // örn. 'omuratakanates'  ← Buttondown kullanıcı adınız
+const MAILERLITE_ACTION = ''; // örn. 'https://app.mailerlite.com/webforms/submit/x1y2z3'
 
 interface Props {
   compact?: boolean; // footer içinde küçük versiyon
 }
 const { compact = false } = Astro.props;
 
-const enabled = BUTTONDOWN_USER !== '';
-const action = `https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_USER}`;
+const enabled = MAILERLITE_ACTION !== '';
 ---
 
 {enabled && (
@@ -36,16 +43,16 @@ const action = `https://buttondown.com/api/emails/embed-subscribe/${BUTTONDOWN_U
     )}
     {compact && <p class="newsletter__compact-title">📬 Newsletter</p>}
     <form
-      action={action}
+      action={MAILERLITE_ACTION}
       method="post"
       target="popupwindow"
-      onsubmit="window.open('https://buttondown.com/' + this.dataset.user, 'popupwindow')"
-      data-user={BUTTONDOWN_USER}
+      onsubmit="window.open(this.action, 'popupwindow', 'width=540,height=640')"
       class="newsletter__form"
     >
+      <input type="hidden" name="ml-submit" value="1" />
       <input
         type="email"
-        name="email"
+        name="fields[email]"
         placeholder="e-posta adresiniz"
         aria-label="E-posta"
         required
