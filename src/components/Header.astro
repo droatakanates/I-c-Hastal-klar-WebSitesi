@@ -1,4 +1,7 @@
 ---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { STRINGS, LOCALE_META, DEFAULT_LOCALE } from '../utils/i18n';
+
 const pathname = Astro.url.pathname;
 const isActive = (path: string) => {
   if (path === '/') return pathname === '/';
@@ -6,14 +9,22 @@ const isActive = (path: string) => {
 };
 
 const navLinks = [
-  { href: '/', label: 'Ana Sayfa' },
-  { href: '/hakkimda', label: 'Hakkımda' },
-  { href: '/ic-hastaliklari', label: 'İç Hastalıkları' },
-  { href: '/siyaset', label: 'Siyaset Bilimi' },
-  { href: '/saglik-rehberi', label: 'Sağlık Rehberi' },
-  { href: '/infografik', label: 'İnfografikler' },
-  { href: '/iletisim', label: 'İletişim' },
+  { href: '/', i18n: 'nav.home', label: 'Ana Sayfa' },
+  { href: '/hakkimda', i18n: 'nav.about', label: 'Hakkımda' },
+  { href: '/ic-hastaliklari', i18n: 'nav.icHastaliklari', label: 'İç Hastalıkları' },
+  { href: '/siyaset', i18n: 'nav.siyaset', label: 'Siyaset Bilimi' },
+  { href: '/saglik-rehberi', i18n: 'nav.saglikRehberi', label: 'Sağlık Rehberi' },
+  { href: '/infografik', i18n: 'nav.infografik', label: 'İnfografikler' },
+  { href: '/iletisim', i18n: 'nav.iletisim', label: 'İletişim' },
 ];
+
+// Tüm dil sözlüklerini sayfaya inline JSON olarak gömüp
+// LanguageSwitcher'ın seçimine göre client-side metin değiştirmeyi sağlar.
+const i18nPayload = JSON.stringify({
+  strings: STRINGS,
+  meta: LOCALE_META,
+  defaultLocale: DEFAULT_LOCALE,
+});
 ---
 
 <header class="site-header">
@@ -28,13 +39,23 @@ const navLinks = [
         class={`site-nav__icon ${isActive('/arama') ? 'active' : ''}`}
         aria-label="Ara"
         title="Ara"
+        data-i18n-aria="nav.search"
+        data-i18n-title="nav.search"
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="11" cy="11" r="7"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
       </a>
-      <button id="theme-toggle" class="site-nav__icon" aria-label="Tema değiştir" title="Açık / koyu mod" type="button">
+      <button
+        id="theme-toggle"
+        class="site-nav__icon"
+        aria-label="Tema değiştir"
+        title="Açık / koyu mod"
+        type="button"
+        data-i18n-aria="nav.themeToggle"
+        data-i18n-title="nav.themeToggle"
+      >
         <svg class="theme-icon theme-icon--light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"></circle>
           <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
@@ -43,6 +64,7 @@ const navLinks = [
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
         </svg>
       </button>
+      <LanguageSwitcher />
       <button
         id="nav-toggle"
         class="site-nav__icon site-nav__hamburger"
@@ -50,6 +72,7 @@ const navLinks = [
         aria-controls="site-nav"
         aria-expanded="false"
         type="button"
+        data-i18n-aria="nav.openMenu"
       >
         <svg class="hamburger-icon hamburger-icon--open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -65,11 +88,15 @@ const navLinks = [
 
     <nav id="site-nav" class="site-nav" aria-label="Ana menü" data-open="false">
       {navLinks.map((link) => (
-        <a href={link.href} class={isActive(link.href) ? 'active' : ''}>{link.label}</a>
+        <a href={link.href} class={isActive(link.href) ? 'active' : ''} data-i18n={link.i18n}>
+          {link.label}
+        </a>
       ))}
     </nav>
   </div>
 </header>
+
+<script type="application/json" id="i18n-payload" set:html={i18nPayload}></script>
 
 <script is:inline>
   (function () {
@@ -79,37 +106,132 @@ const navLinks = [
     document.documentElement.dataset.theme = initial;
   })();
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const themeBtn = document.getElementById('theme-toggle');
-    if (themeBtn) {
-      themeBtn.addEventListener('click', () => {
-        const current = document.documentElement.dataset.theme ?? 'light';
-        const next = current === 'dark' ? 'light' : 'dark';
-        document.documentElement.dataset.theme = next;
-        localStorage.setItem('theme', next);
-      });
+  (function () {
+    // i18n yükle ve seçili dile göre data-i18n etiketlerini güncelle
+    const payloadEl = document.getElementById('i18n-payload');
+    if (!payloadEl) return;
+    const payload = JSON.parse(payloadEl.textContent || '{}');
+    const STRINGS = payload.strings || {};
+    const META = payload.meta || {};
+    const DEFAULT_LOCALE = payload.defaultLocale || 'tr';
+
+    function getLocale() {
+      const stored = localStorage.getItem('lang');
+      return stored && STRINGS[stored] ? stored : DEFAULT_LOCALE;
     }
 
-    const navToggle = document.getElementById('nav-toggle');
-    const nav = document.getElementById('site-nav');
-    if (navToggle && nav) {
-      const setOpen = (open) => {
-        nav.dataset.open = String(open);
-        navToggle.setAttribute('aria-expanded', String(open));
-        navToggle.setAttribute('aria-label', open ? 'Menüyü kapat' : 'Menüyü aç');
-        document.documentElement.dataset.navOpen = String(open);
-      };
-      navToggle.addEventListener('click', () => {
-        setOpen(nav.dataset.open !== 'true');
-      });
-      // sayfa içi linke tıklanınca menüyü kapat
-      nav.querySelectorAll('a').forEach((a) => {
-        a.addEventListener('click', () => setOpen(false));
-      });
-      // ESC ile kapat
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && nav.dataset.open === 'true') setOpen(false);
-      });
+    function lookup(locale, key) {
+      const parts = key.split('.');
+      let v = STRINGS[locale];
+      for (const p of parts) {
+        if (v && typeof v === 'object') v = v[p];
+        else return undefined;
+      }
+      return typeof v === 'string' ? v : undefined;
     }
-  });
+
+    function applyTranslations(locale) {
+      document.documentElement.lang = META[locale]?.htmlLang || locale;
+      document.documentElement.dir = META[locale]?.dir || 'ltr';
+
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+        const val = lookup(locale, el.dataset.i18n);
+        if (val) el.textContent = val;
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+        const val = lookup(locale, el.dataset.i18nAria);
+        if (val) el.setAttribute('aria-label', val);
+      });
+      document.querySelectorAll('[data-i18n-title]').forEach((el) => {
+        const val = lookup(locale, el.dataset.i18nTitle);
+        if (val) el.setAttribute('title', val);
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+        const val = lookup(locale, el.dataset.i18nPlaceholder);
+        if (val) el.setAttribute('placeholder', val);
+      });
+      document.querySelectorAll('[data-i18n-value]').forEach((el) => {
+        const val = lookup(locale, el.dataset.i18nValue);
+        if (val) el.setAttribute('value', val);
+      });
+
+      // dil seçici tetikleyici bayrağı güncelle
+      const flagEl = document.querySelector('.lang-switcher__current-flag');
+      if (flagEl && META[locale]) flagEl.textContent = META[locale].flag;
+    }
+
+    // Erken uygula (etiketler hemen değişsin)
+    const initialLocale = getLocale();
+    applyTranslations(initialLocale);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Tema butonu
+      const themeBtn = document.getElementById('theme-toggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+          const current = document.documentElement.dataset.theme ?? 'light';
+          const next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.dataset.theme = next;
+          localStorage.setItem('theme', next);
+        });
+      }
+
+      // Hamburger menü
+      const navToggle = document.getElementById('nav-toggle');
+      const nav = document.getElementById('site-nav');
+      if (navToggle && nav) {
+        const setOpen = (open) => {
+          nav.dataset.open = String(open);
+          navToggle.setAttribute('aria-expanded', String(open));
+          const key = open ? 'nav.closeMenu' : 'nav.openMenu';
+          navToggle.setAttribute('data-i18n-aria', key);
+          const loc = getLocale();
+          const val = lookup(loc, key);
+          if (val) navToggle.setAttribute('aria-label', val);
+          document.documentElement.dataset.navOpen = String(open);
+        };
+        navToggle.addEventListener('click', () => setOpen(nav.dataset.open !== 'true'));
+        nav.querySelectorAll('a').forEach((a) =>
+          a.addEventListener('click', () => setOpen(false))
+        );
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && nav.dataset.open === 'true') setOpen(false);
+        });
+      }
+
+      // Dil seçici menü
+      const langTrigger = document.getElementById('lang-switcher-trigger');
+      const langMenu = document.getElementById('lang-switcher-menu');
+      if (langTrigger && langMenu) {
+        const setLangMenuOpen = (open) => {
+          langMenu.hidden = !open;
+          langTrigger.setAttribute('aria-expanded', String(open));
+        };
+        langTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setLangMenuOpen(langMenu.hidden);
+        });
+        document.addEventListener('click', (e) => {
+          if (!langMenu.contains(e.target) && e.target !== langTrigger) {
+            setLangMenuOpen(false);
+          }
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !langMenu.hidden) setLangMenuOpen(false);
+        });
+
+        langMenu.querySelectorAll('li[data-lang]').forEach((li) => {
+          li.addEventListener('click', () => {
+            const code = li.dataset.lang;
+            if (!code || !STRINGS[code]) return;
+            localStorage.setItem('lang', code);
+            applyTranslations(code);
+            setLangMenuOpen(false);
+            // Diğer açık sekmelerde de güncellenmesi için event yay
+            window.dispatchEvent(new CustomEvent('lang:change', { detail: { locale: code } }));
+          });
+        });
+      }
+    });
+  })();
 </script>

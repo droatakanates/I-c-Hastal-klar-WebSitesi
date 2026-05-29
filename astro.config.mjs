@@ -6,11 +6,23 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://omuratakanates.com',
   trailingSlash: 'never',
+  i18n: {
+    defaultLocale: 'tr',
+    locales: ['tr', 'kibris', 'az', 'en', 'sv', 'de'],
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [
     sitemap({
       i18n: {
         defaultLocale: 'tr',
-        locales: { tr: 'tr-TR' },
+        locales: {
+          tr: 'tr-TR',
+          kibris: 'tr-CY',
+          az: 'az-AZ',
+          en: 'en-US',
+          sv: 'sv-SE',
+          de: 'de-DE',
+        },
       },
     }),
   ],
