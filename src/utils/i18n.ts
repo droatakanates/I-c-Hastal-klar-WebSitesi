@@ -7,12 +7,22 @@ export type Locale = (typeof LOCALES)[number];
 
 export const DEFAULT_LOCALE: Locale = 'tr';
 
+// KKTC bayrağı için inline SVG — Unicode'da ayrı emoji yok (ISO 3166-1'de tanınmıyor).
+// Beyaz zemin, iki kırmızı yatay şerit, kırmızı hilal ve beş köşeli yıldız.
+const KKTC_FLAG_SVG = `<svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="KKTC bayrağı"><rect width="60" height="40" fill="#fff"/><rect y="8" width="60" height="4" fill="#E30A17"/><rect y="28" width="60" height="4" fill="#E30A17"/><circle cx="26" cy="20" r="7" fill="#E30A17"/><circle cx="28" cy="20" r="5.5" fill="#fff"/><polygon points="36,20 37.4,23.4 41,23.7 38.2,26 39.1,29.5 36,27.6 32.9,29.5 33.8,26 31,23.7 34.6,23.4" fill="#E30A17"/></svg>`;
+
 export const LOCALE_META: Record<
   Locale,
-  { name: string; flag: string; htmlLang: string; dir: 'ltr' | 'rtl' }
+  { name: string; flag: string; flagSvg?: string; htmlLang: string; dir: 'ltr' | 'rtl' }
 > = {
   tr: { name: 'Türkçe', flag: '🇹🇷', htmlLang: 'tr', dir: 'ltr' },
-  kibris: { name: 'Kıbrıs Türkçesi', flag: '🇨🇾', htmlLang: 'tr-CY', dir: 'ltr' },
+  kibris: {
+    name: 'Kıbrıs Türkçesi',
+    flag: '',
+    flagSvg: KKTC_FLAG_SVG,
+    htmlLang: 'tr-CY',
+    dir: 'ltr',
+  },
   az: { name: 'Azərbaycanca', flag: '🇦🇿', htmlLang: 'az', dir: 'ltr' },
   en: { name: 'English', flag: '🇬🇧', htmlLang: 'en', dir: 'ltr' },
   sv: { name: 'Svenska', flag: '🇸🇪', htmlLang: 'sv', dir: 'ltr' },

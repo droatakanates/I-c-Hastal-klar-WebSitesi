@@ -155,9 +155,13 @@ const i18nPayload = JSON.stringify({
         if (val) el.setAttribute('value', val);
       });
 
-      // dil seçici tetikleyici bayrağı güncelle
+      // dil seçici tetikleyici bayrağı güncelle (SVG varsa onu, yoksa emoji)
       const flagEl = document.querySelector('.lang-switcher__current-flag');
-      if (flagEl && META[locale]) flagEl.textContent = META[locale].flag;
+      if (flagEl && META[locale]) {
+        const m = META[locale];
+        if (m.flagSvg) flagEl.innerHTML = m.flagSvg;
+        else flagEl.textContent = m.flag || '';
+      }
     }
 
     // Erken uygula (etiketler hemen değişsin)
