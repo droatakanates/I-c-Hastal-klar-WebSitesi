@@ -195,4 +195,54 @@ const fullUrl = new URL(Astro.url.pathname, Astro.site).toString();
       update();
     })();
   </script>
+
+  <!-- Görsel büyütme / lightbox (PhotoSwipe v5): yazı içi ve kapak görselleri tıklanınca tam ekran açılır, manuel zoom + pan -->
+  <link rel="stylesheet" href="https://unpkg.com/photoswipe@5.4.4/dist/photoswipe.css" />
+  <script type="module" is:inline>
+    import PhotoSwipeLightbox from 'https://unpkg.com/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.js';
+
+    const targets = document.querySelectorAll('.post-content img, .post-cover img');
+
+    function wrap(img) {
+      if (img.dataset.lightboxed === '1') return;
+      if (img.parentElement && img.parentElement.tagName === 'A') {
+        img.parentElement.classList.add('lightbox-img');
+        img.parentElement.dataset.pswpWidth = img.naturalWidth || 1920;
+        img.parentElement.dataset.pswpHeight = img.naturalHeight || 1080;
+        img.dataset.lightboxed = '1';
+        return;
+      }
+      const link = document.createElement('a');
+      link.href = img.currentSrc || img.src;
+      link.className = 'lightbox-img';
+      link.dataset.pswpWidth = img.naturalWidth || 1920;
+      link.dataset.pswpHeight = img.naturalHeight || 1080;
+      link.setAttribute('aria-label', img.alt ? 'Görseli büyüt: ' + img.alt : 'Görseli büyüt');
+      img.parentNode.insertBefore(link, img);
+      link.appendChild(img);
+      img.dataset.lightboxed = '1';
+    }
+
+    targets.forEach((img) => {
+      if (img.complete && img.naturalWidth) {
+        wrap(img);
+      } else {
+        img.addEventListener('load', () => wrap(img), { once: true });
+      }
+    });
+
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '.post-content, .post-cover',
+      children: 'a.lightbox-img',
+      pswpModule: () => import('https://unpkg.com/photoswipe@5.4.4/dist/photoswipe.esm.js'),
+      bgOpacity: 0.95,
+      showHideAnimationType: 'fade',
+      closeOnVerticalDrag: true,
+      wheelToZoom: true,
+      initialZoomLevel: 'fit',
+      secondaryZoomLevel: 1.5,
+      maxZoomLevel: 4,
+    });
+    lightbox.init();
+  </script>
 </BaseLayout>
