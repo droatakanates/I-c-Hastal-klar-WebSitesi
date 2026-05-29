@@ -102,6 +102,12 @@ content:
         type: string
         list: true
         required: false
+      - name: pdfDosyasi
+        label: PDF Dosyası (opsiyonel — yazının başında "PDF olarak indir" butonu olarak çıkar)
+        type: file
+        required: false
+        options:
+          extensions: [pdf]
       - name: draft
         label: Taslak (işaretliyse sitede yayınlanmaz)
         type: boolean
@@ -182,6 +188,12 @@ content:
         type: string
         list: true
         required: false
+      - name: pdfDosyasi
+        label: PDF Dosyası (opsiyonel — yazının başında "PDF olarak indir" butonu olarak çıkar)
+        type: file
+        required: false
+        options:
+          extensions: [pdf]
       - name: draft
         label: Taslak (işaretliyse sitede yayınlanmaz)
         type: boolean
@@ -243,6 +255,12 @@ content:
         type: string
         list: true
         required: false
+      - name: pdfDosyasi
+        label: PDF Dosyası (opsiyonel — yazının başında "PDF olarak indir" butonu olarak çıkar)
+        type: file
+        required: false
+        options:
+          extensions: [pdf]
       - name: draft
         label: Taslak (işaretliyse sitede yayınlanmaz)
         type: boolean
@@ -318,6 +336,12 @@ content:
         type: string
         list: true
         required: false
+      - name: pdfDosyasi
+        label: PDF Dosyası (opsiyonel — yazının başında "PDF olarak indir" butonu olarak çıkar)
+        type: file
+        required: false
+        options:
+          extensions: [pdf]
       - name: draft
         label: Taslak (işaretliyse sitede yayınlanmaz)
         type: boolean

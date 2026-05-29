@@ -53,6 +53,7 @@ const ortakAlanlar = {
   coverImageAlt: z.string().optional(),
   tags: z.array(z.string()).default([]),
   references: z.array(z.string()).default([]),
+  pdfDosyasi: z.string().optional(),
   draft: z.boolean().default(false),
 };
 

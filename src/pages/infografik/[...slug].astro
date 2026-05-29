@@ -22,6 +22,8 @@ const { Content } = await render(post);
   category={post.data.category}
   tags={post.data.tags}
   section="infografik"
+  slug={post.id}
+  pdfDosyasi={post.data.pdfDosyasi}
   references={post.data.references}
 >
   <Content />
