@@ -21,6 +21,7 @@ export const SIYASET_KATEGORILERI = [
   'Karşılaştırmalı Siyaset',
   'Uluslararası İlişkiler',
   'Dış Politika',
+  'Kıbrıs Sorunu',
   'Siyaset Teorisi',
   'Seçim ve Demokrasi',
   'Kitap İncelemesi',
