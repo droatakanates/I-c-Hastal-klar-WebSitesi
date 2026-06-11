@@ -26,5 +26,4 @@ references:
     2024;209(1):24-36."
 draft: false
 ---
-![ARDS_infografik.png](/gorseller/ARDS_infografik.png)
-
+.
