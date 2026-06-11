@@ -1,6 +1,6 @@
 ---
 title: "ARDS İnfografiği"
-description: "Akut respiratuar distres sendromu (ARDS): tanım, etiyoloji, Berlin/Global tanı kriterleri, şiddet spektrumu, akciğer koruyucu ventilasyon, tedavi takibi ve mortalite — ESICM 2023 ve ATS 2024 kılavuzları doğrultusunda."
+description: "ARDS — Berlin/Global tanı kriterleri, şiddet spektrumu, akciğer koruyucu ventilasyon, prone pozisyon, VV-ECMO ve tedavi takibi; ESICM 2023 ve ATS 2024 kılavuzları."
 publishDate: 2026-06-11
 updatedDate: 2026-06-11
 category: "Hekimler İçin"
