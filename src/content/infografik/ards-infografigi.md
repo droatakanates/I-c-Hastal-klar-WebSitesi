@@ -27,3 +27,8 @@ references:
 draft: false
 ---
 .
+
+![ARDS_01_tanim.png](/gorseller/ARDS_01_tanim-1.png)
+
+![ARDS_02_etiyoloji.png](/gorseller/ARDS_02_etiyoloji-1.png)
+
