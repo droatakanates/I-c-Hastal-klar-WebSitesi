@@ -24,7 +24,7 @@ references:
     Patients with Acute Respiratory Distress Syndrome: An Official American
     Thoracic Society Clinical Practice Guideline. Am J Respir Crit Care Med.
     2024;209(1):24-36."
-draft: true
+draft: false
 ---
 ![ARDS_infografik.png](/gorseller/ARDS_infografik.png)
 
