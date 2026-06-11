@@ -32,3 +32,9 @@ draft: false
 
 ![ARDS_02_etiyoloji.png](/gorseller/ARDS_02_etiyoloji-1.png)
 
+![ARDS_03_tani.png](/gorseller/ARDS_03_tani-1.png)
+
+![ARDS_04_tedavi.png](/gorseller/ARDS_04_tedavi-1.png)
+
+![ARDS_05_izlem_mortalite.png](/gorseller/ARDS_05_izlem_mortalite-1.png)
+
