@@ -38,12 +38,12 @@
   /* Marka adı için ayrı font — özelleştirmek için aşağıdaki @font-face'i kullanın */
   --font-brand: var(--font-serif);
 
-  /* Üst sekme (turkuaz / teal) */
-  --color-header-bg: #0f766e;
-  --color-header-text: #ccfbf1;
+  /* Üst sekme (koyu lacivert / donanma) */
+  --color-header-bg: #1e293b;
+  --color-header-text: #cbd5e1;
   --color-header-text-hover: #ffffff;
   --color-header-brand: #ffffff;
-  --color-header-border: rgba(255, 255, 255, 0.1);
+  --color-header-border: rgba(255, 255, 255, 0.08);
 
   /* Ölçüler */
   --content-width: 720px;
@@ -79,11 +79,11 @@
   --color-saglik-rehberi: #fb7185;
   --color-saglik-rehberi-soft: rgba(251, 113, 133, 0.15);
 
-  --color-header-bg: #042f2e;
-  --color-header-text: #99f6e4;
+  --color-header-bg: #0a1325;
+  --color-header-text: #cbd5e1;
   --color-header-text-hover: #ffffff;
   --color-header-brand: #ffffff;
-  --color-header-border: rgba(255, 255, 255, 0.08);
+  --color-header-border: rgba(255, 255, 255, 0.06);
 }
 
 :root[data-theme="dark"] .callout--info { background: rgba(96, 165, 250, 0.1); }
@@ -980,10 +980,10 @@ a:hover {
 .home-hero {
   padding: var(--space-2xl) 0 var(--space-2xl);
   background:
-    radial-gradient(ellipse 85% 65% at 20% 10%, rgba(20, 184, 166, 0.22), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 90% 30%, rgba(190, 18, 60, 0.12), transparent 60%),
-    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(180, 83, 9, 0.10), transparent 60%),
-    linear-gradient(180deg, #e8f7f4 0%, #f8f7f4 100%);
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(30, 64, 175, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 30%, rgba(190, 18, 60, 0.14), transparent 60%),
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(180, 83, 9, 0.12), transparent 60%),
+    linear-gradient(180deg, #f0f4fa 0%, #f8f7f4 100%);
   border-bottom: 1px solid var(--color-border);
   position: relative;
   overflow: hidden;
@@ -992,10 +992,10 @@ a:hover {
 /* Dark mode için daha derin tonlar */
 :root[data-theme="dark"] .home-hero {
   background:
-    radial-gradient(ellipse 85% 65% at 20% 10%, rgba(45, 212, 191, 0.25), transparent 60%),
-    radial-gradient(ellipse 60% 50% at 90% 30%, rgba(251, 113, 133, 0.15), transparent 60%),
-    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(251, 191, 36, 0.12), transparent 60%),
-    linear-gradient(180deg, #0e3a37 0%, #0f172a 100%);
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(96, 165, 250, 0.25), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 30%, rgba(251, 113, 133, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(251, 191, 36, 0.15), transparent 60%),
+    linear-gradient(180deg, #1a2238 0%, #0f172a 100%);
 }
 
 .home-hero__eyebrow {
