@@ -36,7 +36,7 @@
     'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace;
   /* Marka adı için ayrı font — özelleştirmek için aşağıdaki @font-face'i kullanın */
-  --font-brand: var(--font-serif);
+  --font-brand: 'Caveat', var(--font-serif);
 
   /* Üst sekme (koyu lacivert / donanma) */
   --color-header-bg: #1e293b;
@@ -234,10 +234,11 @@ a:hover {
 
 .site-brand {
   font-family: var(--font-brand);
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.7rem;
+  font-weight: 700;
   color: var(--color-header-brand);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
+  line-height: 1.05;
   transition: color 0.15s ease;
 }
 
