@@ -4,6 +4,7 @@ description: .
 publishDate: 2026-05-30
 updatedDate: 2026-05-30
 category: Hekimler İçin
+brans: Endokrinoloji
 tags:
   - Endokrinoloji
   - Diabetes Mellitus
@@ -12,7 +13,5 @@ references:
     - 2026. Türkiye Endokrinoloji ve Metabolizma Derneği
 draft: false
 ---
-
-
 ![8EAF03DF-52B2-4A49-93BC-46B619CF9BD5.png](/gorseller/8EAF03DF-52B2-4A49-93BC-46B619CF9BD5.png)
 
