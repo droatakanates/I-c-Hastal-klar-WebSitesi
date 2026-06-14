@@ -4,6 +4,7 @@ description: .
 publishDate: 2026-06-12
 updatedDate: 2026-06-12
 category: Hekimler İçin
+brans: Yoğun Bakım
 tags:
   - Yoğun Bakım
 references:
