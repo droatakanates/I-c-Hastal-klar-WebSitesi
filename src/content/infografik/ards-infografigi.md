@@ -6,6 +6,7 @@ description: ARDS — Berlin/Global tanı kriterleri, şiddet spektrumu, akciğe
 publishDate: 2026-06-11
 updatedDate: 2026-06-11
 category: Hekimler İçin
+brans: Yoğun Bakım
 tags:
   - Göğüs Hastalıkları
   - Yoğun Bakım
