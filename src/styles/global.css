@@ -853,6 +853,28 @@ a:hover {
   background: #fff;
 }
 
+.category-pill--empty {
+  opacity: 0.5;
+}
+.category-pill--empty:hover {
+  opacity: 1;
+}
+
+.category-pill__count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--color-bg-soft);
+  color: var(--color-text-muted);
+  padding: 1px 7px;
+  border-radius: 999px;
+  margin-left: 0.25rem;
+}
+.category-pill:hover .category-pill__count {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
 /* Bölüm sayfalarında pill'lerin nokta rengi bölüm rengini alır */
 .section-banner--ic-hastaliklari ~ * .category-pill::before { background: var(--color-ic-hastaliklari); }
 .section-banner--siyaset ~ * .category-pill::before { background: var(--color-siyaset); }
@@ -864,49 +886,6 @@ a:hover {
   grid-template-columns: 1fr 1fr;
   gap: var(--space-lg);
   margin: var(--space-xl) 0 var(--space-lg);
-}
-
-/* === Branş çipleri (infografik ana sayfası) === */
-.brans-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-.brans-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.85rem;
-  background: var(--color-bg-soft);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  text-decoration: none;
-  color: var(--color-text);
-  font-size: 0.9rem;
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-.brans-chip:hover {
-  background: var(--color-infografik-soft);
-  border-color: var(--color-infografik);
-  color: var(--color-infografik);
-}
-.brans-chip__count {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--color-text-muted);
-  background: var(--color-bg);
-  padding: 1px 7px;
-  border-radius: 999px;
-}
-.brans-chip:hover .brans-chip__count {
-  color: var(--color-infografik);
-}
-.brans-chip--empty {
-  opacity: 0.5;
-}
-.brans-chip--empty:hover {
-  opacity: 1;
 }
 
 .audience-card {

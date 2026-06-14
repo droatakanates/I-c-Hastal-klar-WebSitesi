@@ -71,17 +71,17 @@ const bransSayilari = INFOGRAFIK_BRANSLARI.map((b) => ({
 
     <div style="margin-top: 3rem;" aria-labelledby="brans-heading">
       <h2 id="brans-heading" style="font-size: 1.4rem; margin-bottom: 1rem;">Branşa göre</h2>
-      <div class="brans-chips">
+      <nav class="category-pills" aria-label="Branşlar">
         {bransSayilari.map((b) => (
           <a
             href={`/infografik/brans/${b.ad}`}
-            class={`brans-chip ${b.sayi === 0 ? 'brans-chip--empty' : ''}`}
+            class={`category-pill ${b.sayi === 0 ? 'category-pill--empty' : ''}`}
           >
-            <span class="brans-chip__name">{b.ad}</span>
-            <span class="brans-chip__count">{b.sayi}</span>
+            {b.ad}
+            {b.sayi > 0 && <span class="category-pill__count">{b.sayi}</span>}
           </a>
         ))}
-      </div>
+      </nav>
     </div>
 
     <div style="margin-top: 3rem;">
