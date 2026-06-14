@@ -44,6 +44,24 @@ export const INFOGRAFIK_KATEGORILERI = [
   'Hekimler İçin',
 ] as const;
 
+// İnfografik branşları (İç Hastalıkları yan dalları + ilgili dallar)
+export const INFOGRAFIK_BRANSLARI = [
+  'Endokrinoloji',
+  'Gastroenteroloji',
+  'Geriatri',
+  'Nefroloji',
+  'Medikal Onkoloji',
+  'Hematoloji',
+  'Romatoloji',
+  'Yoğun Bakım',
+  'İş Sağlığı ve Meslek Hastalıkları',
+  'Allerji ve İmmünoloji',
+  'Kardiyoloji',
+  'Göğüs Hastalıkları',
+  'Enfeksiyon Hastalıkları',
+  'Genel Dahiliye',
+] as const;
+
 // Ortak alanlar — tüm bölümlerde kullanılan frontmatter alanları
 const ortakAlanlar = {
   title: z.string(),
@@ -103,6 +121,7 @@ const infografik = defineCollection({
   schema: z.object({
     ...ortakAlanlar,
     category: z.enum(INFOGRAFIK_KATEGORILERI),
+    brans: z.enum(INFOGRAFIK_BRANSLARI).optional(),
   }),
 });
 

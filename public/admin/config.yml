@@ -131,6 +131,25 @@ collections:
         name: "category"
         widget: "select"
         options: ["Hastalar İçin", "Hekimler İçin"]
+      - label: "Branş (opsiyonel — sitede branşa göre filtrelemek için)"
+        name: "brans"
+        widget: "select"
+        required: false
+        options:
+          - "Endokrinoloji"
+          - "Gastroenteroloji"
+          - "Geriatri"
+          - "Nefroloji"
+          - "Medikal Onkoloji"
+          - "Hematoloji"
+          - "Romatoloji"
+          - "Yoğun Bakım"
+          - "İş Sağlığı ve Meslek Hastalıkları"
+          - "Allerji ve İmmünoloji"
+          - "Kardiyoloji"
+          - "Göğüs Hastalıkları"
+          - "Enfeksiyon Hastalıkları"
+          - "Genel Dahiliye"
       - { label: "Kapak Görseli", name: "coverImage", widget: "image", required: false }
       - { label: "Kapak Görseli Alt Metni", name: "coverImageAlt", widget: "string", required: false }
       - { label: "Etiketler", name: "tags", widget: "list", required: false }

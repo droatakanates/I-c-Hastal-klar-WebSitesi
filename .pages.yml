@@ -245,6 +245,26 @@ content:
           values:
             - Hastalar İçin
             - Hekimler İçin
+      - name: brans
+        label: Branş (opsiyonel — sitede branşa göre filtrelemek için)
+        type: select
+        required: false
+        options:
+          values:
+            - Endokrinoloji
+            - Gastroenteroloji
+            - Geriatri
+            - Nefroloji
+            - Medikal Onkoloji
+            - Hematoloji
+            - Romatoloji
+            - Yoğun Bakım
+            - İş Sağlığı ve Meslek Hastalıkları
+            - Allerji ve İmmünoloji
+            - Kardiyoloji
+            - Göğüs Hastalıkları
+            - Enfeksiyon Hastalıkları
+            - Genel Dahiliye
       - name: tags
         label: Etiketler
         type: string
