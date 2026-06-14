@@ -902,6 +902,12 @@ a:hover {
 .brans-chip:hover .brans-chip__count {
   color: var(--color-infografik);
 }
+.brans-chip--empty {
+  opacity: 0.5;
+}
+.brans-chip--empty:hover {
+  opacity: 1;
+}
 
 .audience-card {
   display: flex;

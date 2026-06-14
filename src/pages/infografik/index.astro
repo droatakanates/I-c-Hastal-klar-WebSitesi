@@ -11,10 +11,11 @@ const posts = (
 const hastalarCount = posts.filter((p) => p.data.category === 'Hastalar İçin').length;
 const hekimlerCount = posts.filter((p) => p.data.category === 'Hekimler İçin').length;
 
-// Branşa göre sayıları çıkar; sıralama orijinal listeye sadık
-const bransSayilari = INFOGRAFIK_BRANSLARI
-  .map((b) => ({ ad: b, sayi: posts.filter((p) => p.data.brans === b).length }))
-  .filter((b) => b.sayi > 0);
+// Tüm branşları her zaman göster; boş olanlar soluk gösterilir.
+const bransSayilari = INFOGRAFIK_BRANSLARI.map((b) => ({
+  ad: b,
+  sayi: posts.filter((p) => p.data.brans === b).length,
+}));
 ---
 
 <BaseLayout
@@ -68,19 +69,20 @@ const bransSayilari = INFOGRAFIK_BRANSLARI
       </a>
     </div>
 
-    {bransSayilari.length > 0 && (
-      <div style="margin-top: 3rem;" aria-labelledby="brans-heading">
-        <h2 id="brans-heading" style="font-size: 1.4rem; margin-bottom: 1rem;">Branşa göre</h2>
-        <div class="brans-chips">
-          {bransSayilari.map((b) => (
-            <a href={`/infografik/brans/${b.ad}`} class="brans-chip">
-              <span class="brans-chip__name">{b.ad}</span>
-              <span class="brans-chip__count">{b.sayi}</span>
-            </a>
-          ))}
-        </div>
+    <div style="margin-top: 3rem;" aria-labelledby="brans-heading">
+      <h2 id="brans-heading" style="font-size: 1.4rem; margin-bottom: 1rem;">Branşa göre</h2>
+      <div class="brans-chips">
+        {bransSayilari.map((b) => (
+          <a
+            href={`/infografik/brans/${b.ad}`}
+            class={`brans-chip ${b.sayi === 0 ? 'brans-chip--empty' : ''}`}
+          >
+            <span class="brans-chip__name">{b.ad}</span>
+            <span class="brans-chip__count">{b.sayi}</span>
+          </a>
+        ))}
       </div>
-    )}
+    </div>
 
     <div style="margin-top: 3rem;">
       <h2 style="font-size: 1.4rem; margin-bottom: 1rem;">Son eklenen infografikler</h2>
