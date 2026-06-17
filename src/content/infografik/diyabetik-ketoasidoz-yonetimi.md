@@ -1,8 +1,8 @@
 ---
 title: "Diyabetik Ketoasidoz Yönetimi"
 description: "DKA tanı kriterleri, şiddet sınıflaması, sıvı/insülin/potasyum tedavisi, takip ve özel durumlar — TEMD 2026 kılavuzuna göre özet algoritma."
-publishDate: 2026-06-14
-updatedDate: 2026-06-14
+publishDate: 2026-06-17
+updatedDate: 2026-06-17
 category: "Hekimler İçin"
 brans: "Endokrinoloji"
 tags:

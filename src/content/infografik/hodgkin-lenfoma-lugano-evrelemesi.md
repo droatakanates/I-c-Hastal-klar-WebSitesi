@@ -1,8 +1,8 @@
 ---
 title: "Hodgkin Lenfomada Modifiye Ann Arbor (Lugano) Evrelemesi"
 description: "Hodgkin lenfoma Lugano (modifiye Ann Arbor) evrelemesi: evre I-IV tanımları, A/B/E/S belirteçleri, sınırlı ve ileri evre ayrımı, bulky hastalık ölçütü."
-publishDate: 2026-06-14
-updatedDate: 2026-06-14
+publishDate: 2026-06-17
+updatedDate: 2026-06-17
 category: "Hekimler İçin"
 brans:
   - "Medikal Onkoloji"

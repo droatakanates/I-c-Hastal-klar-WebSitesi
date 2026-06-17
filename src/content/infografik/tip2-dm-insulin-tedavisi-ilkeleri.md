@@ -1,8 +1,8 @@
 ---
 title: "Tip 2 Diabetes Mellitus'ta İnsülin Tedavisi İlkeleri"
 description: "Bazal insülin başlama endikasyonları, doz titrasyonu, bolus geçiş kararı ve bazal-bolus rejiminin TEMD 2026 kılavuzuna göre özetlendiği infografik."
-publishDate: 2026-06-14
-updatedDate: 2026-06-14
+publishDate: 2026-06-17
+updatedDate: 2026-06-17
 category: "Hekimler İçin"
 brans: "Endokrinoloji"
 tags:
