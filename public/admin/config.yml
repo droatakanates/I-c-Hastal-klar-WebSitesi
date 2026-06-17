@@ -131,9 +131,10 @@ collections:
         name: "category"
         widget: "select"
         options: ["Hastalar İçin", "Hekimler İçin"]
-      - label: "Branş (opsiyonel — sitede branşa göre filtrelemek için)"
+      - label: "Branş(lar) (opsiyonel — birden fazla seçebilirsiniz)"
         name: "brans"
         widget: "select"
+        multiple: true
         required: false
         options:
           - "Endokrinoloji"

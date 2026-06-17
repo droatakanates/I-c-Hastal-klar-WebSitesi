@@ -121,7 +121,12 @@ const infografik = defineCollection({
   schema: z.object({
     ...ortakAlanlar,
     category: z.enum(INFOGRAFIK_KATEGORILERI),
-    brans: z.enum(INFOGRAFIK_BRANSLARI).optional(),
+    // Bir infografik birden fazla branşı kapsayabilir (örn. Medikal Onkoloji + Hematoloji).
+    // Geriye uyumluluk için tek string de kabul edilir, otomatik diziye dönüştürülür.
+    brans: z
+      .union([z.enum(INFOGRAFIK_BRANSLARI), z.array(z.enum(INFOGRAFIK_BRANSLARI))])
+      .optional()
+      .transform((v) => (v === undefined ? [] : Array.isArray(v) ? v : [v])),
   }),
 });
 

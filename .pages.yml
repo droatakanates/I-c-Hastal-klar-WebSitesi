@@ -246,8 +246,9 @@ content:
             - Hastalar İçin
             - Hekimler İçin
       - name: brans
-        label: Branş (opsiyonel — sitede branşa göre filtrelemek için)
+        label: Branş(lar) (opsiyonel — birden fazla seçebilirsiniz, sitede branşa göre filtrelemek için)
         type: select
+        list: true
         required: false
         options:
           values:

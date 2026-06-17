@@ -14,7 +14,7 @@ const hekimlerCount = posts.filter((p) => p.data.category === 'Hekimler İçin')
 // Tüm branşları her zaman göster; boş olanlar soluk gösterilir.
 const bransSayilari = INFOGRAFIK_BRANSLARI.map((b) => ({
   ad: b,
-  sayi: posts.filter((p) => p.data.brans === b).length,
+  sayi: posts.filter((p) => (p.data.brans ?? []).includes(b)).length,
 }));
 ---
 
