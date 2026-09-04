@@ -20,24 +20,16 @@ draft: false
   @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
   .dc-canvas {
-    position: relative;
-    left: 50%;
-    right: 50%;
-    width: 100vw;
-    max-width: 100vw;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-    padding: 2rem clamp(16px, 3vw, 40px);
-    box-sizing: border-box;
+    margin: 2rem 0;
+    padding: 1.25rem;
     background: #f6f7fb;
     color-scheme: light;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 28px;
+    gap: 18px;
     color: #16223f;
+    border-radius: var(--radius-md);
   }
   .dc-canvas__hint {
     font-family: 'IBM Plex Mono', ui-monospace, monospace;
